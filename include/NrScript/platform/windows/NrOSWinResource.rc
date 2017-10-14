@@ -1,0 +1,12 @@
+/**
+ * UTF-8 (no bom)
+ */
+
+NrScriptDefaultIcon     ICON    "./gtk.ico"
+
+NrScriptTemplateDLG DIALOG DISCARDABLE  32, 32, 180, 102
+STYLE 0x80 | 0x80000000 |  0x00C00000 | 0x00080000 | 0x00040000
+FONT 8, "MS Sans Serif"
+BEGIN
+
+END

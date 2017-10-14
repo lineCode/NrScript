@@ -1,0 +1,5 @@
+/build_tmp
+/lib
+/build/NrScript.Build2017/.vs
+*.user
+/output

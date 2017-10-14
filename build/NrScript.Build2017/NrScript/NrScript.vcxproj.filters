@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="include\base">
+      <UniqueIdentifier>{ea53c166-be53-4376-a2d8-d40ca77ee0eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\ui">
+      <UniqueIdentifier>{a0a448c3-66d0-4f01-8e7f-ecbe7aafae38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\xml">
+      <UniqueIdentifier>{5c925b13-f007-41d7-9791-eeb577fdc2c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\base">
+      <UniqueIdentifier>{782fc6b5-3d52-46a6-ab8c-fd78f828022c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\xml">
+      <UniqueIdentifier>{b752b901-d668-4ce7-93e7-c8201306979d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ui">
+      <UniqueIdentifier>{245dafd7-2ce3-477d-869b-df23b0612070}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\io">
+      <UniqueIdentifier>{438cc963-00d7-4f23-8aa3-1e044f401e86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\io">
+      <UniqueIdentifier>{471b1b46-32f3-427f-bf1f-bd147215a7e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\thread">
+      <UniqueIdentifier>{5903568f-7043-475a-84d1-9696aafb7dd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\thread">
+      <UniqueIdentifier>{e7b1b8ca-e926-4ac8-a865-d296d96d43c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\net">
+      <UniqueIdentifier>{1c73748f-e59e-4a15-ba78-cf1295939e8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\net">
+      <UniqueIdentifier>{d0e5a146-ac3d-411c-b056-9304ddb5b416}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\ui\widgets">
+      <UniqueIdentifier>{c24b83d0-46e3-4d37-895a-a4cd0e36b69a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\ui\internal">
+      <UniqueIdentifier>{1ba836ac-a6f9-4b24-8478-b0c5a56179c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\base\internal">
+      <UniqueIdentifier>{e415ee6f-520c-484a-bf59-6a5b432570b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ui\internal">
+      <UniqueIdentifier>{a6cab453-8653-44c6-84ac-8bbb98d2a5cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\ui\utils">
+      <UniqueIdentifier>{937507b0-5b0b-4480-8d4c-acd604278896}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\platform">
+      <UniqueIdentifier>{97c78936-e84d-4335-8b8d-2dfcdfbde27a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\platform\windows">
+      <UniqueIdentifier>{0b9815f5-1ffa-4237-9cb8-1d8c92612739}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\platform">
+      <UniqueIdentifier>{4d1efad2-f405-42d0-9179-8d9b2e3c2c76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\platform\windows">
+      <UniqueIdentifier>{ccb37715-c054-4b9b-a994-7815590ea7f3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\include\NrScript\base.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\NrScript\base\NrString.h">
+      <Filter>include\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\NrScript\defs.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\NrScript\base\NrEvent.h">
+      <Filter>include\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\NrScript\ui\widgets\NrControl.h">
+      <Filter>include\ui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\NrScript\ui.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\NrScript\ui\NrWindowImpl.h">
+      <Filter>include\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\NrScript\base\NrChars.h">
+      <Filter>include\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\NrScript\ui\internal\NrWindowBase.h">
+      <Filter>include\ui\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\NrScript.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\NrScript\ui\utils\NrRect.h">
+      <Filter>include\ui\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\NrScript\platform\windows\NrWindowImplOSWin.h">
+      <Filter>include\platform\windows</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\NrScript\base\NrString.cpp">
+      <Filter>src\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\NrScript\ui\NrWindowImpl.cpp">
+      <Filter>src\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\NrScript\ui\internal\NrWindowBase.cpp">
+      <Filter>src\ui\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\NrScript\platform\windows\NrWindowImplOSWin.cpp">
+      <Filter>src\platform\windows</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\..\include\NrScript\platform\windows\NrOSWinResource.rc">
+      <Filter>resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

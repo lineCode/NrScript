@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\..\NrScriptBuilder\NrBuilderFrame.cpp">
+      <Filter>src\wnd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\NrScriptBuilder\WinMain.cpp" />
+    <ClCompile Include="..\..\..\NrScriptBuilder\NrBuilderApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{b36a7672-ea4b-48a2-89cd-fe3553dea55e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\wnd">
+      <UniqueIdentifier>{f10f6b12-54eb-4c9f-846f-b7febb756548}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{1e18dff9-1aff-43fc-8c0b-61b1e6b72d34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\wnd">
+      <UniqueIdentifier>{be08df45-eb2f-4ddf-b669-1209e3bb3d8a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\NrScriptBuilder\NrBuilderFrame.h">
+      <Filter>include\wnd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\NrScriptBuilder\NrBuilderApp.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
