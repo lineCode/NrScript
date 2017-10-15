@@ -76,6 +76,12 @@
     <Filter Include="src\platform\windows">
       <UniqueIdentifier>{ccb37715-c054-4b9b-a994-7815590ea7f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\ui\layout">
+      <UniqueIdentifier>{5bc6f978-ea9d-48a2-8ec2-62dcd93e9719}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ui\widgets">
+      <UniqueIdentifier>{15fb2638-5118-4933-b9f1-24ecaabaa3c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\NrScript\base.h">
@@ -114,6 +120,12 @@
     <ClInclude Include="..\..\..\include\NrScript\platform\windows\NrWindowImplOSWin.h">
       <Filter>include\platform\windows</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\NrScript\ui\internal\NrControlLayerManager.h">
+      <Filter>include\ui\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\NrScript\ui\internal\NrControlRenderManager.h">
+      <Filter>include\ui\internal</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\NrScript\base\NrString.cpp">
@@ -127,6 +139,15 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src\NrScript\platform\windows\NrWindowImplOSWin.cpp">
       <Filter>src\platform\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\NrScript\ui\internal\NrControlLayerManager.cpp">
+      <Filter>src\ui\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\NrScript\ui\internal\NrControlRenderManager.cpp">
+      <Filter>src\ui\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\NrScript\ui\widgets\NrControl.cpp">
+      <Filter>src\ui\widgets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

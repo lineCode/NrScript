@@ -5,6 +5,9 @@
  * char字符串
  */
 class NRSCRIPT_API_VISUAL NrChars {
+private:
+    class Impl;
+    Impl* impl {nullptr};
 };
 
 #endif

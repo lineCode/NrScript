@@ -52,8 +52,7 @@ public:
         /**
          * 创建GTK窗口对象之后，需要设定事件
          */
-        m_pOwner->initialEvents();
-        return true;
+        return m_pOwner->initialEvents();
     }
 
     NrWindowBase* getNativeWindow() override {
@@ -158,6 +157,7 @@ bool NrWindowImplOSUnix::initialEvents() {
 
     ::g_signal_connect(G_OBJECT(widget), "delete_event", G_CALLBACK(NrWindowImplOSUnix::kOnClose), this);
     ::g_signal_connect(G_OBJECT(widget), "destroy", G_CALLBACK(NrWindowImplOSUnix::kOnDestroy), this);
+
     return true;
 }
 

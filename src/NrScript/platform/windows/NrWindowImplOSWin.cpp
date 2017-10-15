@@ -22,20 +22,22 @@ HMODULE GetSelfModuleHandle() {
     }
 }
 
-class NrWindowImplOSWin::Impl : public NrWindowBase {
+class NrWindowImplOSWin::Impl : public NrWindowBase, public NrWindowBase::ControlManager {
 public:
     /**
      * 默认构造函数
      */
-    Impl(NrWindowImplOSWin* owner) {
-        m_pOwner = owner;
+    Impl(NrWindowImplOSWin* owner): m_pOwner(owner){
+        m_pLayerManager = new NrControlLayerManager();
+        m_pRenderManager = new NrControlRenderManager();
     }
 
     /**
      * 默认析构函数
      */
     ~Impl() {
-        
+        delete m_pLayerManager;
+        delete m_pRenderManager;
     }
 
 private:
@@ -92,7 +94,7 @@ public:
             wndClassEx.cbClsExtra = sizeof(void*);
             wndClassEx.cbSize = sizeof(WNDCLASSEX);
             wndClassEx.cbWndExtra = sizeof(void*);
-            wndClassEx.hbrBackground = (HBRUSH)(COLOR_BACKGROUND + 1);
+            wndClassEx.hbrBackground = (HBRUSH)(COLOR_MENUBAR + 1);
             wndClassEx.hInstance = hInstance;
             wndClassEx.lpfnWndProc = &Impl::WndProc;
             wndClassEx.lpszClassName = kHwndWindowClassName;
@@ -150,8 +152,8 @@ public:
         r.right = bounds.width;
         r.bottom = bounds.height;
 
-        DWORD styleEx = ::GetWindowLongPtr(m_Hwnd, GWL_EXSTYLE);
-        DWORD style = ::GetWindowLongPtr(m_Hwnd, GWL_STYLE);
+        DWORD styleEx = (DWORD)::GetWindowLongPtr(m_Hwnd, GWL_EXSTYLE);
+        DWORD style = (DWORD)::GetWindowLongPtr(m_Hwnd, GWL_STYLE);
 
         ::AdjustWindowRectEx(&r, style, FALSE, styleEx);
 
@@ -173,6 +175,18 @@ public:
         return retval;
     }
 
+public:
+    /**
+     * 获取控件层管理器
+     */
+    virtual NrControlLayerManager* getLayerManager() override {
+        return m_pLayerManager;
+    }
+
+    virtual NrControlRenderManager* getRenderManager() override {
+        return m_pRenderManager;
+    }
+
 private:
     /**
      * 窗口句柄
@@ -183,6 +197,16 @@ private:
      * 桥接容器
      */
     NrWindowImplOSWin* m_pOwner {nullptr};
+
+    /**
+     * 层管理器
+     */
+    NrControlLayerManager* m_pLayerManager {nullptr};
+
+    /**
+     * 渲染管理器
+     */
+    NrControlRenderManager* m_pRenderManager {nullptr};
 };
 
 NrWindowImplOSWin::NrWindowImplOSWin(NrWindowBase* sendHandler) {
@@ -232,6 +256,14 @@ void NrWindowImplOSWin::setBounds(const NrRect& bounds) {
 
 NrRect NrWindowImplOSWin::getBounds() const {
     return impl->getBounds();
+}
+
+NrControlLayerManager* NrWindowImplOSWin::getLayerManager() {
+    return impl->getLayerManager();
+}
+
+NrControlRenderManager* NrWindowImplOSWin::getRenderManager() {
+    return impl->getRenderManager();
 }
 
 /**
@@ -308,6 +340,7 @@ LRESULT NrWindowImplOSWin::OnMessage(NrWindowImplOSWin* sender, MESSAGE& msg) {
 
     /**
      * 代码运行到这里，如果msg.handled = true，则此对象的窗口回调handleMessage的返回值为NULL
+     * 不再调用DefWindowProc
      */
     return NULL;
 }

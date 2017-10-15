@@ -4,7 +4,9 @@
 /**
  * WM_NCACTIVATE = 对话框闪烁。
  */
-class NRSCRIPT_API_VISUAL NrWindowImpl : public NrWindowBase, public NrWindowBase::CommonEvents {
+class NRSCRIPT_API_VISUAL NrWindowImpl : public NrWindowBase,
+                                         public NrWindowBase::CommonEvents,
+                                         public NrWindowBase::ControlRenderTarget {
 public:
     /**
      * 默认构造函数
@@ -51,6 +53,12 @@ public:
      * 获取窗口位置、客户区大小
      */
     virtual NrRect getBounds() const override;
+
+public:
+    /**
+     * 设置窗口根控件
+     */
+    virtual void setRootControl(NrControl* root) override;
 
 private:
     /**

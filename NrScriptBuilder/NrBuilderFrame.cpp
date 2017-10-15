@@ -20,7 +20,7 @@ NrBuilderFrame::~NrBuilderFrame() {
 }
 
 void NrBuilderFrame::OnFrameCreate(NrWindowBase* sender, NrReserved reserved) {
-    int i = 0;
+    this->setRootControl(nullptr);
 }
 
 void NrBuilderFrame::OnFrameClose(NrWindowBase* sender, bool& closeable) {

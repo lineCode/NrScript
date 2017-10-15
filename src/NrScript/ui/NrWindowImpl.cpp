@@ -46,3 +46,18 @@ void NrWindowImpl::setBounds(const NrRect& bounds) {
 NrRect NrWindowImpl::getBounds() const {
     return impl->getBounds();
 }
+
+void NrWindowImpl::setRootControl(NrControl* root) {
+    /**
+     * 通用代码，不需要区分platform实现
+     */
+    NrWindowBase::ControlManager* manager = 
+        dynamic_cast<NrWindowBase::ControlManager*>(impl);
+    
+    if (!manager) {
+        NRSCRIPT_ASSERT(false);
+        return;
+    }
+
+    manager->getLayerManager()->update(root);
+}

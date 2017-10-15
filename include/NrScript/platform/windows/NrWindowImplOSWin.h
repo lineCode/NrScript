@@ -6,7 +6,8 @@
 /**
  * Window平台窗口
  */
-class NRSCRIPT_API_VISUAL NrWindowImplOSWin : public NrWindowBase {
+class NRSCRIPT_API_VISUAL NrWindowImplOSWin : public NrWindowBase,
+                                              public NrWindowBase::ControlManager {
 public:
     /**
      * 消息处理
@@ -73,6 +74,16 @@ public:
      * 获取窗口位置、客户区大小
      */
     virtual NrRect getBounds() const override;
+
+    /**
+     * 获取控件层管理器
+     */
+    virtual NrControlLayerManager* getLayerManager() override;
+
+    /**
+     * 获取渲染管理器
+     */
+    virtual NrControlRenderManager* getRenderManager() override;
 
 private:
     /**

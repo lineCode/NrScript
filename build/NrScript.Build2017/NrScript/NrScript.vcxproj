@@ -175,6 +175,8 @@
     <ClInclude Include="..\..\..\include\NrScript\defs.h" />
     <ClInclude Include="..\..\..\include\NrScript\platform\windows\NrWindowImplOSWin.h" />
     <ClInclude Include="..\..\..\include\NrScript\ui.h" />
+    <ClInclude Include="..\..\..\include\NrScript\ui\internal\NrControlLayerManager.h" />
+    <ClInclude Include="..\..\..\include\NrScript\ui\internal\NrControlRenderManager.h" />
     <ClInclude Include="..\..\..\include\NrScript\ui\internal\NrWindowBase.h" />
     <ClInclude Include="..\..\..\include\NrScript\ui\NrWindowImpl.h" />
     <ClInclude Include="..\..\..\include\NrScript\ui\utils\NrRect.h" />
@@ -183,8 +185,11 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\src\NrScript\base\NrString.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\platform\windows\NrWindowImplOSWin.cpp" />
+    <ClCompile Include="..\..\..\src\NrScript\ui\internal\NrControlLayerManager.cpp" />
+    <ClCompile Include="..\..\..\src\NrScript\ui\internal\NrControlRenderManager.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\ui\internal\NrWindowBase.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\ui\NrWindowImpl.cpp" />
+    <ClCompile Include="..\..\..\src\NrScript\ui\widgets\NrControl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\include\NrScript\platform\windows\NrOSWinResource.rc" />
