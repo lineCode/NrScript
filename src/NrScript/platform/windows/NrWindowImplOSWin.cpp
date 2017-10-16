@@ -4,7 +4,6 @@
 #include "NrScript/ui.h"
 #include "NrScript/platform/windows/NrWindowImplOSWin.h"
 
-static TCHAR kHwndStorePropStr[] = _T("NrScriptWndTopLevel");
 static TCHAR kHwndWindowClassName[] = _T("NrScriptWindowClass");
 static TCHAR kOSWindowDefaultIcon[] = _T("NrScriptDefaultIcon");
 
@@ -22,22 +21,18 @@ HMODULE GetSelfModuleHandle() {
     }
 }
 
-class NrWindowImplOSWin::Impl : public NrWindowBase, public NrWindowBase::ControlManager {
+class NrWindowImplOSWin::Impl : public NrWindowBase {
 public:
     /**
      * 默认构造函数
      */
     Impl(NrWindowImplOSWin* owner): m_pOwner(owner){
-        m_pLayerManager = new NrControlLayerManager();
-        m_pRenderManager = new NrControlRenderManager();
     }
 
     /**
      * 默认析构函数
      */
     ~Impl() {
-        delete m_pLayerManager;
-        delete m_pRenderManager;
     }
 
 private:
@@ -50,16 +45,16 @@ private:
         if (uMsg == WM_NCCREATE) {
             CREATESTRUCT* pCreateStruct = (CREATESTRUCT*)lParam;
             if (pCreateStruct && pCreateStruct->lpCreateParams) {
-                ::SetProp(hWnd, kHwndStorePropStr, (HANDLE)pCreateStruct->lpCreateParams);
+                ::SetProp(hWnd, kHwndWindowClassName, (HANDLE)pCreateStruct->lpCreateParams);
             }
         }
 
-        self = (Impl*)::GetProp(hWnd, kHwndStorePropStr);
+        self = (Impl*)::GetProp(hWnd, kHwndWindowClassName);
         if (self) {
             self->m_Hwnd = hWnd;
 
             if (uMsg == WM_NCDESTROY) {
-                ::RemoveProp(hWnd, kHwndStorePropStr);
+                ::RemoveProp(hWnd, kHwndWindowClassName);
             }
             return self->handleMessage(hWnd, uMsg, wParam, lParam);
         }
@@ -175,18 +170,6 @@ public:
         return retval;
     }
 
-public:
-    /**
-     * 获取控件层管理器
-     */
-    virtual NrControlLayerManager* getLayerManager() override {
-        return m_pLayerManager;
-    }
-
-    virtual NrControlRenderManager* getRenderManager() override {
-        return m_pRenderManager;
-    }
-
 private:
     /**
      * 窗口句柄
@@ -197,16 +180,6 @@ private:
      * 桥接容器
      */
     NrWindowImplOSWin* m_pOwner {nullptr};
-
-    /**
-     * 层管理器
-     */
-    NrControlLayerManager* m_pLayerManager {nullptr};
-
-    /**
-     * 渲染管理器
-     */
-    NrControlRenderManager* m_pRenderManager {nullptr};
 };
 
 NrWindowImplOSWin::NrWindowImplOSWin(NrWindowBase* sendHandler) {
@@ -215,7 +188,6 @@ NrWindowImplOSWin::NrWindowImplOSWin(NrWindowBase* sendHandler) {
         NRSCRIPT_ASSERT(false);
     }
 #endif
-
     initialEvents();
     m_pSendHandler = sendHandler;
     impl = new Impl(this);
@@ -258,14 +230,6 @@ NrRect NrWindowImplOSWin::getBounds() const {
     return impl->getBounds();
 }
 
-NrControlLayerManager* NrWindowImplOSWin::getLayerManager() {
-    return impl->getLayerManager();
-}
-
-NrControlRenderManager* NrWindowImplOSWin::getRenderManager() {
-    return impl->getRenderManager();
-}
-
 /**
  * 私有函数，非桥接函数都在下面书写
  */
@@ -273,6 +237,9 @@ NrControlRenderManager* NrWindowImplOSWin::getRenderManager() {
 void NrWindowImplOSWin::initialEvents() {
     eOnMessagePtr = new NrEvent<LRESULT(NrWindowImplOSWin*, MESSAGE&)>();
 
+    /**
+     * 添加事件
+     */
     eOnMessagePtr->add(this, &NrWindowImplOSWin::OnMessage);
 }
 
@@ -333,6 +300,13 @@ LRESULT NrWindowImplOSWin::OnMessage(NrWindowImplOSWin* sender, MESSAGE& msg) {
         {
             if (pEvents && !pEvents->eOnDestroyPtr->isEmpty()) {
                 (*pEvents->eOnDestroyPtr)(m_pSendHandler, 0);
+            }
+        }
+        break;
+    case WM_SIZE:
+        {
+            if (pEvents && !pEvents->eOnDestroyPtr->isEmpty()) {
+                (*pEvents->eOnSizePtr)(m_pSendHandler, getBounds());
             }
         }
         break;

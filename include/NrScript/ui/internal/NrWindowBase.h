@@ -27,16 +27,6 @@ public:
      */
     class NRSCRIPT_API_VISUAL CommonEvents;
 
-    /**
-     * 控件管理相关
-     */
-    class NRSCRIPT_API_VISUAL ControlManager;
-
-    /**
-     * 控件渲染目标
-     */
-    class NRSCRIPT_API_VISUAL ControlRenderTarget;
-
 public:
     /**
      * Clang编译器警告
@@ -178,45 +168,13 @@ public:
     NrEvent<void(NrWindowBase*, NrReserved)>* eOnCreatePtr;
     NrEvent<void(NrWindowBase*, bool&)>* eOnClosePtr;
     NrEvent<void(NrWindowBase*, NrReserved)>* eOnDestroyPtr;
-};
-
-/**
- * 控件管理相关
- */
-class NRSCRIPT_API_VISUAL NrWindowBase::ControlManager {
-public:
-    /**
-     * Clang编译器警告
-     */
-    virtual ~ControlManager() {};
-
-public:
-    /**
-     * 获取控件层管理器
-     */
-    virtual NrControlLayerManager* getLayerManager() = 0;
 
     /**
-     * 渲染管理器
+     * 窗体大小变化事件
+     * @param 事件对象
+     * @param 窗体位置、客户区域大小
      */
-    virtual NrControlRenderManager* getRenderManager() = 0;
-};
-
-/**
- * 控件渲染目标
- */
-class NRSCRIPT_API_VISUAL NrWindowBase::ControlRenderTarget {
-public:
-    /**
-     * Clang编译器警告
-     */
-    virtual ~ControlRenderTarget() {};
-
-public:
-    /**
-     * 设置根节点控件
-     */
-    virtual void setRootControl(NrControl* root) = 0;
+    NrEvent<void(NrWindowBase*, const NrRect&)>* eOnSizePtr;
 };
 
 #endif

@@ -22,6 +22,10 @@ public:
      */
     void updateLayer(int layer) {
         m_layer = layer;
+
+        for (auto i = m_childrenPtr->begin() ; i != m_childrenPtr->end() ; i++) {
+            (*i)->updateLayer(m_layer + 1);
+        }
     }
 
     void add(NrControl* control) {
@@ -59,11 +63,9 @@ public:
             return;
         }
 
-        auto iter = m_childrenPtr->begin();
-        for ( ; iter != m_childrenPtr->end() ; iter++) {
-            if ((*iter) == control) {
-                m_childrenPtr->erase(iter);
-                
+        for (auto i = m_childrenPtr->begin() ; i != m_childrenPtr->end() ; i++) {
+            if ((*i) == control) {
+                m_childrenPtr->erase(i);
                 NRSCRIPT_ASSERT(false && "清理空间属性； delete 释放内存");
                 break;
             }

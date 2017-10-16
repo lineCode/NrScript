@@ -12,6 +12,10 @@
 template<typename signature>
 class NrEvent;
 
+/**
+ * 不推荐使用NrEvent代理虚函数。如果子类重载父类虚函数，同时也将子类虚函数
+ * add到事件列表中，那...
+ */
 template<typename RETVAL_T, typename SENDER_T, typename PARAM_T>
 class NrEvent<RETVAL_T(SENDER_T, PARAM_T)> {
 public:

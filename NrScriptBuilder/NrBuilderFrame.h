@@ -33,7 +33,7 @@ private:
     /**
      * 窗口关闭事件
      */
-    void OnFrameClose(NrWindowBase* sender, bool& closeable);
+    void OnClose(NrWindowBase* sender, bool& closeable);
 
     /**
      * 窗口销毁通

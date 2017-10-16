@@ -10,7 +10,6 @@ void ddd(NrWindowBase* sender, NrReserved reserved) {
 
 NrBuilderFrame::NrBuilderFrame() {
     this->eOnCreatePtr->add(this, &NrBuilderFrame::OnFrameCreate);
-    this->eOnClosePtr->add(this, &NrBuilderFrame::OnFrameClose);
     this->eOnDestroyPtr->add(this, &NrBuilderFrame::OnFrameDestroy);
     this->eOnDestroyPtr->add(ddd);
 }
@@ -23,7 +22,7 @@ void NrBuilderFrame::OnFrameCreate(NrWindowBase* sender, NrReserved reserved) {
     this->setRootControl(nullptr);
 }
 
-void NrBuilderFrame::OnFrameClose(NrWindowBase* sender, bool& closeable) {
+void NrBuilderFrame::OnClose(NrWindowBase* sender, bool& closeable) {
     closeable = true;
 
 #ifndef NRSCRIPT_BUILD_PLATFORM_LINUX

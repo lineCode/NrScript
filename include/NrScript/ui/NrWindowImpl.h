@@ -5,8 +5,7 @@
  * WM_NCACTIVATE = 对话框闪烁。
  */
 class NRSCRIPT_API_VISUAL NrWindowImpl : public NrWindowBase,
-                                         public NrWindowBase::CommonEvents,
-                                         public NrWindowBase::ControlRenderTarget {
+                                         public NrWindowBase::CommonEvents {
 public:
     /**
      * 默认构造函数
@@ -56,15 +55,26 @@ public:
 
 public:
     /**
-     * 设置窗口根控件
+     * 设置渲染树
      */
-    virtual void setRootControl(NrControl* root) override;
+    virtual void setRootControl(NrControl* root);
 
 private:
     /**
      * 桥接
      */
     NrWindowBase* impl {nullptr};
+
+private:
+    /**
+     * 根节点控件
+     */
+    NrControl* m_root {nullptr};
+
+    /**
+     * 渲染器
+     */
+    NrWidgetsTreeRenderer* m_render {nullptr};
 };
 
 #endif
