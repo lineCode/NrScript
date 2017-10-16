@@ -27,6 +27,11 @@ public:
      */
     class NRSCRIPT_API_VISUAL CommonEvents;
 
+    /**
+     * 渲染目标
+     */
+    class NRSCRIPT_API_VISUAL RenderTarget;
+
 public:
     /**
      * Clang编译器警告
@@ -175,6 +180,19 @@ public:
      * @param 窗体位置、客户区域大小
      */
     NrEvent<void(NrWindowBase*, const NrRect&)>* eOnSizePtr;
+};
+
+class NRSCRIPT_API_VISUAL NrWindowBase::RenderTarget {
+public:
+    /**
+     * Clang编译警告
+     */
+    virtual ~RenderTarget() {};
+
+    /**
+     * 遍历渲染
+     */
+    virtual void norityTraversalsRender(const int width, const int height) = 0;
 };
 
 #endif

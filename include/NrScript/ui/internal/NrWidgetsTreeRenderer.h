@@ -19,7 +19,7 @@ public:
     /**
      * 设置根节点，重新绘制
      */
-    void doTraversal(NrControl* root, int width, int height);
+    void doTraversal(int width, int height);
 
 private:
     /**

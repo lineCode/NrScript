@@ -5,7 +5,8 @@
  * WM_NCACTIVATE = 对话框闪烁。
  */
 class NRSCRIPT_API_VISUAL NrWindowImpl : public NrWindowBase,
-                                         public NrWindowBase::CommonEvents {
+                                         public NrWindowBase::CommonEvents,
+                                         public NrWindowBase::RenderTarget {
 public:
     /**
      * 默认构造函数
@@ -52,6 +53,12 @@ public:
      * 获取窗口位置、客户区大小
      */
     virtual NrRect getBounds() const override;
+
+public:
+    /**
+     * 遍历渲染通知
+     */
+    virtual void norityTraversalsRender(const int width, const int height) override;
 
 public:
     /**

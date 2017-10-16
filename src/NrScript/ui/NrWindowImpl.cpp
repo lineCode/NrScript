@@ -7,13 +7,6 @@
 #include "NrScript/platform/windows/NrWindowImplOSWin.h"
 #endif
 
-static void kNotifyTraversals(NrWindowBase* sender, const NrRect& bounds) {
-    NrWindowImpl* impl = dynamic_cast<NrWindowImpl*>(sender);
-    if (impl == nullptr) {
-        return;
-    }
-}
-
 /**
  * NrWindowImpl
  */
@@ -29,11 +22,6 @@ NrWindowImpl::NrWindowImpl() {
      * 对象初始化
      */
     this->m_render = new NrWidgetsTreeRenderer();
-
-    /**
-     * 事件设置
-     */
-    this->eOnSizePtr->add(kNotifyTraversals);
 }
 
 NrWindowImpl::~NrWindowImpl() {
@@ -74,11 +62,11 @@ void NrWindowImpl::setRootControl(NrControl* root) {
      */
     if (root != nullptr) {
         m_root = root;
-
-        /**
-         * 还是不对啊。
-         */
         NrRect bounds = getBounds();
-        m_render->doTraversal(m_root, bounds.width, bounds.height);
+        m_render->doTraversal(bounds.width, bounds.height);
     }
+}
+
+void NrWindowImpl::norityTraversalsRender(const int width, const int height) {
+    m_render->doTraversal(width, height);
 }

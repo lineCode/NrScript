@@ -267,7 +267,8 @@ LRESULT NrWindowImplOSWin::OnMessage(NrWindowImplOSWin* sender, MESSAGE& msg) {
     if (sender != this) {
         return NULL;
     }
-    NrWindowBase::CommonEvents* pEvents = dynamic_cast<NrWindowBase::CommonEvents*>(m_pSendHandler);
+    NrWindowBase::CommonEvents* pEvents = 
+        dynamic_cast<NrWindowBase::CommonEvents*>(m_pSendHandler);
 
     switch (msg.uMsg) {
     case WM_CREATE:
@@ -305,8 +306,22 @@ LRESULT NrWindowImplOSWin::OnMessage(NrWindowImplOSWin* sender, MESSAGE& msg) {
         break;
     case WM_SIZE:
         {
+            NrRect bounds = getBounds();
+
+            /**
+             * 大小变化，重新绘制绘制
+             */
+            NrWindowBase::RenderTarget* pTarget = 
+                dynamic_cast<NrWindowBase::RenderTarget*>(m_pSendHandler);
+            if (pTarget) {
+                pTarget->norityTraversalsRender(bounds.width, bounds.height);
+            }
+
+            /**
+             * 事件触发
+             */
             if (pEvents && !pEvents->eOnDestroyPtr->isEmpty()) {
-                (*pEvents->eOnSizePtr)(m_pSendHandler, getBounds());
+                (*pEvents->eOnSizePtr)(m_pSendHandler, bounds);
             }
         }
         break;
