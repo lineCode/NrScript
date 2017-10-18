@@ -126,6 +126,13 @@ public:
         return false;
     }
 
+    void setContentView(NrControl* root) override {
+        /**
+         * 什么也不做
+         */
+        NRSCRIPT_UNREFERENCED_PARAMETER(root);
+    }
+
     bool isActive() const override {
         return false;
     }
@@ -159,7 +166,7 @@ public:
         RECT r = {0};
         ::GetWindowRect(m_Hwnd, &r);
 
-        NrRect retval {};
+        NrRect retval = {0};
         retval.x = r.left;
         retval.y = r.top;
 
@@ -180,6 +187,11 @@ private:
      * 桥接容器
      */
     NrWindowImplOSWin* m_pOwner {nullptr};
+
+    /**
+     * 渲染器
+     */
+    NrWidgetsTreeRenderer* m_renderer {nullptr};
 };
 
 NrWindowImplOSWin::NrWindowImplOSWin(NrWindowBase* sendHandler) {
@@ -200,6 +212,10 @@ NrWindowImplOSWin::~NrWindowImplOSWin() {
 
 HWND NrWindowImplOSWin::getHwnd() {
     return dynamic_cast<NrWindowImplOSWin::Impl*>(impl)->getHwnd();
+}
+
+void NrWindowImplOSWin::setContentView(NrControl* root) {
+    impl->setContentView(root);
 }
 
 bool NrWindowImplOSWin::create(const NrWindowCreateParameter& parameter) {
@@ -251,8 +267,12 @@ LRESULT NrWindowImplOSWin::handleMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LP
     MESSAGE msg {hWnd, uMsg, wParam, lParam, false};
 
     /**
-     * 不要在此处添加任何代码
+     * 渲染代码添加在此处
      */
+    if (uMsg == WM_SIZE) {
+        
+    }
+    
     if (!eOnMessagePtr->isEmpty()) {
         LRESULT retval = (*eOnMessagePtr)(this, msg);
 
@@ -306,30 +326,11 @@ LRESULT NrWindowImplOSWin::OnMessage(NrWindowImplOSWin* sender, MESSAGE& msg) {
         break;
     case WM_SIZE:
         {
-            NrRect bounds = getBounds();
-
-            /**
-             * 大小变化，重新绘制绘制
-             */
-            NrWindowBase::RenderTarget* pTarget = 
-                dynamic_cast<NrWindowBase::RenderTarget*>(m_pSendHandler);
-            if (pTarget) {
-                pTarget->norityTraversalsRender(bounds.width, bounds.height);
-            }
-
-            /**
-             * 事件触发
-             */
-            if (pEvents && !pEvents->eOnDestroyPtr->isEmpty()) {
-                (*pEvents->eOnSizePtr)(m_pSendHandler, bounds);
+            if (pEvents && !pEvents->eOnSizePtr->isEmpty()) {
+                (*pEvents->eOnSizePtr)(m_pSendHandler, getBounds());
             }
         }
         break;
     }
-
-    /**
-     * 代码运行到这里，如果msg.handled = true，则此对象的窗口回调handleMessage的返回值为NULL
-     * 不再调用DefWindowProc
-     */
     return NULL;
 }

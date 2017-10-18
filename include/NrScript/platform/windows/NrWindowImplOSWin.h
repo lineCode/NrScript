@@ -40,6 +40,11 @@ public:
 
 public:
     /**
+     * 设置渲染视图
+     */
+    virtual void setContentView(NrControl* root) override;
+    
+    /**
      * 创建窗口
      */
     virtual bool create(const NrWindowCreateParameter& parameter) override;
@@ -114,6 +119,11 @@ private:
      * NrWindowImpl事件参数sender
      */
     NrWindowBase* m_pSendHandler {nullptr};
+
+    /**
+     * 渲染器
+     */
+    NrWidgetsTreeRenderer* m_renderer {nullptr};
 };
 
 #endif

@@ -11,6 +11,7 @@ void ddd(NrWindowBase* sender, NrReserved reserved) {
 NrBuilderFrame::NrBuilderFrame() {
     this->eOnCreatePtr->add(this, &NrBuilderFrame::OnFrameCreate);
     this->eOnDestroyPtr->add(this, &NrBuilderFrame::OnFrameDestroy);
+    this->eOnClosePtr->add(this, &NrBuilderFrame::OnClose);
     this->eOnDestroyPtr->add(ddd);
 }
 
@@ -19,7 +20,7 @@ NrBuilderFrame::~NrBuilderFrame() {
 }
 
 void NrBuilderFrame::OnFrameCreate(NrWindowBase* sender, NrReserved reserved) {
-    this->setRootControl(nullptr);
+    
 }
 
 void NrBuilderFrame::OnClose(NrWindowBase* sender, bool& closeable) {

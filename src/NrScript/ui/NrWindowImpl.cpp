@@ -17,11 +17,6 @@ NrWindowImpl::NrWindowImpl() {
 #else
     impl = new NrWindowImplOSWin(this);
 #endif
-
-    /**
-     * 对象初始化
-     */
-    this->m_render = new NrWidgetsTreeRenderer();
 }
 
 NrWindowImpl::~NrWindowImpl() {
@@ -56,17 +51,6 @@ NrRect NrWindowImpl::getBounds() const {
     return impl->getBounds();
 }
 
-void NrWindowImpl::setRootControl(NrControl* root) {
-    /**
-     * 通用代码，不需要区分platform实现
-     */
-    if (root != nullptr) {
-        m_root = root;
-        NrRect bounds = getBounds();
-        m_render->doTraversal(bounds.width, bounds.height);
-    }
-}
-
-void NrWindowImpl::norityTraversalsRender(const int width, const int height) {
-    m_render->doTraversal(width, height);
+void NrWindowImpl::setContentView(NrControl* root) {
+    impl->setContentView(root);
 }

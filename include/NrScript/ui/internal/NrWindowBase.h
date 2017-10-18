@@ -27,16 +27,17 @@ public:
      */
     class NRSCRIPT_API_VISUAL CommonEvents;
 
-    /**
-     * 渲染目标
-     */
-    class NRSCRIPT_API_VISUAL RenderTarget;
-
 public:
     /**
      * Clang编译器警告
      */
     virtual ~NrWindowBase() {};
+
+public:
+    /**
+     * 设置渲染视图
+     */
+    virtual void setContentView(NrControl* root) = 0;
 
     /**
      * 创建窗口
@@ -170,8 +171,25 @@ public:
     virtual ~CommonEvents();
 
 public:
+    /**
+     * 窗口创建成功事件
+     * @param 事件对象
+     * @param 未定义
+     */
     NrEvent<void(NrWindowBase*, NrReserved)>* eOnCreatePtr;
+
+    /**
+     * 窗口关闭事件
+     * @param 事件对象
+     * @param 确认窗口关闭
+     */
     NrEvent<void(NrWindowBase*, bool&)>* eOnClosePtr;
+
+    /**
+     * 窗口销毁事件
+     * @param 事件对象
+     * @param 未定义
+     */
     NrEvent<void(NrWindowBase*, NrReserved)>* eOnDestroyPtr;
 
     /**
@@ -180,19 +198,6 @@ public:
      * @param 窗体位置、客户区域大小
      */
     NrEvent<void(NrWindowBase*, const NrRect&)>* eOnSizePtr;
-};
-
-class NRSCRIPT_API_VISUAL NrWindowBase::RenderTarget {
-public:
-    /**
-     * Clang编译警告
-     */
-    virtual ~RenderTarget() {};
-
-    /**
-     * 遍历渲染
-     */
-    virtual void norityTraversalsRender(const int width, const int height) = 0;
 };
 
 #endif

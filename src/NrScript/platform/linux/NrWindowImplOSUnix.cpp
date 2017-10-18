@@ -158,6 +158,14 @@ bool NrWindowImplOSUnix::initialEvents() {
     ::g_signal_connect(G_OBJECT(widget), "delete_event", G_CALLBACK(NrWindowImplOSUnix::kOnClose), this);
     ::g_signal_connect(G_OBJECT(widget), "destroy", G_CALLBACK(NrWindowImplOSUnix::kOnDestroy), this);
 
+	/**
+	 * gtk的MW_ONCREATE消息是哪个？ 有知道的请告诉我
+	 */
+	NrWindowBase::CommonEvents* pEvents = dynamic_cast<NrWindowBase::CommonEvents*>(m_pSendHandler);
+	if (pEvents && !pEvents->eOnCreatePtr->isEmpty()) {
+		(*pEvents->eOnCreatePtr)(m_pSendHandler, 0);
+	} 
+	
     return true;
 }
 
