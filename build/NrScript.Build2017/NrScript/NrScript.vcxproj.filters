@@ -82,6 +82,12 @@
     <Filter Include="src\ui\widgets">
       <UniqueIdentifier>{15fb2638-5118-4933-b9f1-24ecaabaa3c9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\graphics">
+      <UniqueIdentifier>{3a8bbcba-2fac-4dc6-bea6-28359b56a324}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\graphics">
+      <UniqueIdentifier>{cf4d95c6-2e9c-440d-b83d-0f12c571424b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\NrScript\base.h">

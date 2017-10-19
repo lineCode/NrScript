@@ -280,9 +280,11 @@ LRESULT NrWindowImplOSWin::handleMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LP
     switch (uMsg) {
     case WM_PAINT:
         {
+            //SkCanvas canvas;
             PAINTSTRUCT ps = {0};
             ::BeginPaint(hWnd, &ps);
             ::Rectangle(ps.hdc, 10, 10, 50, 50);
+
             ::EndPaint(hWnd, &ps);
         }
         break;
