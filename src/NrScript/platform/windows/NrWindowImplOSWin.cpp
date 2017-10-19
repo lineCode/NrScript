@@ -10,7 +10,7 @@ static TCHAR kOSWindowDefaultIcon[] = _T("NrScriptDefaultIcon");
 /**
  * 获取当前模块句柄
  */
-HMODULE GetSelfModuleHandle() {
+static HMODULE GetSelfModuleHandle() {
     MEMORY_BASIC_INFORMATION mbi = {0};
 
     if (::VirtualQuery(GetSelfModuleHandle, &mbi, sizeof(mbi)) != 0) {
@@ -27,12 +27,14 @@ public:
      * 默认构造函数
      */
     Impl(NrWindowImplOSWin* owner): m_pOwner(owner){
+        m_renderer = new NrWidgetsTreeRenderer();
     }
 
     /**
      * 默认析构函数
      */
     ~Impl() {
+        delete m_renderer;
     }
 
 private:
@@ -127,10 +129,7 @@ public:
     }
 
     void setContentView(NrControl* root) override {
-        /**
-         * 什么也不做
-         */
-        NRSCRIPT_UNREFERENCED_PARAMETER(root);
+        m_renderer->setRenderTarget(root);
     }
 
     bool isActive() const override {
@@ -177,6 +176,14 @@ public:
         return retval;
     }
 
+public:
+    /**
+     * 获取渲染器
+     */
+    NrWidgetsTreeRenderer* getRenderer() {
+        return m_renderer;
+    }
+
 private:
     /**
      * 窗口句柄
@@ -207,6 +214,7 @@ NrWindowImplOSWin::NrWindowImplOSWin(NrWindowBase* sendHandler) {
 
 NrWindowImplOSWin::~NrWindowImplOSWin() {
     finalizeEvents();
+    m_pSendHandler = nullptr;
     delete impl;
 }
 
@@ -252,27 +260,42 @@ NrRect NrWindowImplOSWin::getBounds() const {
 
 void NrWindowImplOSWin::initialEvents() {
     eOnMessagePtr = new NrEvent<LRESULT(NrWindowImplOSWin*, MESSAGE&)>();
-
-    /**
-     * 添加事件
-     */
     eOnMessagePtr->add(this, &NrWindowImplOSWin::OnMessage);
 }
 
 void NrWindowImplOSWin::finalizeEvents() {
+    eOnMessagePtr->remove(this, &NrWindowImplOSWin::OnMessage);
     delete eOnMessagePtr;
 }
 
 LRESULT NrWindowImplOSWin::handleMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
     MESSAGE msg {hWnd, uMsg, wParam, lParam, false};
+    
+    /**
+     * 渲染器相关的功能
+     */
+    NrWidgetsTreeRenderer* renderer =
+        dynamic_cast<NrWindowImplOSWin::Impl*>(impl)->getRenderer();
+    
+    switch (uMsg) {
+    case WM_PAINT:
+        {
+            PAINTSTRUCT ps = {0};
+            ::BeginPaint(hWnd, &ps);
+            ::Rectangle(ps.hdc, 10, 10, 50, 50);
+            ::EndPaint(hWnd, &ps);
+        }
+        break;
+    case WM_SIZE:
+        {
+
+        }
+        break;
+    }
 
     /**
-     * 渲染代码添加在此处
+     * 消息分发
      */
-    if (uMsg == WM_SIZE) {
-        
-    }
-    
     if (!eOnMessagePtr->isEmpty()) {
         LRESULT retval = (*eOnMessagePtr)(this, msg);
 

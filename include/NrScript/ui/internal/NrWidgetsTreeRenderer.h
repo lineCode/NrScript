@@ -16,6 +16,12 @@ public:
      */
     virtual ~NrWidgetsTreeRenderer();
 
+public:
+    /**
+     * 设置渲染根节点
+     */
+    void setRenderTarget(NrControl* root);
+
     /**
      * 设置根节点，重新绘制
      */

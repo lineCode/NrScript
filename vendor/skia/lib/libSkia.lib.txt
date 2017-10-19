@@ -1,0 +1,1 @@
+编译完成Skia库之后，将libSkia.lib放置在此目录下

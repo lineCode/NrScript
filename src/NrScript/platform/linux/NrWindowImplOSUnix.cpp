@@ -7,15 +7,15 @@ public:
     /**
      * 默认构造函数
      */
-    Impl(NrWindowImplOSUnix* owner) {
-        m_pOwner = owner;
+    Impl(NrWindowImplOSUnix* owner): m_pOwner(owner) {
+        m_renderer = new NrWidgetsTreeRenderer();
     }
 
     /**
      * 默认析构函数
      */
     ~Impl() {
-
+        delete m_renderer;
     }
 
 public:
@@ -85,6 +85,9 @@ public:
         return retval;
     }
 
+    void setContentView(NrControl* root) override {
+        m_renderer->setRenderTarget(root);
+    }
 
 private:
     /**
@@ -96,6 +99,11 @@ private:
      * 桥接容器
      */
     NrWindowImplOSUnix* m_pOwner {nullptr};
+
+    /**
+     * 窗口渲染器
+     */
+    NrWidgetsTreeRenderer* m_renderer {nullptr};
 };
 
 NrWindowImplOSUnix::NrWindowImplOSUnix(NrWindowBase* sendHandler) {
@@ -109,6 +117,7 @@ NrWindowImplOSUnix::NrWindowImplOSUnix(NrWindowBase* sendHandler) {
 }
 
 NrWindowImplOSUnix::~NrWindowImplOSUnix() {
+    m_pSendHandler = nullptr;
     delete impl;
 }
 
@@ -142,6 +151,10 @@ void NrWindowImplOSUnix::setBounds(const NrRect &bounds) {
 
 NrRect NrWindowImplOSUnix::getBounds() const {
     return impl->getBounds();
+}
+
+void NrWindowImplOSUnix::setContentView(NrControl* root) {
+    return impl->setContentView(root);
 }
 
 /**

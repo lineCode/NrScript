@@ -119,11 +119,6 @@ private:
      * NrWindowImpl事件参数sender
      */
     NrWindowBase* m_pSendHandler {nullptr};
-
-    /**
-     * 渲染器
-     */
-    NrWidgetsTreeRenderer* m_renderer {nullptr};
 };
 
 #endif
