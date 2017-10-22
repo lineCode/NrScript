@@ -30,6 +30,10 @@ def fileTraverse(filePath, include_files)
 	end
 end
 
+$find_include_but_no_headers = []
+$find_headers_but_no_match = []
+$find_headers_but_match_fail = []
+
 $line = 1
 def enumFiles
 	dirTraverse(".", $include_dirs)
@@ -86,7 +90,7 @@ def enumFiles
 							end
 						end
 					else
-						#puts header_file
+						$find_include_but_no_headers.push(f.ljust(50) + eLine.chomp)
 					end
 
 					if !absPath.to_s.empty?
@@ -94,7 +98,10 @@ def enumFiles
 						if (regx.match(eLine))
 							eLine = eLine.to_s.sub(regx, "#include \"" + absPath.to_s + "\"")
 						else
+							$find_headers_but_match_fail.push(f.ljust(50) + eLine.chomp.ljust(50))
 						end
+					else
+						$find_headers_but_no_match.push(f.ljust(50) + "\""+header_file.reverse+"\"".ljust(50) + eLine.chomp)
 					end;
 					
 				end
@@ -103,6 +110,21 @@ def enumFiles
 			file_writer.close
 		end
 	end
+
+puts()
+$find_include_but_no_headers.each do |s|
+	puts "发现#include但没有头文件 ".ljust(35) + s
+end
+
+puts()
+$find_headers_but_no_match.each do |s|
+	puts "发现头文件但没有匹配 ".ljust(35) + s
+end
+
+puts()
+$find_headers_but_match_fail.each do |s|
+	puts "发现头文件匹配失败 ".ljust(35) + s
+end
 	
 end
 
