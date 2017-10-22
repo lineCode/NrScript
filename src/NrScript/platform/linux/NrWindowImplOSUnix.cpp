@@ -1,6 +1,7 @@
 ﻿#include "NrScript/base.h"
 #include "NrScript/ui.h"
 #include "NrScript/platform/linux/NrWindowImplOSUnix.h"
+#include "NrScript/skia.h"
 
 class NrWindowImplOSUnix::Impl : public NrWindowBase {
 public:
@@ -177,8 +178,8 @@ bool NrWindowImplOSUnix::initialEvents() {
 	NrWindowBase::CommonEvents* pEvents = dynamic_cast<NrWindowBase::CommonEvents*>(m_pSendHandler);
 	if (pEvents && !pEvents->eOnCreatePtr->isEmpty()) {
 		(*pEvents->eOnCreatePtr)(m_pSendHandler, 0);
-	} 
-	
+	}
+
     return true;
 }
 

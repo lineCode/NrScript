@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.9)
 project(NrScriptBuilder)
 
 set(CMAKE_CXX_STANDARD 17)
+set(SKIA_BUILD_FOR linux)
 
 if (CMAKE_BUILD_TYPE STREQUAL Debug)
     add_definitions(-DDEBUG)
