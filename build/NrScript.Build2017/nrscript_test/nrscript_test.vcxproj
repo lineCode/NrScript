@@ -72,31 +72,31 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\..\..\output\Windows\NrScript\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>..\..\..\output\NrScript\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>..\..\..\build_tmp\$(ProjectName)\$(PlatformName)\$(Configuration)\</IntDir>
     <IncludePath>..\..\..\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\..\output\Windows\NrScript\$(PlatformName)\$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath>..\..\..\output\NrScript\$(PlatformName)\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\..\..\output\Windows\NrScript\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>..\..\..\output\NrScript\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>..\..\..\build_tmp\$(ProjectName)\$(PlatformName)\$(Configuration)\</IntDir>
     <IncludePath>..\..\..\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\..\output\Windows\NrScript\$(PlatformName)\$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath>..\..\..\output\NrScript\$(PlatformName)\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\..\..\output\Windows\NrScript\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>..\..\..\output\NrScript\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>..\..\..\build_tmp\$(ProjectName)\$(PlatformName)\$(Configuration)\</IntDir>
     <IncludePath>..\..\..\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\..\output\Windows\NrScript\$(PlatformName)\$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath>..\..\..\output\NrScript\$(PlatformName)\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\..\..\output\Windows\NrScript\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>..\..\..\output\NrScript\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>..\..\..\build_tmp\$(ProjectName)\$(PlatformName)\$(Configuration)\</IntDir>
     <IncludePath>..\..\..\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\..\output\Windows\NrScript\$(PlatformName)\$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath>..\..\..\output\NrScript\$(PlatformName)\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
     <ClCompile>

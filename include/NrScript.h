@@ -11,6 +11,7 @@
 #ifndef NRSCRIPT_EXPORTS
 #include <NrScript/base.h>
 #include <NrScript/ui.h>
+#include <NrScript/skia.h>
 #endif
 
 

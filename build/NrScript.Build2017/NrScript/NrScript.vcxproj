@@ -72,25 +72,25 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\..\..\output\Windows\$(ProjectName)\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>..\..\..\output\$(ProjectName)\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>..\..\..\build_tmp\$(ProjectName)\$(PlatformName)\$(Configuration)\</IntDir>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\..\..\output\Windows\$(ProjectName)\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>..\..\..\output\$(ProjectName)\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>..\..\..\build_tmp\$(ProjectName)\$(PlatformName)\$(Configuration)\</IntDir>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\..\..\output\Windows\$(ProjectName)\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>..\..\..\output\$(ProjectName)\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>..\..\..\build_tmp\$(ProjectName)\$(PlatformName)\$(Configuration)\</IntDir>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\..\..\output\Windows\$(ProjectName)\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>..\..\..\output\$(ProjectName)\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>..\..\..\build_tmp\$(ProjectName)\$(PlatformName)\$(Configuration)\</IntDir>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
@@ -108,6 +108,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>../../../vendor/skia/lib/$(PlatformName)/$(Configuration)/</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
@@ -125,6 +127,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../../vendor/skia/lib/$(PlatformName)/$(Configuration)/</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
@@ -145,6 +148,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>../../../vendor/skia/lib/$(PlatformName)/$(Configuration)/</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
@@ -166,6 +171,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../../vendor/skia/lib/$(PlatformName)/$(Configuration)/</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -176,6 +182,7 @@
     <ClInclude Include="..\..\..\include\NrScript\base\NrString.h" />
     <ClInclude Include="..\..\..\include\NrScript\defs.h" />
     <ClInclude Include="..\..\..\include\NrScript\platform\windows\NrWindowImplOSWin.h" />
+    <ClInclude Include="..\..\..\include\NrScript\skia.h" />
     <ClInclude Include="..\..\..\include\NrScript\ui.h" />
     <ClInclude Include="..\..\..\include\NrScript\ui\internal\NrWidgetsTreeRenderer.h" />
     <ClInclude Include="..\..\..\include\NrScript\ui\internal\NrWindowBase.h" />
