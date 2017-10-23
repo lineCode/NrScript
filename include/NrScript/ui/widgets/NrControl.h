@@ -4,7 +4,8 @@
 /**
  * 默认控件基类
  */
-class NRSCRIPT_API_VISUAL NrControl {
+class NRSCRIPT_API_VISUAL NrControl : public NrWidgetCommonEvents,
+                                      public NrWidgetCommonProperties {
     friend class NrControlLayerManager;
 public:
     /**
@@ -33,12 +34,6 @@ public:
      */
     virtual NrControl* getParent();
 
-public:
-    /**
-     * 控件事件
-     */
-    virtual void OnPaint(NrControl* sender, NrReserved reserved);
-
 private:
     /**
      * 更新控件层级
@@ -46,20 +41,14 @@ private:
     void updateLayer(int layer);
 
     /**
-     * 初始化事件
+     * 初始化
      */
-    void initialEvents();
+    void initialize();
 
     /**
-     * 清理事件
+     * 释放资源
      */
-    void finalizeEvents();
-
-public:
-    /**
-     * 控件通用事件
-     */
-    NrEvent<void(NrControl*, NrReserved)>* eOnPaintPtr;
+    void finalize();
 
 private:
     /**

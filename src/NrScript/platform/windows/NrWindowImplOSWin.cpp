@@ -282,6 +282,9 @@ LRESULT NrWindowImplOSWin::handleMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LP
         {
             PAINTSTRUCT ps = {0};
             ::BeginPaint(hWnd, &ps);
+            if (renderer) {
+                
+            }
             ::Rectangle(ps.hdc, 10, 10, 50, 50);
 
             ::EndPaint(hWnd, &ps);
@@ -317,8 +320,8 @@ LRESULT NrWindowImplOSWin::OnMessage(NrWindowImplOSWin* sender, MESSAGE& msg) {
     switch (msg.uMsg) {
     case WM_CREATE:
         {
-            if (pEvents && !pEvents->eOnCreatePtr->isEmpty()) {
-                (*pEvents->eOnCreatePtr)(m_pSendHandler, 0);
+            if (pEvents && !pEvents->eOnCreate.isEmpty()) {
+                pEvents->eOnCreate(m_pSendHandler, 0);
             }
         }
         break;
@@ -332,8 +335,8 @@ LRESULT NrWindowImplOSWin::OnMessage(NrWindowImplOSWin* sender, MESSAGE& msg) {
              * 那么DefWindowProc会调用DestroyWindow销毁窗口
              */
             bool bCloseable = false;
-            if (pEvents && !pEvents->eOnClosePtr->isEmpty()) {
-                (*pEvents->eOnClosePtr)(m_pSendHandler, bCloseable);
+            if (pEvents && !pEvents->eOnClose.isEmpty()) {
+                pEvents->eOnClose(m_pSendHandler, bCloseable);
             }
 
             if (!bCloseable) {
@@ -343,15 +346,15 @@ LRESULT NrWindowImplOSWin::OnMessage(NrWindowImplOSWin* sender, MESSAGE& msg) {
         break;
     case WM_DESTROY:
         {
-            if (pEvents && !pEvents->eOnDestroyPtr->isEmpty()) {
-                (*pEvents->eOnDestroyPtr)(m_pSendHandler, 0);
+            if (pEvents && !pEvents->eOnDestroy.isEmpty()) {
+                pEvents->eOnDestroy(m_pSendHandler, 0);
             }
         }
         break;
     case WM_SIZE:
         {
-            if (pEvents && !pEvents->eOnSizePtr->isEmpty()) {
-                (*pEvents->eOnSizePtr)(m_pSendHandler, getBounds());
+            if (pEvents && !pEvents->eOnSize.isEmpty()) {
+                pEvents->eOnSize(m_pSendHandler, getBounds());
             }
         }
         break;

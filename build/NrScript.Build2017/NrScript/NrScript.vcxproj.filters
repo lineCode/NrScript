@@ -126,6 +126,15 @@
     <ClInclude Include="..\..\..\include\NrScript\skia.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\NrScript\ui\internal\NrWidgetProperty.h">
+      <Filter>include\ui\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\NrScript\ui\internal\NrWidgetCommonEvents.h">
+      <Filter>include\ui\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\NrScript\ui\internal\NrWidgetCommonProperties.h">
+      <Filter>include\ui\internal</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\NrScript\base\NrString.cpp">

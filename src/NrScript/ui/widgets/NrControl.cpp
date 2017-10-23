@@ -99,12 +99,12 @@ private:
 };
 
 NrControl::NrControl() {
-    this->initialEvents();
+    this->initialize();
     impl = new Impl(this);
 }
 
 NrControl::~NrControl() {
-    this->finalizeEvents();
+    this->finalize();
     delete impl;
 }
 
@@ -124,22 +124,12 @@ void NrControl::updateLayer(int layer) {
     impl->updateLayer(layer);
 }
 
-void NrControl::OnPaint(NrControl* sender, NrReserved reserved) {
-    NRSCRIPT_UNREFERENCED_PARAMETER(sender);
-    NRSCRIPT_UNREFERENCED_PARAMETER(reserved);
-}
-
 /**
  * 私有函数、非桥接函数在下面实现
  */
-void NrControl::initialEvents() {
-    eOnPaintPtr = new NrEvent<void(NrControl*, NrReserved)>();
-
-    eOnPaintPtr->add(this, &NrControl::OnPaint);
+void NrControl::initialize() {
+    
 }
 
-void NrControl::finalizeEvents() {
-    eOnPaintPtr->remove(this, &NrControl::OnPaint);
-
-    delete eOnPaintPtr;
+void NrControl::finalize() {
 }

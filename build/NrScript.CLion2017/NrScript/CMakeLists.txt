@@ -34,12 +34,15 @@ set(SRC_MODULE_UI
         ${NRINC}/ui.h
         ${NRINC}/ui/utils/NrRect.h
         ${NRINC}/ui/internal/NrWindowBase.h
+        ${NRINC}/ui/internal/NrWidgetProperty.h
+        ${NRINC}/ui/widgets/NrControl.h
         ${NRINC}/ui/internal/NrWidgetsTreeRenderer.h
         ${NRINC}/ui/NrWindowImpl.h
 
         ${NRINC}/platform/linux/NrWindowImplOSUnix.h
         ################################
         ${NRSRC}/ui/internal/NrWindowBase.cpp
+        ${NRSRC}/ui/widgets/NrControl.cpp
         ${NRSRC}/ui/internal/NrWidgetsTreeRenderer.cpp
         ${NRSRC}/ui/NrWindowImpl.cpp
 

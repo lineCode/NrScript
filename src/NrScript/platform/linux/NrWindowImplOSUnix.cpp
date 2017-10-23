@@ -176,8 +176,8 @@ bool NrWindowImplOSUnix::initialEvents() {
 	 * gtk的MW_ONCREATE消息是哪个？ 有知道的请告诉我
 	 */
 	NrWindowBase::CommonEvents* pEvents = dynamic_cast<NrWindowBase::CommonEvents*>(m_pSendHandler);
-	if (pEvents && !pEvents->eOnCreatePtr->isEmpty()) {
-		(*pEvents->eOnCreatePtr)(m_pSendHandler, 0);
+	if (pEvents && !pEvents->eOnCreate.isEmpty()) {
+		pEvents->eOnCreate(m_pSendHandler, 0);
 	}
 
     return true;
@@ -193,8 +193,8 @@ bool NrWindowImplOSUnix::kOnClose(GtkWidget *widget, GdkEvent *event, gpointer d
 
     if (event->type == GDK_DELETE) {
         bool bCloseable = false;
-        if (pEvents && !pEvents->eOnClosePtr->isEmpty()) {
-            (*pEvents->eOnClosePtr)(self->m_pSendHandler, bCloseable);
+        if (pEvents && !pEvents->eOnClose.isEmpty()) {
+            pEvents->eOnClose(self->m_pSendHandler, bCloseable);
         }
         return bCloseable ? false : true;
     }
@@ -209,7 +209,7 @@ void NrWindowImplOSUnix::kOnDestroy(GtkWidget *widget, gpointer data) {
     NrWindowImplOSUnix* self = (NrWindowImplOSUnix*)data;
     NrWindowBase::CommonEvents* pEvents = dynamic_cast<NrWindowBase::CommonEvents*>(self->m_pSendHandler);
 
-    if (pEvents && !pEvents->eOnDestroyPtr->isEmpty()) {
-        (*pEvents->eOnDestroyPtr)(self->m_pSendHandler, 0);
+    if (pEvents && !pEvents->eOnDestroy.isEmpty()) {
+        pEvents->eOnDestroy(self->m_pSendHandler, 0);
     }
 }

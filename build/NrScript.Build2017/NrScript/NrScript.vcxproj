@@ -184,6 +184,9 @@
     <ClInclude Include="..\..\..\include\NrScript\platform\windows\NrWindowImplOSWin.h" />
     <ClInclude Include="..\..\..\include\NrScript\skia.h" />
     <ClInclude Include="..\..\..\include\NrScript\ui.h" />
+    <ClInclude Include="..\..\..\include\NrScript\ui\internal\NrWidgetCommonEvents.h" />
+    <ClInclude Include="..\..\..\include\NrScript\ui\internal\NrWidgetCommonProperties.h" />
+    <ClInclude Include="..\..\..\include\NrScript\ui\internal\NrWidgetProperty.h" />
     <ClInclude Include="..\..\..\include\NrScript\ui\internal\NrWidgetsTreeRenderer.h" />
     <ClInclude Include="..\..\..\include\NrScript\ui\internal\NrWindowBase.h" />
     <ClInclude Include="..\..\..\include\NrScript\ui\NrWindowImpl.h" />

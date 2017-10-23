@@ -12,5 +12,6 @@ void NrWidgetsTreeRenderer::setRenderTarget(NrControl* root) {
 }
 
 void NrWidgetsTreeRenderer::doTraversal(int width, int height) {
-    
+    width;
+    height;
 }

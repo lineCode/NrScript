@@ -9,10 +9,10 @@ void ddd(NrWindowBase* sender, NrReserved reserved) {
 }
 
 NrBuilderFrame::NrBuilderFrame() {
-    this->eOnCreatePtr->add(this, &NrBuilderFrame::OnFrameCreate);
-    this->eOnDestroyPtr->add(this, &NrBuilderFrame::OnFrameDestroy);
-    this->eOnClosePtr->add(this, &NrBuilderFrame::OnClose);
-    this->eOnDestroyPtr->add(ddd);
+    this->eOnCreate.add(this, &NrBuilderFrame::OnFrameCreate);
+    this->eOnDestroy.add(this, &NrBuilderFrame::OnFrameDestroy);
+    this->eOnClose.add(this, &NrBuilderFrame::OnClose);
+    this->eOnDestroy.add(ddd);
 }
 
 NrBuilderFrame::~NrBuilderFrame() {

@@ -7,6 +7,9 @@
 
 #include "NrScript/defs.h"
 #include "NrScript/ui/utils/NrRect.h"
+#include "NrScript/ui/internal/NrWidgetProperty.h"
+#include "NrScript/ui/internal/NrWidgetCommonProperties.h"
+#include "NrScript/ui/internal/NrWidgetCommonEvents.h"
 #include "NrScript/ui/widgets/NrControl.h"
 #include "NrScript/ui/internal/NrWidgetsTreeRenderer.h"
 #include "NrScript/ui/internal/NrWindowBase.h"

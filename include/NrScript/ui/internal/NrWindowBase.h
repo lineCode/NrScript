@@ -154,6 +154,12 @@ public:
 //    virtual void restore() = 0;
 };
 
+/**
+ * 模板接口导出(warning:C4251)
+ */
+template class NRSCRIPT_API_VISUAL NrEvent<void(NrWindowBase*, NrReserved)>;
+template class NRSCRIPT_API_VISUAL NrEvent<void(NrWindowBase*, bool&)>;
+template class NRSCRIPT_API_VISUAL NrEvent<void(NrWindowBase*, const NrRect&)>;
 
 /**
  * 窗口通用事件
@@ -176,28 +182,28 @@ public:
      * @param 事件对象
      * @param 未定义
      */
-    NrEvent<void(NrWindowBase*, NrReserved)>* eOnCreatePtr;
+    NrEvent<void(NrWindowBase*, NrReserved)> eOnCreate;
 
     /**
      * 窗口关闭事件
      * @param 事件对象
      * @param 确认窗口关闭
      */
-    NrEvent<void(NrWindowBase*, bool&)>* eOnClosePtr;
+    NrEvent<void(NrWindowBase*, bool&)> eOnClose;
 
     /**
      * 窗口销毁事件
      * @param 事件对象
      * @param 未定义
      */
-    NrEvent<void(NrWindowBase*, NrReserved)>* eOnDestroyPtr;
+    NrEvent<void(NrWindowBase*, NrReserved)> eOnDestroy;
 
     /**
      * 窗体大小变化事件
      * @param 事件对象
      * @param 窗体位置、客户区域大小
      */
-    NrEvent<void(NrWindowBase*, const NrRect&)>* eOnSizePtr;
+    NrEvent<void(NrWindowBase*, const NrRect&)> eOnSize;
 };
 
 #endif
