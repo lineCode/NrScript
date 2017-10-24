@@ -128,7 +128,12 @@ void NrControl::updateLayer(int layer) {
  * 私有函数、非桥接函数在下面实现
  */
 void NrControl::initialize() {
-    
+    /**
+     * 改做pugixml了。
+     */
+    //this->propText.acceptString("text=");
+    //this->defineProperty("text", propText);
+    //this->defineProperty("textcolor", propTextColor);
 }
 
 void NrControl::finalize() {
