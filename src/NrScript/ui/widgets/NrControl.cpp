@@ -134,6 +134,10 @@ void NrControl::initialize() {
     //this->propText.acceptString("text=");
     //this->defineProperty("text", propText);
     //this->defineProperty("textcolor", propTextColor);
+
+    //this->defineProperty("text", );
+
+    //
 }
 
 void NrControl::finalize() {

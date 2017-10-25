@@ -31,6 +31,7 @@ set(SRC_MODULE_BASE
 )
 
 set(SRC_MODULE_UI
+        ${NRINC}/skia.h
         ${NRINC}/ui.h
         ${NRINC}/ui/utils/NrRect.h
         ${NRINC}/ui/internal/NrWindowBase.h

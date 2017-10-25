@@ -2,6 +2,7 @@
 
 #include "NrScript/base.h"
 #include "NrScript/ui.h"
+#include "NrScript/skia.h"
 #include "NrScript/platform/windows/NrWindowImplOSWin.h"
 
 static TCHAR kHwndWindowClassName[] = _T("NrScriptWindowClass");
@@ -283,7 +284,7 @@ LRESULT NrWindowImplOSWin::handleMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LP
             PAINTSTRUCT ps = {0};
             ::BeginPaint(hWnd, &ps);
             if (renderer) {
-                
+                SkCanvas* canvas = new SkCanvas();
             }
             ::Rectangle(ps.hdc, 10, 10, 50, 50);
 
@@ -292,7 +293,7 @@ LRESULT NrWindowImplOSWin::handleMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LP
         break;
     case WM_SIZE:
         {
-
+            int i = 0;
         }
         break;
     }
