@@ -135,6 +135,9 @@
     <ClInclude Include="..\..\..\include\NrScript\ui\internal\NrWidgetCommonProperties.h">
       <Filter>include\ui\internal</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\NrScript\ui\NrDialogImpl.h">
+      <Filter>include\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\NrScript\base\NrString.cpp">
@@ -154,6 +157,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src\NrScript\ui\internal\NrWidgetsTreeRenderer.cpp">
       <Filter>src\ui\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\NrScript\ui\NrDialogImpl.cpp">
+      <Filter>src\ui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -80,6 +80,10 @@ public:
     }
 
 public:
+    bool create() {
+        return false;
+    }
+
     /**
      * 创建窗口
      */
@@ -283,17 +287,12 @@ LRESULT NrWindowImplOSWin::handleMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LP
         {
             PAINTSTRUCT ps = {0};
             ::BeginPaint(hWnd, &ps);
-            if (renderer) {
-                SkCanvas* canvas = new SkCanvas();
-            }
-            ::Rectangle(ps.hdc, 10, 10, 50, 50);
-
+            //::SetDIBitsToDevice(renderer->getSurface().getBitmap().getPixels());
             ::EndPaint(hWnd, &ps);
         }
         break;
     case WM_SIZE:
         {
-            int i = 0;
         }
         break;
     }

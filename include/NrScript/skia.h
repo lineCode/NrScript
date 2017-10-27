@@ -1,6 +1,8 @@
 ﻿#ifndef _NRSCRIPT_SKIA_H_
 #define _NRSCRIPT_SKIA_H_ 1
 
+#pragma warning(push)
+#pragma warning(disable:4244)
 #include "skia/android/SkAndroidFrameworkUtils.h"
 #include "skia/android/SkBRDAllocator.h"
 #include "skia/android/SkBitmapRegionDecoder.h"
@@ -206,5 +208,5 @@
 #include "skia/utils/SkRandom.h"
 #include "skia/utils/SkShadowUtils.h"
 #include "skia/utils/SkTextBox.h"
-
+#pragma warning(push)
 #endif
