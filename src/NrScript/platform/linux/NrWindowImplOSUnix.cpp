@@ -31,7 +31,7 @@ public:
     /**
      * 创建GTK窗口对象
      */
-    bool create(const NrWindowCreateParameter& parameter) override {
+    bool create(const NrWindowBase::CreateParameter& parameter) override {
         static bool kNrScriptGtkWidgetInitialized = false;
 
         if (!kNrScriptGtkWidgetInitialized) {
@@ -126,7 +126,7 @@ GtkWidget* NrWindowImplOSUnix::getWidget() {
     return dynamic_cast<NrWindowImplOSUnix::Impl*>(impl)->getWidget();
 }
 
-bool NrWindowImplOSUnix::create(const NrWindowCreateParameter &parameter) {
+bool NrWindowImplOSUnix::create(const NrWindowBase::CreateParameter &parameter) {
     return impl->create(parameter);
 }
 

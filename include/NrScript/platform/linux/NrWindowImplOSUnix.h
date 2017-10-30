@@ -33,7 +33,7 @@ public:
     /**
      * 创建窗口
      */
-    virtual bool create(const NrWindowCreateParameter& parameter) override;
+    virtual bool create(const NrWindowBase::CreateParameter& parameter) override;
 
     /**
      * 获取与平台相关的系统本地窗口

@@ -64,6 +64,13 @@ private:
         return ::DefWindowProc(hWnd, uMsg, wParam, lParam);
     }
 
+    /**
+     * 对话框回调过程
+     */
+    static BOOL CALLBACK DlgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
+        
+    }
+
 public:
     /**
      * 窗口过程
@@ -80,14 +87,32 @@ public:
     }
 
 public:
-    bool create() {
-        return false;
+    /**
+     * 创建非模态对话框
+     */
+    bool createDialog() {
+        return (::CreateDialog(GetSelfModuleHandle(), _T("NrScriptTemplateDLG"), 
+            0, (DLGPROC)&Impl::DlgProc, (LPARAM)this) != NULL);
+    }
+
+    /**
+     * 创建模态对话框
+     */
+    int createModalDialog() {
+        return 0;
+    }
+
+    /**
+     * 缓存对话框创建参数
+     */
+    void setDialogParameter(const NrWindowBase::CreateParameter& parameter) {
+        m_dialogParameter = parameter;
     }
 
     /**
      * 创建窗口
      */
-    bool create(const NrWindowCreateParameter& parameter) override {
+    bool create(const NrWindowBase::CreateParameter& parameter) override {
         static bool kNrScriptWindowClassRegistered = false;
         HINSTANCE hInstance = ::GetModuleHandle(0);
 
@@ -201,6 +226,11 @@ private:
     NrWindowImplOSWin* m_pOwner {nullptr};
 
     /**
+     * 对话框创建容器
+     */
+    NrWindowBase::CreateParameter m_dialogParameter {};
+
+    /**
      * 渲染器
      */
     NrWidgetsTreeRenderer* m_renderer {nullptr};
@@ -231,7 +261,12 @@ void NrWindowImplOSWin::setContentView(NrControl* root) {
     impl->setContentView(root);
 }
 
-bool NrWindowImplOSWin::create(const NrWindowCreateParameter& parameter) {
+bool NrWindowImplOSWin::create(const NrWindowBase::CreateParameter& parameter) {
+    NrDialogBase* pDialogObject = dynamic_cast<NrDialogBase*>(m_pSendHandler);
+    if (pDialogObject != nullptr) {
+        impl->setDialogParameter(parameter);
+        return true;
+    }
     return impl->create(parameter);
 }
 
@@ -244,6 +279,10 @@ bool NrWindowImplOSWin::isActive() const {
 }
 
 void NrWindowImplOSWin::show() {
+    NrDialogBase* pDialogObject = dynamic_cast<NrDialogBase*>(m_pSendHandler);
+    if (pDialogObject != nullptr) {
+        impl->createDialog();
+    }
     return impl->show();
 }
 

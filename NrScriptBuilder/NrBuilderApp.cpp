@@ -9,7 +9,7 @@ NrBuilderApp::~NrBuilderApp() {
 }
 
 bool NrBuilderApp::initialize() {
-    NrWindowCreateParameter parameter {};
+    NrWindowBase::CreateParameter parameter {};
     parameter.bounds.width = 960;
     parameter.bounds.height = 544;
 

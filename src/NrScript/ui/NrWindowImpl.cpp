@@ -23,7 +23,7 @@ NrWindowImpl::~NrWindowImpl() {
     delete impl;
 }
 
-bool NrWindowImpl::create(const NrWindowCreateParameter& parameter) {
+bool NrWindowImpl::create(const NrWindowBase::CreateParameter& parameter) {
     return impl->create(parameter);
 }
 

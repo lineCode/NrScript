@@ -2,22 +2,6 @@
 #define _NRSCRIPT_NRWINDOWBASE_H_ 1
 
 /**
- * 窗口创建参数
- */
-struct NRSCRIPT_API_VISUAL NrWindowCreateParameter {
-public:
-    /**
-     * 窗口标题
-     */
-    NrString caption;
-
-    /**
-     * 窗口位置、客户区域大小
-     */
-    NrRect bounds;
-};
-
-/**
  * 窗口操作接口
  */
 class NRSCRIPT_API_VISUAL NrWindowBase {
@@ -26,6 +10,27 @@ public:
      * 窗口通用事件
      */
     class NRSCRIPT_API_VISUAL CommonEvents;
+
+    /**
+    * 窗口创建参数
+    */
+    struct NRSCRIPT_API_VISUAL CreateParameter {
+    public:
+        /**
+        * 窗口标题
+        */
+        NrString caption;
+
+        /**
+        * 窗口位置、客户区域大小
+        */
+        NrRect bounds;
+
+        /**
+        * 父窗口
+        */
+        NrWindowBase* parent;
+    };
 
 public:
     /**
@@ -42,7 +47,7 @@ public:
     /**
      * 创建窗口
      */
-    virtual bool create(const NrWindowCreateParameter& parameter) = 0;
+    virtual bool create(const NrWindowBase::CreateParameter& parameter) = 0;
 
     /**
      * 获取与平台相关的系统本地窗口
@@ -157,12 +162,17 @@ public:
 /**
  * 对话框
  */
-class NRSCRIPT_API_VISUAL NrDialogBase : public NrWindowBase {
+class NRSCRIPT_API_VISUAL NrDialogBase {
 public:
+    /**
+     * Clang编译警告
+     */
+    virtual ~NrDialogBase() {};
+
     /**
      * 显示模态对话框
      */
-    virtual int showModal();
+    virtual int showModal() = 0;
 };
 
 /**
