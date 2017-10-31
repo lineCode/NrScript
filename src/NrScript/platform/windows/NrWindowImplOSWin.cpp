@@ -64,13 +64,6 @@ private:
         return ::DefWindowProc(hWnd, uMsg, wParam, lParam);
     }
 
-    /**
-     * 对话框回调过程
-     */
-    static BOOL CALLBACK DlgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
-        
-    }
-
 public:
     /**
      * 窗口过程
@@ -87,28 +80,6 @@ public:
     }
 
 public:
-    /**
-     * 创建非模态对话框
-     */
-    bool createDialog() {
-        return (::CreateDialog(GetSelfModuleHandle(), _T("NrScriptTemplateDLG"), 
-            0, (DLGPROC)&Impl::DlgProc, (LPARAM)this) != NULL);
-    }
-
-    /**
-     * 创建模态对话框
-     */
-    int createModalDialog() {
-        return 0;
-    }
-
-    /**
-     * 缓存对话框创建参数
-     */
-    void setDialogParameter(const NrWindowBase::CreateParameter& parameter) {
-        m_dialogParameter = parameter;
-    }
-
     /**
      * 创建窗口
      */
@@ -262,11 +233,6 @@ void NrWindowImplOSWin::setContentView(NrControl* root) {
 }
 
 bool NrWindowImplOSWin::create(const NrWindowBase::CreateParameter& parameter) {
-    NrDialogBase* pDialogObject = dynamic_cast<NrDialogBase*>(m_pSendHandler);
-    if (pDialogObject != nullptr) {
-        impl->setDialogParameter(parameter);
-        return true;
-    }
     return impl->create(parameter);
 }
 
@@ -279,10 +245,6 @@ bool NrWindowImplOSWin::isActive() const {
 }
 
 void NrWindowImplOSWin::show() {
-    NrDialogBase* pDialogObject = dynamic_cast<NrDialogBase*>(m_pSendHandler);
-    if (pDialogObject != nullptr) {
-        impl->createDialog();
-    }
     return impl->show();
 }
 

@@ -14,6 +14,5 @@
 #include "NrScript/ui/internal/NrWidgetsTreeRenderer.h"
 #include "NrScript/ui/internal/NrWindowBase.h"
 #include "NrScript/ui/NrWindowImpl.h"
-#include "NrScript/ui/NrDialogImpl.h"
 
 #endif

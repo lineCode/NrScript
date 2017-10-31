@@ -10,7 +10,7 @@
 /**
  * NrScript.Builder 主窗口
  */
-class NrBuilderFrame : public NrDialogImpl {
+class NrBuilderFrame : public NrWindowImpl {
 public:
     /**
      * 默认构造函数

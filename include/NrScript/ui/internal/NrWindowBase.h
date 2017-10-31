@@ -160,22 +160,6 @@ public:
 };
 
 /**
- * 对话框
- */
-class NRSCRIPT_API_VISUAL NrDialogBase {
-public:
-    /**
-     * Clang编译警告
-     */
-    virtual ~NrDialogBase() {};
-
-    /**
-     * 显示模态对话框
-     */
-    virtual int showModal() = 0;
-};
-
-/**
  * 模板接口导出(warning:C4251)
  */
 template class NRSCRIPT_API_VISUAL NrEvent<void(NrWindowBase*, NrReserved)>;
