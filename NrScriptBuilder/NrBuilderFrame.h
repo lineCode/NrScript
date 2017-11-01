@@ -34,7 +34,7 @@ private:
     /**
      * 窗口关闭事件
      */
-    void OnClose(NrWindowBase* sender, bool& closeable);
+    void OnFrameClose(NrWindowBase* sender, bool& closeable);
 
     /**
      * 窗口销毁通
@@ -45,7 +45,7 @@ private:
     /**
      * 关于对话框
      */
-    std::shared_ptr<NrAboutDialog> m_dlgAbout{new NrAboutDialog};
+    std::unique_ptr<NrAboutDialog> m_dlgAbout{new NrAboutDialog};
 };
 
 #endif

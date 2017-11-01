@@ -1,6 +1,29 @@
 ﻿#ifndef _NRSCRIPT_NRWINDOWBASE_H_
 #define _NRSCRIPT_NRWINDOWBASE_H_ 1
 
+enum class NrDialogResult {
+    /**
+     * 此值表示对话框并没有正确显示，需要额外处理。
+     */
+    Exception = -1,
+    
+    /**
+     * 此值表示对话框正在运行中或者已经隐藏
+     */
+    None    = 0,
+
+    /**
+     * 分别表示其字面意思
+     */
+    Ok      = 1,
+    Cancel  = 2,
+    About   = 3,
+    Retry   = 4,
+    Ignore  = 5,
+    Yes     = 6,
+    No      = 7,
+};
+
 /**
  * 窗口操作接口
  */
@@ -45,6 +68,11 @@ public:
     virtual bool create(const NrWindowBase::CreateParameter& parameter) = 0;
 
     /**
+     * 关闭窗口
+     */
+    virtual void close() = 0;
+
+    /**
      * 获取与平台相关的系统本地窗口
      */
     virtual NrWindowBase* getNativeWindow() = 0;
@@ -60,6 +88,11 @@ public:
     virtual bool isVisible() const = 0;
 
     /**
+     * 是否模态对话框形式
+     */
+    virtual bool isDialog() const = 0;
+
+    /**
      * 显示窗口
      */
     virtual void show() = 0;
@@ -71,15 +104,27 @@ public:
     virtual void show(NrWindowBase* parent) = 0;
 
     /**
-     * 作为模态窗口显示，使用场景为对话框，但对话框处理结果(返回值)需要自己设置
+     * 作为模态对话框显示
      * @param parent 父窗口
+     * @remarks 作为模态对话框的情况下，点击关闭按钮或者调用close，并不会真正的关闭
+     * 窗口(DestroyWindow)，而是隐藏。
      */
-    virtual void showModal(NrWindowBase* parent) = 0;
+    virtual NrDialogResult showDialog(NrWindowBase* parent) = 0;
+
+    /**
+     * 设置对话框返回值
+     */
+    virtual void setDialogResult(NrDialogResult result) = 0;
 
     /**
      * 显示窗口、但不激活
      */
     virtual void showInactive() = 0;
+
+    /**
+     * 隐藏窗口
+     */
+    virtual void hide() = 0;
 
     /**
      * 设置窗口位置、客户区大小
@@ -114,10 +159,6 @@ public:
 //
 //
 //
-//    /**
-//     * 隐藏窗口
-//     */
-//    virtual void hide() = 0;
 //
 
 //

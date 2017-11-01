@@ -129,6 +129,10 @@ public:
         return false;
     }
 
+    void close() override {
+        PostMessage(m_Hwnd, WM_CLOSE, 0, 0);
+    }
+
     void setContentView(NrControl* root) override {
         m_renderer->setRenderTarget(root);
     }
@@ -139,6 +143,10 @@ public:
 
     bool isVisible() const override {
         return ::IsWindowVisible(m_Hwnd);
+    }
+
+    bool isDialog() const override {
+        return m_isDialog;
     }
 
     NrWindowBase* getNativeWindow() override {
@@ -152,24 +160,104 @@ public:
     void show(NrWindowBase* parent) override {
         NrWindowImplOSWin* native = dynamic_cast<NrWindowImplOSWin*>(parent->getNativeWindow());
         if (native && native != this->m_pOwner) {
-            ::SetWindowLongPtr(m_Hwnd, GWLP_HWNDPARENT, reinterpret_cast<LONG>(native->getHwnd()));
+            ::SetWindowLongPtr(m_Hwnd, GWLP_HWNDPARENT, reinterpret_cast<LONG_PTR>(native->getHwnd()));
         }
         this->show();
     }
 
-    void showModal(NrWindowBase* parent) override {
-        NrWindowImplOSWin* native = dynamic_cast<NrWindowImplOSWin*>(parent->getNativeWindow());
-        if (native == nullptr || native == this->m_pOwner) {
-            return;
+    NrDialogResult showDialog(NrWindowBase* parent) override {
+        NrWindowImplOSWin* parentHwnd = dynamic_cast<NrWindowImplOSWin*>(parent->getNativeWindow());
+        if (parentHwnd == nullptr || parentHwnd == this->m_pOwner) {
+            NRSCRIPT_ASSERT(false && "对话框无法正常显示");
+            return NrDialogResult::Exception;
         }
 
-        ::SetWindowLongPtr(m_Hwnd, GWLP_HWNDPARENT, (LONG)native->getHwnd());
-        ::EnableWindow(native->getHwnd(), false);
+        if (this->isVisible()) {
+            NRSCRIPT_ASSERT(false && "对话框无法正常显示");
+            return NrDialogResult::Exception;
+        }
+
+        if (!::IsWindowEnabled(m_Hwnd)) {
+            NRSCRIPT_ASSERT(false && "对话框无法正常显示");
+            return NrDialogResult::Exception;
+        }
+
+        if (this->isDialog()) {
+            NRSCRIPT_ASSERT(false && "对话框无法正常显示");
+            return NrDialogResult::Exception;
+        }
+
+        HWND hCaptured = ::GetCapture();
+        if (hCaptured) {
+            ::SendMessage(hCaptured, WM_CANCELMODE, 0, 0);
+            ::ReleaseCapture();
+        }
+
+        /**
+         * 开始处理
+         */
+        HWND hPreOwner = reinterpret_cast<HWND>(
+            ::SetWindowLongPtr(m_Hwnd, GWLP_HWNDPARENT, 
+            reinterpret_cast<LONG_PTR>(parentHwnd->getHwnd()))
+            );
+
+        bool bPreEnabled = !::EnableWindow(parentHwnd->getHwnd(), false);
         this->show();
+        m_isDialog = true;
+        this->setDialogResult(NrDialogResult::None);
+        /**
+         * 内建Blocked消息循环
+         */
+        MSG msg {};
+        while (true) {
+            if (::PeekMessage(&msg, nullptr, 0, 0, PM_NOREMOVE)) {
+                bool bUnicode = false;
+
+                if (msg.hwnd != nullptr && ::IsWindowUnicode(msg.hwnd)) {
+                    if (!GetMessageW(&msg, nullptr, 0, 0)) {
+                        continue;
+                    }
+                    bUnicode = true;
+                } else {
+                    if (!GetMessageA(&msg, nullptr, 0, 0)) {
+                        continue;
+                    }
+                    bUnicode = false;
+                }
+                
+                ::TranslateMessage(&msg);
+                if (bUnicode) {
+                    ::DispatchMessageW(&msg);
+                } else {
+                    ::DispatchMessageA(&msg);
+                }
+
+                if (!checkDialogResult()) {
+                    break;
+                }
+            } else if (!::PeekMessage(&msg, nullptr, 0, 0, PM_NOREMOVE)) {
+                ::WaitMessage();
+            }
+        }
+
+        ::SetWindowLongPtr(m_Hwnd, GWLP_HWNDPARENT, reinterpret_cast<LONG_PTR>(hPreOwner));
+        ::EnableWindow(parentHwnd->getHwnd(), bPreEnabled);
+        ::SetActiveWindow(parentHwnd->getHwnd());
+
+        m_isDialog = false;
+        return m_dialogResult;
+    }
+
+    void setDialogResult(NrDialogResult result) {
+        m_dialogResult = result;
     }
 
     void showInactive() override {
         ::ShowWindow(m_Hwnd, SW_SHOWNOACTIVATE);
+    }
+
+    void hide() override {
+        ::ShowWindow(m_Hwnd, SW_HIDE);
     }
 
     void setBounds(const NrRect& bounds) override {
@@ -210,6 +298,18 @@ public:
 
 private:
     /**
+     * 检查对话框返回值
+     */
+    bool checkDialogResult() {
+        if (m_dialogResult == NrDialogResult::None && isVisible()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+private:
+    /**
      * 窗口句柄
      */
     HWND m_Hwnd {nullptr};
@@ -220,9 +320,14 @@ private:
     NrWindowImplOSWin* m_pOwner {nullptr};
 
     /**
-     * 对话框创建容器
+     * 是否模态窗口
      */
-    NrWindowBase::CreateParameter m_dialogParameter {};
+    bool m_isDialog {false};
+
+    /**
+     * 对话框返回值
+     */
+    NrDialogResult m_dialogResult {NrDialogResult::None};
 
     /**
      * 渲染器
@@ -259,6 +364,10 @@ bool NrWindowImplOSWin::create(const NrWindowBase::CreateParameter& parameter) {
     return impl->create(parameter);
 }
 
+void NrWindowImplOSWin::close() {
+    return impl->close();
+}
+
 NrWindowBase* NrWindowImplOSWin::getNativeWindow() {
     return impl->getNativeWindow();
 }
@@ -271,6 +380,10 @@ bool NrWindowImplOSWin::isVisible() const {
     return impl->isVisible();
 }
 
+bool NrWindowImplOSWin::isDialog() const {
+    return impl->isDialog();
+}
+
 void NrWindowImplOSWin::show() {
     return impl->show();
 }
@@ -279,12 +392,20 @@ void NrWindowImplOSWin::show(NrWindowBase* parent) {
     return impl->show(parent);
 }
 
-void NrWindowImplOSWin::showModal(NrWindowBase* parent) {
-    return impl->showModal(parent);
+NrDialogResult NrWindowImplOSWin::showDialog(NrWindowBase* parent) {
+    return impl->showDialog(parent);
+}
+
+void NrWindowImplOSWin::setDialogResult(NrDialogResult result) {
+    return impl->setDialogResult(result);
 }
 
 void NrWindowImplOSWin::showInactive() {
     return impl->showInactive();
+}
+
+void NrWindowImplOSWin::hide() {
+    return impl->hide();
 }
 
 void NrWindowImplOSWin::setBounds(const NrRect& bounds) {
@@ -377,6 +498,17 @@ LRESULT NrWindowImplOSWin::OnMessage(NrWindowImplOSWin* sender, MESSAGE& msg) {
             
             if (!bCloseable) {
                 msg.handled = true;
+            }
+            else {
+                /**
+                 * 模态形式下的窗口不会真正的关闭，
+                 * 只会将窗口设置为隐藏状态，隐藏后自动断开模态消息循环，退出Block模式
+                 */
+                if (isDialog()) {
+                    bCloseable = false;
+                    this->hide();
+                    msg.handled = true;
+                }
             }
         }
         break;

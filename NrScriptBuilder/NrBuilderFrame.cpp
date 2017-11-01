@@ -11,8 +11,10 @@ void ddd(NrWindowBase* sender, NrReserved reserved) {
 NrBuilderFrame::NrBuilderFrame() {
     this->eOnCreate.add(this, &NrBuilderFrame::OnFrameCreate);
     this->eOnDestroy.add(this, &NrBuilderFrame::OnFrameDestroy);
-    this->eOnClose.add(this, &NrBuilderFrame::OnClose);
+    this->eOnClose.add(this, &NrBuilderFrame::OnFrameClose);
     this->eOnDestroy.add(ddd);
+
+    this->m_dlgAbout->eOnClose.add(this, &NrBuilderFrame::OnFrameClose);
 }
 
 NrBuilderFrame::~NrBuilderFrame() {
@@ -26,13 +28,20 @@ void NrBuilderFrame::OnFrameCreate(NrWindowBase* sender, NrReserved reserved) {
     m_dlgAbout->create(p);
 }
 
-void NrBuilderFrame::OnClose(NrWindowBase* sender, bool& closeable) {
-    closeable = false;
+void NrBuilderFrame::OnFrameClose(NrWindowBase* sender, bool& closeable) {
 
-    m_dlgAbout->showModal(this);
+    if (sender == this) {
+        closeable = false;
+        NrDialogResult result = m_dlgAbout->showDialog(sender);
+        if (result != NrDialogResult::Exception) {
+            closeable = false;
+        }
+    } else if (sender == m_dlgAbout.get()) {
+        sender->setDialogResult(NrDialogResult::Cancel);
+    }
 
 #ifndef NRSCRIPT_BUILD_PLATFORM_LINUX
-    if (closeable) {
+    if (closeable && sender == this) {
         ::PostQuitMessage(0);
     }
 #else

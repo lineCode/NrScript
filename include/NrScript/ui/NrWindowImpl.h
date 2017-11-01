@@ -24,6 +24,11 @@ public:
     virtual bool create(const NrWindowBase::CreateParameter& parameter) override;
 
     /**
+     * 关闭窗口
+     */
+    virtual void close() override;
+
+    /**
      * 获取与平台相关的系统本地窗口
      */
     virtual NrWindowBase* getNativeWindow() override;
@@ -39,6 +44,11 @@ public:
     virtual bool isVisible() const override;
 
     /**
+     * 是否模态对话框形式
+     */
+    virtual bool isDialog() const override;
+
+    /**
      * 显示窗口
      */
     virtual void show() override;
@@ -49,15 +59,27 @@ public:
     virtual void show(NrWindowBase* parent) override;
 
     /**
-     * 作为模态窗口显示，使用场景为对话框，但对话框处理结果(返回值)需要自己设置
-     * @param [in] parent 父窗口
+     * 作为模态对话框显示
+     * @param parent 父窗口
+     * @remarks 作为模态对话框的情况下，点击关闭按钮或者调用close，并不会真正的关闭
+     * 窗口(DestroyWindow)，而是隐藏。
      */
-    virtual void showModal(NrWindowBase* parent) override;
+    virtual NrDialogResult showDialog(NrWindowBase* parent) override;
+
+    /**
+     * 设置对话框返回值
+     */
+    virtual void setDialogResult(NrDialogResult result) override;
 
     /**
      * 显示窗口但不激活
      */
     virtual void showInactive() override;
+
+    /**
+     * 隐藏窗口
+     */
+    virtual void hide() override;
 
     /**
      * 设置窗口位置、客户区大小

@@ -27,6 +27,10 @@ bool NrWindowImpl::create(const NrWindowBase::CreateParameter& parameter) {
     return impl->create(parameter);
 }
 
+void NrWindowImpl::close() {
+    return impl->close();
+}
+
 NrWindowBase* NrWindowImpl::getNativeWindow() {
     return impl->getNativeWindow();
 }
@@ -39,6 +43,10 @@ bool NrWindowImpl::isVisible() const {
     return impl->isVisible();
 }
 
+bool NrWindowImpl::isDialog() const {
+    return impl->isDialog();
+}
+
 void NrWindowImpl::show() {
     return impl->show();
 }
@@ -47,12 +55,20 @@ void NrWindowImpl::show(NrWindowBase* parent) {
     return impl->show(parent);
 }
 
-void NrWindowImpl::showModal(NrWindowBase* parent) {
-    return impl->showModal(parent);
+NrDialogResult NrWindowImpl::showDialog(NrWindowBase* parent) {
+    return impl->showDialog(parent);
+}
+
+void NrWindowImpl::setDialogResult(NrDialogResult result) {
+    return impl->setDialogResult(result);
 }
 
 void NrWindowImpl::showInactive() {
     return impl->showInactive();
+}
+
+void NrWindowImpl::hide() {
+    return impl->hide();
 }
 
 void NrWindowImpl::setBounds(const NrRect& bounds) {
