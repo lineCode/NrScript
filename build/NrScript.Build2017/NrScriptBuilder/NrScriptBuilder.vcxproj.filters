@@ -30,5 +30,8 @@
     <ClInclude Include="..\..\..\NrScriptBuilder\NrBuilderApp.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\NrScriptBuilder\NrAboutDialog.h">
+      <Filter>include\wnd</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

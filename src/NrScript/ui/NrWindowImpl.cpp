@@ -35,8 +35,20 @@ bool NrWindowImpl::isActive() const {
     return impl->isActive();
 }
 
+bool NrWindowImpl::isVisible() const {
+    return impl->isVisible();
+}
+
 void NrWindowImpl::show() {
     return impl->show();
+}
+
+void NrWindowImpl::show(NrWindowBase* parent) {
+    return impl->show(parent);
+}
+
+void NrWindowImpl::showModal(NrWindowBase* parent) {
+    return impl->showModal(parent);
 }
 
 void NrWindowImpl::showInactive() {

@@ -2,6 +2,7 @@
 #define _NRSCRIPTBUILDER_NRBUILDERFRAME_H_ 1
 
 #include <NrScript.h>
+#include "NrAboutDialog.h"
 
 #ifndef NRSCRIPT_BUILD_PLATFORM_LINUX
 #include <Windows.h>
@@ -39,6 +40,12 @@ private:
      * 窗口销毁通
      */
     void OnFrameDestroy(NrWindowBase* sender, NrReserved reserved);
+
+private:
+    /**
+     * 关于对话框
+     */
+    std::shared_ptr<NrAboutDialog> m_dlgAbout{new NrAboutDialog};
 };
 
 #endif

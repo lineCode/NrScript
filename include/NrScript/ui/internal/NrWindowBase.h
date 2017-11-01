@@ -25,11 +25,6 @@ public:
         * 窗口位置、客户区域大小
         */
         NrRect bounds;
-
-        /**
-        * 父窗口
-        */
-        NrWindowBase* parent;
     };
 
 public:
@@ -60,9 +55,26 @@ public:
     virtual bool isActive() const = 0;
 
     /**
+     * 当前窗口是否显示
+     */
+    virtual bool isVisible() const = 0;
+
+    /**
      * 显示窗口
      */
     virtual void show() = 0;
+
+    /**
+     * 作为指定窗口的子窗口显示
+     * @param parent 父窗口
+     */
+    virtual void show(NrWindowBase* parent) = 0;
+
+    /**
+     * 作为模态窗口显示，使用场景为对话框，但对话框处理结果(返回值)需要自己设置
+     * @param parent 父窗口
+     */
+    virtual void showModal(NrWindowBase* parent) = 0;
 
     /**
      * 显示窗口、但不激活

@@ -34,9 +34,25 @@ public:
     virtual bool isActive() const override;
 
     /**
+     * 当前窗口是否显示
+     */
+    virtual bool isVisible() const override;
+
+    /**
      * 显示窗口
      */
     virtual void show() override;
+
+    /**
+     * 作为指定窗口的子窗口显示
+     */
+    virtual void show(NrWindowBase* parent) override;
+
+    /**
+     * 作为模态窗口显示，使用场景为对话框，但对话框处理结果(返回值)需要自己设置
+     * @param [in] parent 父窗口
+     */
+    virtual void showModal(NrWindowBase* parent) override;
 
     /**
      * 显示窗口但不激活

@@ -173,6 +173,7 @@
     <ClCompile Include="..\..\..\NrScriptBuilder\WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\NrScriptBuilder\NrAboutDialog.h" />
     <ClInclude Include="..\..\..\NrScriptBuilder\NrBuilderApp.h" />
     <ClInclude Include="..\..\..\NrScriptBuilder\NrBuilderFrame.h" />
   </ItemGroup>

@@ -12,10 +12,10 @@ static TCHAR kOSWindowDefaultIcon[] = _T("NrScriptDefaultIcon");
  * 获取当前模块句柄
  */
 static HMODULE GetSelfModuleHandle() {
-    MEMORY_BASIC_INFORMATION mbi = {0};
+    MEMORY_BASIC_INFORMATION mbi = {nullptr};
 
     if (::VirtualQuery(GetSelfModuleHandle, &mbi, sizeof(mbi)) != 0) {
-        return (HMODULE)mbi.AllocationBase;
+        return static_cast<HMODULE>(mbi.AllocationBase);
     }
     else {
         return nullptr;
@@ -46,13 +46,13 @@ private:
         Impl* self = nullptr;
 
         if (uMsg == WM_NCCREATE) {
-            CREATESTRUCT* pCreateStruct = (CREATESTRUCT*)lParam;
+            CREATESTRUCT* pCreateStruct = reinterpret_cast<CREATESTRUCT*>(lParam);
             if (pCreateStruct && pCreateStruct->lpCreateParams) {
-                ::SetProp(hWnd, kHwndWindowClassName, (HANDLE)pCreateStruct->lpCreateParams);
+                ::SetProp(hWnd, kHwndWindowClassName, static_cast<HANDLE>(pCreateStruct->lpCreateParams));
             }
         }
 
-        self = (Impl*)::GetProp(hWnd, kHwndWindowClassName);
+        self = static_cast<Impl*>(::GetProp(hWnd, kHwndWindowClassName));
         if (self) {
             self->m_Hwnd = hWnd;
 
@@ -75,7 +75,7 @@ public:
         return m_pOwner->handleMessage(hWnd, uMsg, wParam, lParam);
     }
 
-    HWND getHwnd() {
+    HWND getHwnd() const {
         return m_Hwnd;
     }
 
@@ -85,20 +85,20 @@ public:
      */
     bool create(const NrWindowBase::CreateParameter& parameter) override {
         static bool kNrScriptWindowClassRegistered = false;
-        HINSTANCE hInstance = ::GetModuleHandle(0);
+        const auto hInstance = ::GetModuleHandle(0);
 
         if (!kNrScriptWindowClassRegistered) {
             WNDCLASSEX wndClassEx = {0};
             wndClassEx.cbClsExtra = sizeof(void*);
             wndClassEx.cbSize = sizeof(WNDCLASSEX);
             wndClassEx.cbWndExtra = sizeof(void*);
-            wndClassEx.hbrBackground = (HBRUSH)(COLOR_MENUBAR + 1);
+            wndClassEx.hbrBackground = reinterpret_cast<HBRUSH>(COLOR_MENUBAR + 1);
             wndClassEx.hInstance = hInstance;
             wndClassEx.lpfnWndProc = &Impl::WndProc;
             wndClassEx.lpszClassName = kHwndWindowClassName;
             wndClassEx.style = CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS;
 
-            wndClassEx.hCursor = ::LoadCursor(NULL, IDC_ARROW);
+            wndClassEx.hCursor = ::LoadCursor(nullptr, IDC_ARROW);
             wndClassEx.hIcon = ::LoadIcon(GetSelfModuleHandle(), kOSWindowDefaultIcon);
             wndClassEx.hIconSm = ::LoadIcon(GetSelfModuleHandle(), kOSWindowDefaultIcon);
             wndClassEx.lpszMenuName;
@@ -119,11 +119,11 @@ public:
             ::AdjustWindowRectEx(&rSrc, style, FALSE, styleEx);
 
             return (::CreateWindowEx(styleEx, 
-                kHwndWindowClassName, 
-                NULL, 
+                kHwndWindowClassName,
+                nullptr, 
                 style, 
                 parameter.bounds.x, parameter.bounds.y, rSrc.right - rSrc.left, rSrc.bottom - rSrc.top, 
-                NULL, NULL, hInstance, this) != NULL);
+                nullptr, nullptr, hInstance, this) != nullptr);
         }
         
         return false;
@@ -137,12 +137,35 @@ public:
         return false;
     }
 
+    bool isVisible() const override {
+        return ::IsWindowVisible(m_Hwnd);
+    }
+
     NrWindowBase* getNativeWindow() override {
         return m_pOwner;
     }
 
     void show() override {
         ::ShowWindow(m_Hwnd, SW_SHOWNORMAL);
+    }
+
+    void show(NrWindowBase* parent) override {
+        NrWindowImplOSWin* native = dynamic_cast<NrWindowImplOSWin*>(parent->getNativeWindow());
+        if (native && native != this->m_pOwner) {
+            ::SetWindowLongPtr(m_Hwnd, GWLP_HWNDPARENT, reinterpret_cast<LONG>(native->getHwnd()));
+        }
+        this->show();
+    }
+
+    void showModal(NrWindowBase* parent) override {
+        NrWindowImplOSWin* native = dynamic_cast<NrWindowImplOSWin*>(parent->getNativeWindow());
+        if (native == nullptr || native == this->m_pOwner) {
+            return;
+        }
+
+        ::SetWindowLongPtr(m_Hwnd, GWLP_HWNDPARENT, (LONG)native->getHwnd());
+        ::EnableWindow(native->getHwnd(), false);
+        this->show();
     }
 
     void showInactive() override {
@@ -154,8 +177,8 @@ public:
         r.right = bounds.width;
         r.bottom = bounds.height;
 
-        DWORD styleEx = (DWORD)::GetWindowLongPtr(m_Hwnd, GWL_EXSTYLE);
-        DWORD style = (DWORD)::GetWindowLongPtr(m_Hwnd, GWL_STYLE);
+        const auto styleEx = static_cast<DWORD>(::GetWindowLongPtr(m_Hwnd, GWL_EXSTYLE));
+        const auto style = static_cast<DWORD>(::GetWindowLongPtr(m_Hwnd, GWL_STYLE));
 
         ::AdjustWindowRectEx(&r, style, FALSE, styleEx);
 
@@ -189,7 +212,7 @@ private:
     /**
      * 窗口句柄
      */
-    HWND m_Hwnd {0};
+    HWND m_Hwnd {nullptr};
 
     /**
      * 桥接容器
@@ -224,7 +247,7 @@ NrWindowImplOSWin::~NrWindowImplOSWin() {
     delete impl;
 }
 
-HWND NrWindowImplOSWin::getHwnd() {
+HWND NrWindowImplOSWin::getHwnd() const {
     return dynamic_cast<NrWindowImplOSWin::Impl*>(impl)->getHwnd();
 }
 
@@ -244,8 +267,20 @@ bool NrWindowImplOSWin::isActive() const {
     return impl->isActive();
 }
 
+bool NrWindowImplOSWin::isVisible() const {
+    return impl->isVisible();
+}
+
 void NrWindowImplOSWin::show() {
     return impl->show();
+}
+
+void NrWindowImplOSWin::show(NrWindowBase* parent) {
+    return impl->show(parent);
+}
+
+void NrWindowImplOSWin::showModal(NrWindowBase* parent) {
+    return impl->showModal(parent);
 }
 
 void NrWindowImplOSWin::showInactive() {
@@ -339,7 +374,7 @@ LRESULT NrWindowImplOSWin::OnMessage(NrWindowImplOSWin* sender, MESSAGE& msg) {
             if (pEvents && !pEvents->eOnClose.isEmpty()) {
                 pEvents->eOnClose(m_pSendHandler, bCloseable);
             }
-
+            
             if (!bCloseable) {
                 msg.handled = true;
             }
