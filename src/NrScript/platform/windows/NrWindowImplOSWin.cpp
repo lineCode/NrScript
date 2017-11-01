@@ -168,22 +168,22 @@ public:
     NrDialogResult showDialog(NrWindowBase* parent) override {
         NrWindowImplOSWin* parentHwnd = dynamic_cast<NrWindowImplOSWin*>(parent->getNativeWindow());
         if (parentHwnd == nullptr || parentHwnd == this->m_pOwner) {
-            NRSCRIPT_ASSERT(false && "对话框无法正常显示");
+            NRSCRIPT_ASSERT(false && "对话框无法正常显示1");
             return NrDialogResult::Exception;
         }
 
         if (this->isVisible()) {
-            NRSCRIPT_ASSERT(false && "对话框无法正常显示");
+            NRSCRIPT_ASSERT(false && "对话框无法正常显示2");
             return NrDialogResult::Exception;
         }
 
         if (!::IsWindowEnabled(m_Hwnd)) {
-            NRSCRIPT_ASSERT(false && "对话框无法正常显示");
+            NRSCRIPT_ASSERT(false && "对话框无法正常显示3");
             return NrDialogResult::Exception;
         }
 
         if (this->isDialog()) {
-            NRSCRIPT_ASSERT(false && "对话框无法正常显示");
+            NRSCRIPT_ASSERT(false && "对话框无法正常显示4");
             return NrDialogResult::Exception;
         }
 
@@ -204,9 +204,10 @@ public:
         bool bPreEnabled = !::EnableWindow(parentHwnd->getHwnd(), false);
         this->show();
         m_isDialog = true;
-        this->setDialogResult(NrDialogResult::None);
+        m_dialogResult = NrDialogResult::None;
+
         /**
-         * 内建Blocked消息循环
+         * 内建Block消息循环
          */
         MSG msg {};
         while (true) {
