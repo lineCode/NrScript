@@ -249,7 +249,7 @@ public:
         return m_dialogResult;
     }
 
-    void setDialogResult(NrDialogResult result) {
+    void setDialogResult(NrDialogResult result) override {
         m_dialogResult = result;
     }
 
