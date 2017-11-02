@@ -241,6 +241,7 @@ public:
             }
         }
 
+        this->hide();
         ::SetWindowLongPtr(m_Hwnd, GWLP_HWNDPARENT, reinterpret_cast<LONG_PTR>(hPreOwner));
         ::EnableWindow(parentHwnd->getHwnd(), bPreEnabled);
         ::SetActiveWindow(parentHwnd->getHwnd());
@@ -525,6 +526,11 @@ LRESULT NrWindowImplOSWin::OnMessage(NrWindowImplOSWin* sender, MESSAGE& msg) {
             if (pEvents && !pEvents->eOnSize.isEmpty()) {
                 pEvents->eOnSize(m_pSendHandler, getBounds());
             }
+        }
+        break;
+    case WM_SHOWWINDOW:
+        {
+            int i = 0;
         }
         break;
     }
