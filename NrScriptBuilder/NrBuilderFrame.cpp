@@ -29,15 +29,11 @@ void NrBuilderFrame::OnFrameCreate(NrWindowBase* sender, NrReserved reserved) {
 }
 
 void NrBuilderFrame::OnFrameClose(NrWindowBase* sender, bool& closeable) {
-
     if (sender == this) {
-        closeable = false;
-        NrDialogResult result = m_dlgAbout->showDialog(sender);
-        if (result != NrDialogResult::Exception) {
-            closeable = false;
-        }
-    } else if (sender == m_dlgAbout.get()) {
-        sender->setDialogResult(NrDialogResult::Cancel);
+        m_dlgAbout->showDialog(this);
+    }
+    else if (sender == m_dlgAbout.get()) {
+        closeable = true;
     }
 
 #ifndef NRSCRIPT_BUILD_PLATFORM_LINUX
@@ -45,7 +41,7 @@ void NrBuilderFrame::OnFrameClose(NrWindowBase* sender, bool& closeable) {
         ::PostQuitMessage(0);
     }
 #else
-    ::gtk_main_quit();
+    //::gtk_main_quit();
 #endif
 }
 

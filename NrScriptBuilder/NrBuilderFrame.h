@@ -8,6 +8,8 @@
 #include <Windows.h>
 #endif
 
+#include <memory>
+
 /**
  * NrScript.Builder 主窗口
  */

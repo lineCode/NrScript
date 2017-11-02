@@ -1,7 +1,7 @@
 ﻿#include "NrScript/base.h"
 #include "NrScript/ui.h"
 #include "NrScript/platform/linux/NrWindowImplOSUnix.h"
-#include "NrScript/skia.h"
+//#include "NrScript/skia.h"
 
 class NrWindowImplOSUnix::Impl : public NrWindowBase {
 public:
@@ -42,7 +42,7 @@ public:
         }
 
         m_widget = ::gtk_window_new(GTK_WINDOW_TOPLEVEL);
-        if (m_widget == nullptr) {
+        if (m_widget == nullptr || !m_pOwner->initialEvents()) {
             return false;
         }
 
@@ -50,10 +50,11 @@ public:
         ::gtk_window_resize(GTK_WINDOW(m_widget), parameter.bounds.width, parameter.bounds.height);
         ::gtk_window_move(GTK_WINDOW(m_widget), parameter.bounds.x, parameter.bounds.y);
 
-        /**
-         * 创建GTK窗口对象之后，需要设定事件
-         */
-        return m_pOwner->initialEvents();
+        return true;
+    }
+
+    void close() override {
+        ::gtk_window_close(GTK_WINDOW(m_widget));
     }
 
     NrWindowBase* getNativeWindow() override {
@@ -64,12 +65,73 @@ public:
         return false;
     }
 
+    bool isVisible() const override {
+        return ::gtk_widget_is_visible(m_widget);
+    }
+
+    bool isDialog() const override {
+        return m_isDialog;
+    }
+
     void show() override {
         ::gtk_widget_show(m_widget);
     }
 
+    void show(NrWindowBase* parent) override {
+        NrWindowImplOSUnix* parentWidget = dynamic_cast<NrWindowImplOSUnix*>(parent->getNativeWindow());
+        if (parentWidget && parentWidget != this->m_pOwner) {
+            ::gtk_window_set_transient_for(GTK_WINDOW(m_widget), GTK_WINDOW(parentWidget->getWidget()));
+        }
+        this->show();
+    }
+
+    NrDialogResult showDialog(NrWindowBase* parent) override {
+        NrWindowImplOSUnix* parentWidget = dynamic_cast<NrWindowImplOSUnix*>(parent->getNativeWindow());
+        if (parentWidget == nullptr || parentWidget == this->m_pOwner) {
+            return NrDialogResult::Exception;
+        }
+
+        if (this->isVisible()) {
+            return NrDialogResult::Exception;
+        }
+
+        if (!::gtk_widget_is_sensitive(m_widget)) {
+            return NrDialogResult::Exception;
+        }
+
+        if (this->isDialog()) {
+            return NrDialogResult::Exception;
+        }
+
+        /**
+         * 准备模态显示
+         */
+        m_isDialog = true;
+        m_dialogResult = NrDialogResult::None;
+
+        ::gtk_window_set_modal(GTK_WINDOW(m_widget), true);
+        ::gtk_window_set_transient_for(GTK_WINDOW(m_widget), GTK_WINDOW(parentWidget->getWidget()));
+
+        /**
+         * 模态显示中
+         */
+        ::gtk_dialog_run(GTK_DIALOG(m_widget));
+
+        m_isDialog = false;
+
+        return m_dialogResult;
+    }
+
+    void setDialogResult(NrDialogResult result) override {
+        this->m_dialogResult = result;
+    }
+
     void showInactive() override {
 
+    }
+
+    void hide() override {
+        ::gtk_widget_hide(m_widget);
     }
 
     void setBounds(const NrRect& bounds) override {
@@ -102,6 +164,16 @@ private:
     NrWindowImplOSUnix* m_pOwner {nullptr};
 
     /**
+     * 是否模态对话框模式
+     */
+    bool m_isDialog {false};
+
+    /**
+     * 对话框返回值
+     */
+    NrDialogResult m_dialogResult {NrDialogResult::None};
+
+    /**
      * 窗口渲染器
      */
     NrWidgetsTreeRenderer* m_renderer {nullptr};
@@ -130,6 +202,10 @@ bool NrWindowImplOSUnix::create(const NrWindowBase::CreateParameter &parameter) 
     return impl->create(parameter);
 }
 
+void NrWindowImplOSUnix::close() {
+    return impl->close();
+}
+
 NrWindowBase* NrWindowImplOSUnix::getNativeWindow() {
     return impl->getNativeWindow();
 }
@@ -138,12 +214,36 @@ bool NrWindowImplOSUnix::isActive() const {
     return impl->isActive();
 }
 
+bool NrWindowImplOSUnix::isVisible() const {
+    return impl->isVisible();
+}
+
+bool NrWindowImplOSUnix::isDialog() const {
+    return impl->isDialog();
+}
+
 void NrWindowImplOSUnix::show() {
     return impl->show();
 }
 
+void NrWindowImplOSUnix::show(NrWindowBase *parent) {
+    return impl->show(parent);
+}
+
 void NrWindowImplOSUnix::showInactive() {
     return impl->showInactive();
+}
+
+void NrWindowImplOSUnix::hide() {
+    return impl->hide();
+}
+
+NrDialogResult NrWindowImplOSUnix::showDialog(NrWindowBase *parent) {
+    return impl->showDialog(parent);
+}
+
+void NrWindowImplOSUnix::setDialogResult(NrDialogResult result) {
+    return impl->setDialogResult(result);
 }
 
 void NrWindowImplOSUnix::setBounds(const NrRect &bounds) {
@@ -172,9 +272,9 @@ bool NrWindowImplOSUnix::initialEvents() {
     ::g_signal_connect(G_OBJECT(widget), "delete_event", G_CALLBACK(NrWindowImplOSUnix::kOnClose), this);
     ::g_signal_connect(G_OBJECT(widget), "destroy", G_CALLBACK(NrWindowImplOSUnix::kOnDestroy), this);
 
-	/**
-	 * gtk的MW_ONCREATE消息是哪个？ 有知道的请告诉我
-	 */
+    /**
+     * 触发onCreate事件
+     */
 	NrWindowBase::CommonEvents* pEvents = dynamic_cast<NrWindowBase::CommonEvents*>(m_pSendHandler);
 	if (pEvents && !pEvents->eOnCreate.isEmpty()) {
 		pEvents->eOnCreate(m_pSendHandler, 0);
@@ -196,6 +296,15 @@ bool NrWindowImplOSUnix::kOnClose(GtkWidget *widget, GdkEvent *event, gpointer d
         if (pEvents && !pEvents->eOnClose.isEmpty()) {
             pEvents->eOnClose(self->m_pSendHandler, bCloseable);
         }
+
+        if (bCloseable) {
+            if (self->isDialog()) {
+                bCloseable = false;
+                self->setDialogResult(NrDialogResult::None);
+                self->hide();
+            }
+        }
+
         return bCloseable ? false : true;
     }
     return true;
