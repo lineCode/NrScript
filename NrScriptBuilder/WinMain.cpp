@@ -9,6 +9,10 @@ int WINAPI WinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, 
     }
     app->initialize();
 
+    char32_t* m = U"Hello, world!";
+    char32_t* m2 = U"Hello, world!";
+    int n = std::char_traits<char32_t>::compare(m, m2, std::char_traits<char32_t>::length(m));
+
     MSG msg = {0};
     while (::GetMessage(&msg, NULL, NULL, NULL))
     {

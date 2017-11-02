@@ -528,11 +528,6 @@ LRESULT NrWindowImplOSWin::OnMessage(NrWindowImplOSWin* sender, MESSAGE& msg) {
             }
         }
         break;
-    case WM_SHOWWINDOW:
-        {
-            int i = 0;
-        }
-        break;
     }
     return NULL;
 }

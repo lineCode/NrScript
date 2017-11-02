@@ -36,13 +36,9 @@ void NrBuilderFrame::OnFrameClose(NrWindowBase* sender, bool& closeable) {
         closeable = true;
     }
 
-#ifndef NRSCRIPT_BUILD_PLATFORM_LINUX
-    if (closeable && sender == this) {
-        ::PostQuitMessage(0);
+    if (sender == this && closeable) {
+        NrApplication::exit(0);
     }
-#else
-    //::gtk_main_quit();
-#endif
 }
 
 void NrBuilderFrame::OnFrameDestroy(NrWindowBase* sender, NrReserved reserved) {

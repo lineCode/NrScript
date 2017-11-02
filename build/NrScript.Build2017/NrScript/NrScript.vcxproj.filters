@@ -82,6 +82,12 @@
     <Filter Include="src\ui\widgets">
       <UniqueIdentifier>{15fb2638-5118-4933-b9f1-24ecaabaa3c9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="vendor">
+      <UniqueIdentifier>{770030cc-d78f-45cf-ac6e-ba7f19655108}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\pugixml">
+      <UniqueIdentifier>{5310f342-fd85-46c7-9133-548e396afeae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\NrScript\base.h">
@@ -135,6 +141,24 @@
     <ClInclude Include="..\..\..\include\NrScript\ui\internal\NrWidgetCommonProperties.h">
       <Filter>include\ui\internal</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\NrScript\ui\NrApplication.h">
+      <Filter>include\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\NrScript\platform\windows\NrApplicationOSWin.h">
+      <Filter>include\platform\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\NrScript\xml\NrXmlDocument.h">
+      <Filter>include\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\NrScript\xml.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\vendor\pugixml\pugiconfig.hpp">
+      <Filter>vendor\pugixml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\vendor\pugixml\pugixml.hpp">
+      <Filter>vendor\pugixml</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\NrScript\base\NrString.cpp">
@@ -154,6 +178,18 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src\NrScript\ui\internal\NrWidgetsTreeRenderer.cpp">
       <Filter>src\ui\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\NrScript\ui\NrApplication.cpp">
+      <Filter>src\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\NrScript\platform\windows\NrApplicationOSWin.cpp">
+      <Filter>src\platform\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\NrScript\xml\NrXmlDocument.cpp">
+      <Filter>src\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\vendor\pugixml\pugixml.cpp">
+      <Filter>vendor\pugixml</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

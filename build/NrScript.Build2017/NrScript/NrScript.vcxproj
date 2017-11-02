@@ -102,7 +102,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;NRSCRIPT_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\..\include;..\..\..\platform\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\vendor;..\..\..\include;..\..\..\platform\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -121,7 +121,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;NRSCRIPT_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\..\include;..\..\..\platform\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\vendor;..\..\..\include;..\..\..\platform\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -142,7 +142,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;NRSCRIPT_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\..\include;..\..\..\platform\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\vendor;..\..\..\include;..\..\..\platform\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <DisableSpecificWarnings>
       </DisableSpecificWarnings>
@@ -168,7 +168,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;NRSCRIPT_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\..\include;..\..\..\platform\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\vendor;..\..\..\include;..\..\..\platform\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -188,6 +188,7 @@
     <ClInclude Include="..\..\..\include\NrScript\base\NrEvent.h" />
     <ClInclude Include="..\..\..\include\NrScript\base\NrString.h" />
     <ClInclude Include="..\..\..\include\NrScript\defs.h" />
+    <ClInclude Include="..\..\..\include\NrScript\platform\windows\NrApplicationOSWin.h" />
     <ClInclude Include="..\..\..\include\NrScript\platform\windows\NrWindowImplOSWin.h" />
     <ClInclude Include="..\..\..\include\NrScript\skia.h" />
     <ClInclude Include="..\..\..\include\NrScript\ui.h" />
@@ -196,17 +197,26 @@
     <ClInclude Include="..\..\..\include\NrScript\ui\internal\NrWidgetProperty.h" />
     <ClInclude Include="..\..\..\include\NrScript\ui\internal\NrWidgetsTreeRenderer.h" />
     <ClInclude Include="..\..\..\include\NrScript\ui\internal\NrWindowBase.h" />
+    <ClInclude Include="..\..\..\include\NrScript\ui\NrApplication.h" />
     <ClInclude Include="..\..\..\include\NrScript\ui\NrWindowImpl.h" />
     <ClInclude Include="..\..\..\include\NrScript\ui\utils\NrRect.h" />
     <ClInclude Include="..\..\..\include\NrScript\ui\widgets\NrControl.h" />
+    <ClInclude Include="..\..\..\include\NrScript\xml.h" />
+    <ClInclude Include="..\..\..\include\NrScript\xml\NrXmlDocument.h" />
+    <ClInclude Include="..\..\..\vendor\pugixml\pugiconfig.hpp" />
+    <ClInclude Include="..\..\..\vendor\pugixml\pugixml.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\NrScript\base\NrString.cpp" />
+    <ClCompile Include="..\..\..\src\NrScript\platform\windows\NrApplicationOSWin.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\platform\windows\NrWindowImplOSWin.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\ui\internal\NrWidgetsTreeRenderer.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\ui\internal\NrWindowBase.cpp" />
+    <ClCompile Include="..\..\..\src\NrScript\ui\NrApplication.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\ui\NrWindowImpl.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\ui\widgets\NrControl.cpp" />
+    <ClCompile Include="..\..\..\src\NrScript\xml\NrXmlDocument.cpp" />
+    <ClCompile Include="..\..\..\vendor\pugixml\pugixml.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\include\NrScript\platform\windows\NrOSWinResource.rc" />
