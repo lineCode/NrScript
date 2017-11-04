@@ -1,9 +1,5 @@
 ﻿#include "NrBuilderFrame.h"
 
-#ifdef NRSCRIPT_BUILD_PLATFORM_LINUX
-#include <gtk/gtk.h>
-#endif
-
 void ddd(NrWindowBase* sender, NrReserved reserved) {
     printf("\n AAAAAAAAAAAAAA");
 }

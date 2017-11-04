@@ -233,7 +233,7 @@ public:
                     ::DispatchMessageA(&msg);
                 }
 
-                if (!checkDialogResult()) {
+                if (isEndDialog()) {
                     break;
                 }
             } else if (!::PeekMessage(&msg, nullptr, 0, 0, PM_NOREMOVE)) {
@@ -302,11 +302,11 @@ private:
     /**
      * 检查对话框返回值
      */
-    bool checkDialogResult() {
+    bool isEndDialog() {
         if (m_dialogResult == NrDialogResult::None && isVisible()) {
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 
@@ -446,6 +446,7 @@ LRESULT NrWindowImplOSWin::handleMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LP
         {
             PAINTSTRUCT ps = {0};
             ::BeginPaint(hWnd, &ps);
+            //::Rectangle(ps.hdc, 10,10, getBounds().width - 10, getBounds().height - 10);
             //::SetDIBitsToDevice(renderer->getSurface().getBitmap().getPixels());
             ::EndPaint(hWnd, &ps);
         }
@@ -525,6 +526,16 @@ LRESULT NrWindowImplOSWin::OnMessage(NrWindowImplOSWin* sender, MESSAGE& msg) {
         {
             if (pEvents && !pEvents->eOnSize.isEmpty()) {
                 pEvents->eOnSize(m_pSendHandler, getBounds());
+            }
+        }
+        break;
+    case WM_KEYDOWN:
+        {
+            if (msg.wParam == VK_ESCAPE) {
+                int i = 0;
+            }
+            else if (msg.wParam == VK_RETURN) {
+                int i = 0;
             }
         }
         break;
