@@ -159,6 +159,9 @@
     <ClInclude Include="..\..\..\vendor\pugixml\pugixml.hpp">
       <Filter>vendor\pugixml</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\NrScript\xml\NrXmlNode.h">
+      <Filter>include\xml</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\NrScript\base\NrString.cpp">
@@ -190,6 +193,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\vendor\pugixml\pugixml.cpp">
       <Filter>vendor\pugixml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\NrScript\xml\NrXmlNode.cpp">
+      <Filter>src\xml</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
