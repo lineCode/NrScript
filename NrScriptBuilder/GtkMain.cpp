@@ -10,9 +10,6 @@ int main(int argc, char** argv) {
     }
     app->initialize();
 
-    wchar_t name[] = L"中国";
-    printf("Hello, world! %d", lstrlenW(name));
-
     gtk_main();
     return 0;
 }

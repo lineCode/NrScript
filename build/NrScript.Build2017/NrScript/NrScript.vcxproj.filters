@@ -93,9 +93,6 @@
     <ClInclude Include="..\..\..\include\NrScript\base.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\NrScript\base\NrString.h">
-      <Filter>include\base</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\include\NrScript\defs.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -164,9 +161,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\src\NrScript\base\NrString.cpp">
-      <Filter>src\base</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\NrScript\ui\NrWindowImpl.cpp">
       <Filter>src\ui</Filter>
     </ClCompile>

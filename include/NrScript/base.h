@@ -6,7 +6,6 @@
  */
 #include "NrScript/defs.h"
 #include "NrScript/base/NrChars.h"
-#include "NrScript/base/NrString.h"
 #include "NrScript/base/NrEvent.h"
 
 #endif

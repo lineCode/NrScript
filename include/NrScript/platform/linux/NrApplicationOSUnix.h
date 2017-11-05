@@ -1,7 +1,7 @@
 ﻿#ifndef _NRSCRIPT_NRAPPLICATIONOSUNIX_H_
 #define _NRSCRIPT_NRAPPLICATIONOSUNIX_H_ 1
 
-#include <windows.h>
+#include <gtk/gtk.h>
 
 /**
  * 应用程序类

@@ -301,8 +301,6 @@ public:
      */
     template<typename T>
     bool add(T* object, typename NrEventAdapter<retval_type(T::*)(sender_type, parameter_type)>::Callback callback) {
-        typedef NrEventAdapter<retval_type(T::*)(sender_type, parameter_type)> adapter;
-
         if (object == nullptr || callback == nullptr) {
             #ifdef NRSCRIPT_DEBUG
                 NRSCRIPT_ASSERT(false);
@@ -319,8 +317,6 @@ public:
 
     template<typename T>
     bool remove(T* object, typename NrEventAdapter<retval_type(T::*)(sender_type, parameter_type)>::Callback callback) {
-        typedef NrEventAdapter<retval_type(T::*)(sender_type, parameter_type)> adapter;
-
         if (object == nullptr || callback == nullptr) {
             #ifdef NRSCRIPT_DEBUG
                 NRSCRIPT_ASSERT(false);
@@ -337,8 +333,6 @@ public:
 
     template<typename T>
     bool contains(T* object, typename NrEventAdapter<retval_type(T::*)(sender_type, parameter_type)>::Callback callback) {
-        typedef NrEventAdapter<retval_type(T::*)(sender_type, parameter_type)> adapter;
-
         if (object == nullptr || callback == nullptr) {
             #ifdef NRSCRIPT_DEBUG
                 NRSCRIPT_ASSERT(false);

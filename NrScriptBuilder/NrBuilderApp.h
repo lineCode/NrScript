@@ -1,7 +1,6 @@
 ﻿#ifndef _NRSCRIPTBUILDER_NRBUILDERAPP_H_
 #define _NRSCRIPTBUILDER_NRBUILDERAPP_H_ 1
 
-#include <Windows.h>
 #include <memory>
 #include "NrBuilderFrame.h"
 
