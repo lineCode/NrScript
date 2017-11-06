@@ -139,6 +139,9 @@ public:
     }
 
     void setDialogResult(NrDialogResult result) override {
+        if (!isDialog()) {
+            NRSCRIPT_ASSERT(false);
+        }
         if (m_gtkDialogLoop) {
             ::g_main_loop_quit(m_gtkDialogLoop);
             ::g_main_loop_unref(m_gtkDialogLoop);
@@ -153,6 +156,13 @@ public:
     }
 
     void hide() override {
+        if (isDialog()) {
+            if (m_gtkDialogLoop) {
+                ::g_main_loop_quit(m_gtkDialogLoop);
+                ::g_main_loop_unref(m_gtkDialogLoop);
+                m_gtkDialogLoop = nullptr;
+            }
+        }
         ::gtk_widget_hide(m_widget);
     }
 
