@@ -3,11 +3,6 @@
 
 #include <NrScript.h>
 #include "NrAboutDialog.h"
-
-#ifndef NRSCRIPT_BUILD_PLATFORM_LINUX
-#include <Windows.h>
-#endif
-
 #include <memory>
 
 /**

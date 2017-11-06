@@ -24,10 +24,8 @@ set(NRSRC "../../../src/NrScript")
 set(SRC_MODULE_BASE
         ${NRINC}/base.h
         ${NRINC}/base/NrChars.h
-        ${NRINC}/base/NrString.h
         ${NRINC}/base/NrEvent.h
         ##############################
-        ${NRSRC}/base/NrString.cpp
 )
 
 set(SRC_MODULE_UI
@@ -39,15 +37,19 @@ set(SRC_MODULE_UI
         ${NRINC}/ui/widgets/NrControl.h
         ${NRINC}/ui/internal/NrWidgetsTreeRenderer.h
         ${NRINC}/ui/NrWindowImpl.h
+        ${NRINC}/ui/NrApplication.h
 
         ${NRINC}/platform/linux/NrWindowImplOSUnix.h
+        ${NRINC}/platform/linux/NrApplicationOSUnix.h
         ################################
         ${NRSRC}/ui/internal/NrWindowBase.cpp
         ${NRSRC}/ui/widgets/NrControl.cpp
         ${NRSRC}/ui/internal/NrWidgetsTreeRenderer.cpp
         ${NRSRC}/ui/NrWindowImpl.cpp
+        ${NRSRC}/ui/NrApplication.cpp
 
         ${NRSRC}/platform/linux/NrWindowImplOSUnix.cpp
+        ${NRSRC}/platform/linux/NrApplicationOSUnix.cpp
 )
 
 add_library(NrScript

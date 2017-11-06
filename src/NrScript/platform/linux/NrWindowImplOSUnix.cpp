@@ -103,26 +103,48 @@ public:
             return NrDialogResult::Exception;
         }
 
+        if (m_gtkDialogLoop == nullptr) {
+            m_gtkDialogLoop = ::g_main_loop_new(NULL, FALSE);
+        }
+
+        if (m_gtkDialogLoop == nullptr) {
+            return NrDialogResult::Exception;
+        }
+
         /**
          * 准备模态显示
          */
         m_isDialog = true;
         m_dialogResult = NrDialogResult::None;
 
-        ::gtk_window_set_modal(GTK_WINDOW(m_widget), true);
+        GtkWindow* preOwner = ::gtk_window_get_transient_for(GTK_WINDOW(m_widget));
+        gboolean preEnabled = ::gtk_widget_is_sensitive(parentWidget->getWidget());
+
+        ::gtk_widget_set_sensitive(parentWidget->getWidget(), FALSE);
+        ::gtk_window_set_modal(GTK_WINDOW(m_widget), TRUE);
         ::gtk_window_set_transient_for(GTK_WINDOW(m_widget), GTK_WINDOW(parentWidget->getWidget()));
+        this->show();
 
         /**
          * 模态显示中
          */
-        ::gtk_dialog_run(GTK_DIALOG(m_widget));
+        ::g_main_loop_run(m_gtkDialogLoop);
+
+        ::gtk_widget_set_sensitive(parentWidget->getWidget(), preEnabled);
+        ::gtk_window_set_transient_for(GTK_WINDOW(m_widget), preOwner);
+        ::gtk_window_set_modal(GTK_WINDOW(m_widget), FALSE);
 
         m_isDialog = false;
-
         return m_dialogResult;
     }
 
     void setDialogResult(NrDialogResult result) override {
+        if (m_gtkDialogLoop) {
+            ::g_main_loop_quit(m_gtkDialogLoop);
+            ::g_main_loop_unref(m_gtkDialogLoop);
+            m_gtkDialogLoop = nullptr;
+        }
+
         this->m_dialogResult = result;
     }
 
@@ -172,6 +194,11 @@ private:
      * 对话框返回值
      */
     NrDialogResult m_dialogResult {NrDialogResult::None};
+
+    /**
+     * gtk dialog message loop
+     */
+    GMainLoop* m_gtkDialogLoop {nullptr};
 
     /**
      * 窗口渲染器
