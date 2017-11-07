@@ -142,11 +142,7 @@ public:
         if (!isDialog()) {
             NRSCRIPT_ASSERT(false);
         }
-        if (m_gtkDialogLoop) {
-            ::g_main_loop_quit(m_gtkDialogLoop);
-            ::g_main_loop_unref(m_gtkDialogLoop);
-            m_gtkDialogLoop = nullptr;
-        }
+        releaseDialogMessageLoop();
 
         this->m_dialogResult = result;
     }
@@ -157,11 +153,7 @@ public:
 
     void hide() override {
         if (isDialog()) {
-            if (m_gtkDialogLoop) {
-                ::g_main_loop_quit(m_gtkDialogLoop);
-                ::g_main_loop_unref(m_gtkDialogLoop);
-                m_gtkDialogLoop = nullptr;
-            }
+            releaseDialogMessageLoop();
         }
         ::gtk_widget_hide(m_widget);
     }
@@ -182,6 +174,18 @@ public:
 
     void setContentView(NrControl* root) override {
         m_renderer->setRenderTarget(root);
+    }
+
+private:
+    /**
+     * 清理对话框消息循环对象
+     */
+    void releaseDialogMessageLoop() {
+        if (m_gtkDialogLoop) {
+            ::g_main_loop_quit(m_gtkDialogLoop);
+            ::g_main_loop_unref(m_gtkDialogLoop);
+            m_gtkDialogLoop = nullptr;
+        }
     }
 
 private:
