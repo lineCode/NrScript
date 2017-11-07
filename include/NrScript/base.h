@@ -5,7 +5,7 @@
  * 不要在此引入平台相关的头文件
  */
 #include "NrScript/defs.h"
-#include "NrScript/base/NrChars.h"
+#include "NrScript/base/NrSimpleCharT.h"
 #include "NrScript/base/NrEvent.h"
 
 #endif

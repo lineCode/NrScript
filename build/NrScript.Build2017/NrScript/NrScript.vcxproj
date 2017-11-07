@@ -184,7 +184,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\include\NrScript.h" />
     <ClInclude Include="..\..\..\include\NrScript\base.h" />
-    <ClInclude Include="..\..\..\include\NrScript\base\NrChars.h" />
+    <ClInclude Include="..\..\..\include\NrScript\base\NrSimpleCharT.h" />
     <ClInclude Include="..\..\..\include\NrScript\base\NrEvent.h" />
     <ClInclude Include="..\..\..\include\NrScript\defs.h" />
     <ClInclude Include="..\..\..\include\NrScript\platform\windows\NrApplicationOSWin.h" />
@@ -207,6 +207,7 @@
     <ClInclude Include="..\..\..\vendor\pugixml\pugixml.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\src\NrScript\base\NrSimpleCharT.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\platform\windows\NrApplicationOSWin.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\platform\windows\NrWindowImplOSWin.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\ui\internal\NrWidgetsTreeRenderer.cpp" />

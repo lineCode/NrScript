@@ -23,9 +23,11 @@ set(NRSRC "../../../src/NrScript")
 
 set(SRC_MODULE_BASE
         ${NRINC}/base.h
-        ${NRINC}/base/NrChars.h
+        ${NRINC}/base/NrSimpleCharT.h
         ${NRINC}/base/NrEvent.h
         ##############################
+
+        ${NRSRC}/base/NrSimpleCharT.cpp
 )
 
 set(SRC_MODULE_UI

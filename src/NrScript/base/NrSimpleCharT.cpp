@@ -1,0 +1,2 @@
+#include "NrScript/base.h"
+
