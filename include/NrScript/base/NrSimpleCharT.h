@@ -7,7 +7,7 @@
   
    1> char
             不需要多解释，源码中的字符串对应出来的即ASCII字符集
-            ：将GBK、BIG5这类只兼容ASCII却相互不兼容的编码统称之ASCII
+            ：将GBK、BIG5这类只兼容ASCII却相互不兼容的地区性编码统称之ASCII
 
    2> wchar
             在windows系统VC编译器里，wchar_t占两个字节，编译器将其解释存储为UTF-16LE(小端编码)。
