@@ -1,4 +1,4 @@
-#include <Windows.h>
+﻿#include <Windows.h>
 #include "NrBuilderApp.h"
 #include <functional>
 
@@ -8,7 +8,7 @@ int WINAPI WinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, 
         return -1;
     }
     app->initialize();
-    
+
     MSG msg = {0};
     while (::GetMessage(&msg, NULL, NULL, NULL))
     {

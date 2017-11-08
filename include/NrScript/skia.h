@@ -1,4 +1,7 @@
-﻿#ifndef _NRSCRIPT_SKIA_H_
+﻿/**
+ * NrScript Source Code File saved as UTF-8.bom format */
+
+#ifndef _NRSCRIPT_SKIA_H_
 #define _NRSCRIPT_SKIA_H_ 1
 
 #ifndef NRSCRIPT_BUILD_PLATFORM_LINUX

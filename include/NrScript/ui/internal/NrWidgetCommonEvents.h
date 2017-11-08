@@ -1,4 +1,7 @@
-﻿#ifndef _NRSCRIPT_NRWIDGETSCOMMONEVENTS_H_
+﻿/**
+ * NrScript Source Code File saved as UTF-8.bom format */
+
+#ifndef _NRSCRIPT_NRWIDGETSCOMMONEVENTS_H_
 #define _NRSCRIPT_NRWIDGETSCOMMONEVENTS_H_ 1
 
 class NRSCRIPT_API_VISUAL NrControl;

@@ -1,4 +1,7 @@
-﻿#include <tchar.h>
+﻿/**
+ * NrScript Source Code File saved as UTF-8.bom format */
+
+#include <tchar.h>
 
 #include "NrScript/base.h"
 #include "NrScript/ui.h"
