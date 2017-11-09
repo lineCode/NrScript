@@ -1,5 +1,8 @@
 ﻿/**
- * NrScript Source Code File saved as UTF-8.bom format */
+ * NrScript Source Code File saved as UTF-8.bom format 
+ * 
+ * note : NrScript库中所有常量字符串(文字、符号)必须限定为英文 
+ */
 
 /** 字符串基本类型->确定只用char、wchar_t。char16_t、char32_t编码不在这里关心。
 
