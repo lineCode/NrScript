@@ -25,27 +25,109 @@
     将一个char、wchar_t代表一个字符，可以随意按wcslen(wchar_t*)的进行光标移动、正则处理。
 
     一头烦绪，先把NrString搞完后面搞NrEncoding这类东西。
+
+    TODO: char存储的字符串转为wchar是否需要考虑系统字符集? setlocale? 
  */
 
 #ifndef _NRSCRIPT_NRSIMPLECHART_H_
 #define _NRSCRIPT_NRSIMPLECHART_H_ 1
 
-/**
+/*******************************************************************************
  * 字符串容器
  */
 template<typename T>
 class NrSimpleCharTraitsBuf {
+private:
+    template<typename char_t> class TraitsBuf {
+    public:
+        typedef std::string str;
+    };
+
+    template<> class TraitsBuf<wchar_t> {
+    public:
+        typedef std::wstring str;
+    };
+
+    template<> class TraitsBuf<char16_t> {
+    public:
+        typedef std::u16string str;
+    };
+
+    template<> class TraitsBuf<char32_t> {
+    public:
+        typedef std::u32string str;
+    };
+
 public:
+
+    NrSimpleCharTraitsBuf() {
+        this->initialize();
+    }
+
+    ~NrSimpleCharTraitsBuf() {
+        this->finalize();
+    }
+
+public:
+    /**
+     * 1. 赋值运算符
+     */
+    NrSimpleCharTraitsBuf<T>& operator = (const NrSimpleCharTraitsBuf<T>& source) {
+        (*m_value) = (*(source.m_value));
+        return *this;
+    }
+
+    /**
+     * 2. 赋值运算符
+     */
+    NrSimpleCharTraitsBuf<T>& operator = (const T* source) {
+        (*m_value) = source;
+        return *this;
+    }
+
+public:
+
+    bool isEmpty() const {
+        return (*m_value).empty();
+    }
+
+    bool equals(const NrSimpleCharTraitsBuf<T>& source) const {
+        return (*m_value) == (*(source.m_value));
+    }
 
 private:
     /**
-     * 字符串
+     * 初始化
      */
-    T* m_data {nullptr};
+    void initialize() {
+        m_value = new TraitsBuf<T>::str();
+    }
+
+    /**
+     * 释放资源
+     */
+    void finalize() {
+        delete m_value;
+    }
+
+private:
+    /**
+     * 字符串存储
+     */
+    typename TraitsBuf<T>::str* m_value {nullptr};
 };
 
-/**
- * 字符串
+/*******************************************************************************/
+
+
+
+
+
+
+
+
+/*******************************************************************************
+ * 字符串 immutable
  */
 template<typename T>
 class NrSimpleCharT {
@@ -65,14 +147,48 @@ public:
      * 默认构造函数
      */
     NrSimpleCharT() {
-        m_data = new NrSimpleCharTraitsBuf<T>();
+        this->initialize();
     }
 
     /**
      * 虚拟析构函数
      */
     virtual ~NrSimpleCharT() {
-        delete m_data;
+        this->finalize();
+    }
+
+public:
+    /**
+     * 1. - 赋值构造函数
+     */
+    NrSimpleCharT(const NrSimpleCharT<T>& source) {
+        this->initialize();
+        (*m_value) = (*(source.m_value));
+    }
+
+    /**
+     * 2. - 赋值构造函数 
+     */
+    NrSimpleCharT(const T* source) {
+        this->initialize();
+        (*m_value) = source;
+    }
+
+public:
+    /**
+     * 1. + 赋值运算符
+     */
+    NrSimpleCharT<T>& operator = (const NrSimpleCharT<T>& source) {
+        (*m_value) = (*(source.m_value));
+        return *this;
+    }
+
+    /**
+     * 2. + 赋值运算符
+     */
+    NrSimpleCharT<T>& operator = (const T* source) {
+        (*m_value) = source;
+        return *this;
     }
 
 public:
@@ -80,44 +196,126 @@ public:
      * 确认字符串内容是否为空
      */
     bool isEmpty() const {
-        return false;
+        return (*m_value).isEmpty();
     }
 
     /**
      * 确认指定字符串是否与当前内容一致
      */
     bool equals(const NrSimpleCharT<T>& source) const {
-        source;
-        return false;
+        return (*m_value).equals(*source.m_value);
     }
+
+private:
+    /**
+     * 初始化
+     */
+    void initialize() {
+        m_value = new NrSimpleCharTraitsBuf<T>();
+    }
+
+    /**
+     * 释放资源
+     */
+    void finalize() {
+        delete m_value;
+    }
+
 
 private:
     /**
      * 字符串数据
      */
-    NrSimpleCharTraitsBuf<T>* m_data {nullptr};
+    NrSimpleCharTraitsBuf<T>* m_value {nullptr};
 };
 
-/**
+
+
+
+
+
+
+
+
+
+/*******************************************************************************
  * 模板接口导出
  */
 template class NRSCRIPT_API_VISUAL NrSimpleCharT<wchar_t>;
 template class NRSCRIPT_API_VISUAL NrSimpleCharT<char>;
 
-/**
- * wchar_t字符串
+
+
+
+
+
+
+
+
+
+/*******************************************************************************
+ * wchar_t字符串 immutable
  */
 class NRSCRIPT_API_VISUAL NrString : public NrSimpleCharT<wchar_t> {
 public:
+    /**
+     * 默认构造函数
+     */
+    NrString();
 
+    /**
+     * 虚拟析构函数
+     */
+    virtual ~NrString();
+
+public:
+    /**
+     * 2. - 赋值构造函数
+     */
+    NrString(const wchar_t* source);
+
+public:
+    /**
+     * 2. + 赋值运算符
+     */
+    NrString& operator = (const wchar_t* source);
 };
 
-/**
- * char 字符串
+
+
+
+
+
+
+
+
+
+/*******************************************************************************
+ * char 字符串 immutable
  */
 class NRSCRIPT_API_VISUAL NrChars : public NrSimpleCharT<char> {
 public:
+    /**
+     * 默认构造函数
+     */
+    NrChars();
 
+    /**
+     * 虚拟析构函数
+     */
+    virtual ~NrChars();
+
+public:
+    /**
+     * 2. - 赋值构造函数
+     */
+    NrChars(const char* source);
+
+public:
+    /**
+     * 2. + 赋值运算符
+     */
+    NrChars& operator = (const char* source);
 };
 
 #endif
