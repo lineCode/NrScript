@@ -8,7 +8,10 @@ int WINAPI WinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, 
         return -1;
     }
     app->initialize();
-
+    {
+        char* msg = u8"体系结构";
+        msg = "";
+    }
     MSG msg = {0};
     while (::GetMessage(&msg, NULL, NULL, NULL))
     {

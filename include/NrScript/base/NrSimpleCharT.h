@@ -41,25 +41,81 @@
 template<typename T>
 class NrSimpleCharTraitsBuf {
 private:
-    template<typename char_t> class TraitsBuf {
+    /**
+     * template<typename char_t> class CharacterStorer {
+     * public:
+     *     typedef std::string str;
+     * }
+     *
+     * template<> class CharacterStorer<wchar_t> {
+     * public:
+     *     typedef std::wstring str;
+     * }
+     *
+     * ...
+     *
+     * error : explicit specialization in non-namespace scope
+     * 类内部模板显示特化，msvc编译器支持，gcc不支持?...
+     *
+     */
+    template<typename char_t, bool is_char = std::is_same<char_t, char>::value> class CharacterStorer {};
+    template<typename char_t, bool is_wide = std::is_same<char_t, wchar_t>::value> class WideStorer {};
+    template<typename char_t, bool is_char16 = std::is_same<char_t, char16_t>::value> class Char16Storer {};
+    template<typename char_t, bool is_char32 = std::is_same<char_t, char32_t>::value> class Char32Storer {};
+
+    template<typename char_t> class CharacterStorer<char_t, true> {
     public:
         typedef std::string str;
+        typedef std::string::value_type value_type;
     };
 
-    template<> class TraitsBuf<wchar_t> {
+    template<typename char_t> class CharacterStorer<char_t, false> {
+    public:
+        typedef typename WideStorer<char_t>::str str;
+        typedef typename WideStorer<char_t>::value_type value_type;
+    };
+
+    template<typename char_t> class WideStorer<char_t, true> {
     public:
         typedef std::wstring str;
+        typedef std::wstring::value_type value_type;
     };
 
-    template<> class TraitsBuf<char16_t> {
+    template<typename char_t> class WideStorer<char_t, false> {
+    public:
+        typedef typename Char16Storer<char_t>::str str;
+        typedef typename Char16Storer<char_t>::value_type value_type;
+    };
+
+    template<typename char_t> class Char16Storer<char_t, true> {
     public:
         typedef std::u16string str;
+        typedef std::u16string::value_type value_type;
     };
 
-    template<> class TraitsBuf<char32_t> {
+    template<typename char_t> class Char16Storer<char_t, false> {
+    public:
+        typedef typename Char32Storer<char_t>::str str;
+        typedef typename Char32Storer<char_t>::value_type value_type;
+    };
+
+    template<typename char_t> class Char32Storer<char_t, true> {
     public:
         typedef std::u32string str;
+        typedef std::u32string::value_type value_type;
     };
+
+    template<typename char_t> class Char32Storer<char_t, false> {
+    public:
+        typedef typename CharacterStorer<char>::str str;
+        typedef typename CharacterStorer<char>::value_type value_type;
+    };
+
+public:
+    /**
+     * 字符串存储类型
+     */
+    typedef typename CharacterStorer<T>::value_type char_t;
 
 public:
 
@@ -83,9 +139,17 @@ public:
     /**
      * 2. 赋值运算符
      */
-    NrSimpleCharTraitsBuf<T>& operator = (const T* source) {
+    NrSimpleCharTraitsBuf<T>& operator = (const char_t* source) {
         (*m_value) = source;
         return *this;
+    }
+
+public:
+    /**
+     * 访问字符串内存
+     */
+    operator const char_t* const() {
+        return (*m_value).c_str();
     }
 
 public:
@@ -103,7 +167,7 @@ private:
      * 初始化
      */
     void initialize() {
-        m_value = new TraitsBuf<T>::str();
+        m_value = new typename CharacterStorer<T>::str();
     }
 
     /**
@@ -117,7 +181,7 @@ private:
     /**
      * 字符串存储
      */
-    typename TraitsBuf<T>::str* m_value {nullptr};
+    typename CharacterStorer<T>::str* m_value {nullptr};
 };
 
 /*******************************************************************************/
@@ -129,8 +193,10 @@ private:
 
 
 
+
+
 /*******************************************************************************
- * 字符串 immutable
+ * 字符串 mutable
  */
 template<typename T>
 class NrSimpleCharT {
@@ -138,7 +204,7 @@ public:
     /**
      * 字符串类型
      */
-    typedef T char_t;
+    typedef typename NrSimpleCharTraitsBuf<T>::char_t char_t;
 
     /** 
      * 用于标记查找目标字符串失败
@@ -172,7 +238,7 @@ public:
     /**
      * 2. - 赋值构造函数 
      */
-    NrSimpleCharT(const T* source) {
+    NrSimpleCharT(const char_t * source) {
         this->initialize();
         (*m_value) = source;
     }
@@ -189,9 +255,17 @@ public:
     /**
      * 2. + 赋值运算符
      */
-    NrSimpleCharT<T>& operator = (const T* source) {
+    virtual NrSimpleCharT<T>& operator = (const char_t* source) {
         (*m_value) = source;
         return *this;
+    }
+
+public:
+    /**
+     * 访问字符串内存
+     */
+    operator const char_t*() const {
+        return (*m_value);
     }
 
 public:
@@ -244,6 +318,11 @@ private:
 /*******************************************************************************
  * 模板接口导出
  */
+class NrChars;
+class NrString;
+
+template class NRSCRIPT_API_VISUAL NrSimpleCharT<char32_t>;
+template class NRSCRIPT_API_VISUAL NrSimpleCharT<char16_t>;
 template class NRSCRIPT_API_VISUAL NrSimpleCharT<wchar_t>;
 template class NRSCRIPT_API_VISUAL NrSimpleCharT<char>;
 
@@ -257,7 +336,7 @@ template class NRSCRIPT_API_VISUAL NrSimpleCharT<char>;
 
 
 /*******************************************************************************
- * wchar_t字符串 immutable
+ * wchar_t 字符串 mutable
  */
 class NRSCRIPT_API_VISUAL NrString : public NrSimpleCharT<wchar_t> {
 public:
@@ -281,7 +360,13 @@ public:
     /**
      * 2. + 赋值运算符
      */
-    NrString& operator = (const wchar_t* source);
+    NrString& operator = (const wchar_t* source) override;
+
+public:
+    /**
+     * 转为 char 字符串
+     */
+    NrChars toChars();
 };
 
 
@@ -294,7 +379,7 @@ public:
 
 
 /*******************************************************************************
- * char 字符串 immutable
+ * char 字符串 mutable
  */
 class NRSCRIPT_API_VISUAL NrChars : public NrSimpleCharT<char> {
 public:
@@ -318,7 +403,13 @@ public:
     /**
      * 2. + 赋值运算符
      */
-    NrChars& operator = (const char* source);
+    NrChars& operator = (const char* source) override;
+
+public:
+    /**
+     * 转为 wchar_t 字符串
+     */
+    NrString toString();
 };
 
 #endif

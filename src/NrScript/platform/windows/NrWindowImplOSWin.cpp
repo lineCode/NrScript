@@ -126,7 +126,7 @@ public:
 
             return (::CreateWindowEx(styleEx, 
                 kHwndWindowClassName,
-                nullptr, 
+                parameter.caption, 
                 style, 
                 parameter.bounds.x, parameter.bounds.y, rSrc.right - rSrc.left, rSrc.bottom - rSrc.top, 
                 nullptr, nullptr, hInstance, this) != nullptr);

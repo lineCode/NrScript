@@ -27,9 +27,11 @@ NrString& NrString::operator = (const wchar_t* source) {
     return *this;
 }
 
+NrChars NrString::toChars() {
+    NrChars retval {};
 
-
-
+    return retval;
+}
 
 
 
@@ -59,4 +61,10 @@ NrChars::NrChars(const char* source):
 NrChars& NrChars::operator = (const char* source) {
     NrSimpleCharT<char>::operator = (source);
     return *this;
+}
+
+NrString NrChars::toString() {
+    NrString retval {};
+
+    return retval;
 }
