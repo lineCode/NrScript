@@ -2,6 +2,7 @@
 #include "NrBuilderApp.h"
 
 int main(int argc, char** argv) {
+    ::setlocale(LC_ALL, "");
     gtk_init(&argc, &argv);
 
     NrBuilderApp* app = new NrBuilderApp();

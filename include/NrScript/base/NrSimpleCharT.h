@@ -417,7 +417,12 @@ public:
      * TODO: 如果libNrScript.dll是静态链接运行时库，客户在主程序中调用
      *       setlocale 是否会忽略NrScript的运行时，无法正确修改NrScript的locale环境?
      */
-    NrChars toChars() const ;
+    NrChars toChars() const;
+
+    /**
+     * 转为 UTF-8 编码的 char 字符串 : 新建NrChars对象并将当前字符串内容存入其中
+     */
+    NrChars toUTF8() const;
 };
 
 
