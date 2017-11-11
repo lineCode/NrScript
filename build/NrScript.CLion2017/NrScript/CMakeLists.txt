@@ -52,6 +52,7 @@ set(SRC_MODULE_UI
 
         ${NRSRC}/platform/linux/NrWindowImplOSUnix.cpp
         ${NRSRC}/platform/linux/NrApplicationOSUnix.cpp
+        ${NRSRC}/platform/linux/NrSimpleCharTOSUnix.cpp
 )
 
 add_library(NrScript

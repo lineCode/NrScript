@@ -1,7 +1,5 @@
 ﻿#include <Windows.h>
 #include "NrBuilderApp.h"
-#include <functional>
-#include <atlbase.h>
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd) {
     NrBuilderApp* app = new NrBuilderApp();

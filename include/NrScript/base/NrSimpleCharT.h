@@ -386,13 +386,13 @@ public:
     /**
      * 2. - 赋值构造函数
      */
-    NrString(const wchar_t* source);
+    NrString(const typename NrString::char_t* source);
 
 public:
     /**
      * 2. + 赋值运算符
      */
-    NrString& operator = (const wchar_t* source) override;
+    NrString& operator = (const typename NrString::char_t* source) override;
 
 public:
     /**
@@ -447,13 +447,13 @@ public:
     /**
      * 2. - 赋值构造函数
      */
-    NrChars(const char* source);
+    NrChars(const typename NrChars::char_t* source);
 
 public:
     /**
      * 2. + 赋值运算符
      */
-    NrChars& operator = (const char* source) override;
+    NrChars& operator = (const typename NrChars::char_t* source) override;
 
 public:
     /**

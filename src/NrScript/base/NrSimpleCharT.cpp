@@ -15,15 +15,15 @@ NrString::~NrString() {
 /**
  * 2. - 赋值构造函数
  */
-NrString::NrString(const wchar_t* source):
-    NrSimpleCharT<wchar_t>(source) {
+NrString::NrString(const typename NrString::char_t* source):
+    NrSimpleCharT<typename NrString::char_t>(source) {
 }
 
 /**
  * 2. + 赋值运算符
  */
-NrString& NrString::operator = (const wchar_t* source) {
-    NrSimpleCharT<wchar_t>::operator = (source);
+NrString& NrString::operator = (const typename NrString::char_t* source) {
+    NrSimpleCharT<typename NrString::char_t>::operator = (source);
     return *this;
 }
 
@@ -45,14 +45,14 @@ NrChars::~NrChars() {
 /**
  * 2. - 赋值构造函数
  */
-NrChars::NrChars(const char* source):
-    NrSimpleCharT<char>(source) {
+NrChars::NrChars(const typename NrChars::char_t* source):
+    NrSimpleCharT<typename NrChars::char_t>(source) {
 }
 
 /**
  * 2. + 赋值运算符
  */
-NrChars& NrChars::operator = (const char* source) {
-    NrSimpleCharT<char>::operator = (source);
+NrChars& NrChars::operator = (const typename NrChars::char_t* source) {
+    NrSimpleCharT<typename NrChars::char_t>::operator = (source);
     return *this;
 }
