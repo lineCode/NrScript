@@ -209,6 +209,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\src\NrScript\base\NrSimpleCharT.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\platform\windows\NrApplicationOSWin.cpp" />
+    <ClCompile Include="..\..\..\src\NrScript\platform\windows\NrSimpleCharTOSWin.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\platform\windows\NrWindowImplOSWin.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\ui\internal\NrWidgetsTreeRenderer.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\ui\internal\NrWindowBase.cpp" />

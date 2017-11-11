@@ -194,6 +194,9 @@
     <ClCompile Include="..\..\..\src\NrScript\base\NrSimpleCharT.cpp">
       <Filter>src\base</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\NrScript\platform\windows\NrSimpleCharTOSWin.cpp">
+      <Filter>src\platform\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\include\NrScript\platform\windows\NrOSWinResource.rc">

@@ -9,16 +9,17 @@
    关于wchar, char
   
    1> char
-            不需要多解释，源码中的字符串对应出来的即ASCII字符集
+            ：实际测试中发现，char存储的是系统本地编码字符串，其二进制值不是固定的。有可能是GBK，也有可能是UTF-8(Linux)
             ：将GBK、BIG5这类只兼容ASCII却相互不兼容的地区性编码统称之ASCII
+            
 
    2> wchar
             在windows系统VC编译器里，wchar_t占两个字节，编译器将其解释存储为UTF-16LE(小端编码)。
-                譬如： wchar_t ch = L'中'; 
+                      譬如： wchar_t ch = L'中'; 
                       ch的值为 0x4e2d ，这是 UTF-16LE 编码
 
             在Linux系统gcc编译器里，wchar_t占4个字节，编译器将其解释存储为UTF-32LE
-                譬如： wchar_t ch = L'中';
+                      譬如： wchar_t ch = L'中';
                       ch的值为0x00004e2d，这是UTF-32LE 编码
 
             文件中的常量字符串不用担心编码。存储文件或读取文件时，注意转换即可保证跨平台文字乱码问题。
@@ -30,6 +31,8 @@
     一头烦绪，先把NrString搞完后面搞NrEncoding这类东西。
 
     TODO: char存储的字符串转为wchar是否需要考虑系统字符集? setlocale? 
+          -> Windows不考虑了，直接使用 WideCharToMultiByte、 MultiByteToWideChar
+          -> Linux
  */
 
 #ifndef _NRSCRIPT_NRSIMPLECHART_H_
@@ -67,48 +70,56 @@ private:
     public:
         typedef std::string str;
         typedef std::string::value_type value_type;
+        typedef std::string::size_type size_type;
     };
 
     template<typename char_t> class CharacterStorer<char_t, false> {
     public:
         typedef typename WideStorer<char_t>::str str;
         typedef typename WideStorer<char_t>::value_type value_type;
+        typedef typename WideStorer<char_t>::size_type size_type;
     };
 
     template<typename char_t> class WideStorer<char_t, true> {
     public:
         typedef std::wstring str;
         typedef std::wstring::value_type value_type;
+        typedef std::wstring::size_type size_type;
     };
 
     template<typename char_t> class WideStorer<char_t, false> {
     public:
         typedef typename Char16Storer<char_t>::str str;
         typedef typename Char16Storer<char_t>::value_type value_type;
+        typedef typename Char16Storer<char_t>::size_type size_type;
     };
 
     template<typename char_t> class Char16Storer<char_t, true> {
     public:
         typedef std::u16string str;
         typedef std::u16string::value_type value_type;
+        typedef std::u16string::size_type size_type;
     };
 
     template<typename char_t> class Char16Storer<char_t, false> {
     public:
         typedef typename Char32Storer<char_t>::str str;
         typedef typename Char32Storer<char_t>::value_type value_type;
+        typedef typename Char32Storer<char_t>::size_type size_type;
     };
 
     template<typename char_t> class Char32Storer<char_t, true> {
     public:
         typedef std::u32string str;
         typedef std::u32string::value_type value_type;
+        typedef std::u32string::size_type size_type;
     };
 
     template<typename char_t> class Char32Storer<char_t, false> {
     public:
         typedef typename CharacterStorer<char>::str str;
         typedef typename CharacterStorer<char>::value_type value_type;
+        typedef typename CharacterStorer<char>::size_type size_type;
     };
 
 public:
@@ -116,6 +127,11 @@ public:
      * 字符串存储类型
      */
     typedef typename CharacterStorer<T>::value_type char_t;
+
+    /**
+     * 存储空间size描述类型
+     */
+    typedef typename CharacterStorer<T>::size_type size_t;
 
 public:
 
@@ -162,6 +178,10 @@ public:
         return (*m_value) == (*(source.m_value));
     }
 
+    typename NrSimpleCharTraitsBuf<T>::size_t length() const {
+        return (*m_value).length();
+    }
+
 private:
     /**
      * 初始化
@@ -206,10 +226,15 @@ public:
      */
     typedef typename NrSimpleCharTraitsBuf<T>::char_t char_t;
 
+    /**
+     * 存储空间size描述类型
+     */
+    typedef typename NrSimpleCharTraitsBuf<T>::size_t size_t;
+
     /** 
      * 用于标记查找目标字符串失败
      */
-    static const size_t npos = (size_t) - 1;
+    static const typename NrSimpleCharT<T>::size_t npos = (NrSimpleCharT<T>::size_t) - 1;
 
 public:
     /**
@@ -282,6 +307,13 @@ public:
     bool equals(const NrSimpleCharT<T>& source) const {
         return (*m_value).equals(*source.m_value);
     }
+
+    typename NrSimpleCharT<T>::size_t length() const {
+        return (*m_value).length();
+    }
+
+public:
+
 
 private:
     /**
@@ -364,7 +396,24 @@ public:
 
 public:
     /**
-     * 转为 char 字符串
+     * 转为 char 字符串 : 新建NrChars对象并将当前字符串内容存入其中
+     *
+     * @note linux使用前请确认当前程序已经使用 setlocale 设置区域信息
+     *
+     * TODO: 玄学
+     * 
+     * ->环境：Windows 10
+     * ->地区：中国
+     * ->语言：英文
+     *
+     * 在windows平台上 setlocale(LC_ALL, "")后，环境由 "C" 变为 "English_United States.1252"
+     * 这时wcstombs并不能正确将含有"中文"的宽字节转为多字节.
+     *
+     * WideCharToMultiByte是怎么做到的?
+     *
+     *
+     * TODO: 如果libNrScript.dll是静态链接运行时库，客户在主程序中调用
+     *       setlocale 是否会忽略NrScript的运行时，无法正确修改NrScript的locale环境?
      */
     NrChars toChars();
 };
@@ -380,6 +429,7 @@ public:
 
 /*******************************************************************************
  * char 字符串 mutable
+ * 不推荐使用，除非是调用系统API函数的时候。
  */
 class NRSCRIPT_API_VISUAL NrChars : public NrSimpleCharT<char> {
 public:
@@ -407,7 +457,12 @@ public:
 
 public:
     /**
-     * 转为 wchar_t 字符串
+     * 转为 wchar_t 字符串 : 新建NrString对象并将当前字符串内容存入其中
+     *
+     * @note linux使用前请确认当前程序已经使用 setlocale 设置区域信息
+     *
+     * TODO: 如果libNrScript.dll是静态链接运行时库，客户在主程序中调用
+     *       setlocale 是否会忽略NrScript的运行时，无法正确修改NrScript的locale环境?
      */
     NrString toString();
 };
