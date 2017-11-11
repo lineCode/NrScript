@@ -9,10 +9,7 @@ int main(int argc, char** argv) {
         return -1;
     }
     app->initialize();
-    {
-        char* msg = "体系结构";
-        msg = "";
-    }
+
     gtk_main();
     return 0;
 }

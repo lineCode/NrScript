@@ -52,7 +52,7 @@ public:
             return false;
         }
 
-        ::gtk_window_set_title(GTK_WINDOW(m_widget), "");
+        ::gtk_window_set_title(GTK_WINDOW(m_widget), parameter.caption.toChars());
         ::gtk_window_resize(GTK_WINDOW(m_widget), parameter.bounds.width, parameter.bounds.height);
         ::gtk_window_move(GTK_WINDOW(m_widget), parameter.bounds.x, parameter.bounds.y);
 

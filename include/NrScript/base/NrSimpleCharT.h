@@ -156,7 +156,9 @@ public:
      * 2. 赋值运算符
      */
     NrSimpleCharTraitsBuf<T>& operator = (const char_t* source) {
-        (*m_value) = source;
+        if (source != nullptr) {
+            (*m_value) = source;
+        }
         return *this;
     }
 
@@ -164,7 +166,7 @@ public:
     /**
      * 访问字符串内存
      */
-    operator const char_t* const() {
+    operator const char_t* () const {
         return (*m_value).c_str();
     }
 
@@ -263,7 +265,7 @@ public:
     /**
      * 2. - 赋值构造函数 
      */
-    NrSimpleCharT(const char_t * source) {
+    NrSimpleCharT(const char_t* source) {
         this->initialize();
         (*m_value) = source;
     }
@@ -415,7 +417,7 @@ public:
      * TODO: 如果libNrScript.dll是静态链接运行时库，客户在主程序中调用
      *       setlocale 是否会忽略NrScript的运行时，无法正确修改NrScript的locale环境?
      */
-    NrChars toChars();
+    NrChars toChars() const ;
 };
 
 
@@ -464,7 +466,7 @@ public:
      * TODO: 如果libNrScript.dll是静态链接运行时库，客户在主程序中调用
      *       setlocale 是否会忽略NrScript的运行时，无法正确修改NrScript的locale环境?
      */
-    NrString toString();
+    NrString toString() const;
 };
 
 #endif

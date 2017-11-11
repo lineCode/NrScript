@@ -7,7 +7,7 @@
 #include "NrScript/base.h"
 #include <Windows.h>
 
-NrChars NrString::toChars() {
+NrChars NrString::toChars() const {
     char* buf = nullptr;
 
     /**
@@ -32,7 +32,7 @@ NrChars NrString::toChars() {
     return result;
 }
 
-NrString NrChars::toString() {
+NrString NrChars::toString() const {
     wchar_t* buf = nullptr;
 
     int newCount = ::MultiByteToWideChar(CP_ACP, 0, *this, static_cast<int>(this->length()), nullptr, 0);
