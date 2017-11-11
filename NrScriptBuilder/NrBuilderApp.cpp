@@ -12,7 +12,7 @@ bool NrBuilderApp::initialize() {
     NrWindowBase::CreateParameter parameter {};
     parameter.bounds.width = 960;
     parameter.bounds.height = 544;
-    parameter.caption = L"NrScript XML Builder";
+    parameter.caption = L"啊NrScript XML Builder啊";
 
     if (!m_builderFrame->create(parameter)) {
         return false;
