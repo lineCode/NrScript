@@ -15,10 +15,20 @@
  */
 template<typename wchar_t_platform, int size = sizeof(wchar_t_platform)>
 struct __gcc_utf8_wchar_convert : public std::wstring_convert<std::codecvt_utf8<wchar_t_platform>> {
+#ifdef NRSCRIPT_DEBUG
+    __gcc_utf8_wchar_convert() {
+        // set breakpoint
+    }
+#endif
 };
 
 template<typename wchar_t_platform>
 struct __gcc_utf8_wchar_convert<wchar_t_platform, 2> : std::wstring_convert<std::codecvt_utf8_utf16<wchar_t_platform>> {
+#ifdef NRSCRIPT_DEBUG
+    __gcc_utf8_wchar_convert() {
+        // set breakpoint
+    }
+#endif
 };
 
 
