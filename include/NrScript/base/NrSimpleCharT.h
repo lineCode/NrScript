@@ -354,7 +354,7 @@ private:
  */
 class NrChars;
 class NrString;
-
+class NrCharsUTF8;
 template class NRSCRIPT_API_VISUAL NrSimpleCharT<char32_t>;
 template class NRSCRIPT_API_VISUAL NrSimpleCharT<char16_t>;
 template class NRSCRIPT_API_VISUAL NrSimpleCharT<wchar_t>;
@@ -422,7 +422,7 @@ public:
     /**
      * 转为 UTF-8 编码的 char 字符串 : 新建NrChars对象并将当前字符串内容存入其中
      */
-    NrChars toUTF8() const;
+    NrCharsUTF8 toUTF8() const;
 };
 
 
@@ -474,4 +474,76 @@ public:
     NrString toString() const;
 };
 
+
+
+
+
+
+
+
+
+
+/*******************************************************************************
+ * utf-8
+ * 
+ * NrCharsUTF8 只作为转换器使用，不具备字符串的常用功能
+ */
+class NRSCRIPT_API_VISUAL NrCharsUTF8 : private NrSimpleCharT<char> {
+private:
+    /**
+     * 私有构造函数
+     * @remarks char 字符串不能明确赋值给NrCharsUTF8对象，这种隐式
+     * 转换可能带来意想不带的错误。需要用户确认 source 为UTF8编码才可以。
+     */
+    NrCharsUTF8(const typename NrCharsUTF8::char_t* source);
+
+public:
+    /**
+     * 字符串类型
+     */
+    typedef typename NrCharsUTF8::char_t char_t;
+
+public:
+    /**
+     * 默认构造函数
+     */
+    NrCharsUTF8();
+
+    /**
+     * 虚拟析构函数
+     */
+    virtual ~NrCharsUTF8();
+
+public:
+    /**
+     * 使用utf8字符串构造NrCharsUTF8对象
+     *
+     * @note 你必须确定source存储的字符串编码为UTF8
+     */
+    static NrCharsUTF8 fromUTF8Bytes(const typename NrCharsUTF8::char_t* source);
+
+public:
+    /**
+     * 1. - 赋值构造函数
+     */
+    NrCharsUTF8(const NrCharsUTF8& source);
+
+public:
+    /**
+     * 1. + 赋值运算符
+     */
+    NrCharsUTF8& operator = (const NrCharsUTF8& source);
+
+public:
+    /**
+     * 访问字符串内存
+     */
+    operator const typename NrCharsUTF8::char_t* () const;
+
+public:
+    /**
+     * 转为 wchar_t 字符串 : 新建NrString对象并将当前字符串内容存入其中
+     */
+    NrString toString() const;
+};
 #endif

@@ -8,7 +8,7 @@
 #include <Windows.h>
 
 NrChars NrString::toChars() const {
-    char* buf = nullptr;
+    typename NrChars::char_t* buf = nullptr;
 
     /**
      * 如果这里第4个参数填写-1，则返回字符串长度+1(结尾'\0')，否则只返回字符串长度。
@@ -16,7 +16,7 @@ NrChars NrString::toChars() const {
      */
     int newCount = ::WideCharToMultiByte(CP_ACP, 0, *this, static_cast<int>(this->length()), nullptr, 0, nullptr, nullptr);
     if (newCount) {
-        buf = new char[newCount + 1]();
+        buf = new typename NrChars::char_t[newCount + 1]();
     }
 
     if (buf) {
@@ -32,16 +32,12 @@ NrChars NrString::toChars() const {
     return result;
 }
 
-NrChars NrString::toUTF8() const {
-    char* buf = nullptr;
+NrCharsUTF8 NrString::toUTF8() const {
+    typename NrCharsUTF8::char_t* buf = nullptr;
 
-    /**
-     * 如果这里第4个参数填写-1，则返回字符串长度+1(结尾'\0')，否则只返回字符串长度。
-     * 但我们不用-1，需要手动添加一个'\0'长度
-     */
     int newCount = ::WideCharToMultiByte(CP_UTF8, 0, *this, static_cast<int>(this->length()), nullptr, 0, nullptr, nullptr);
     if (newCount) {
-        buf = new char[newCount + 1]();
+        buf = new typename NrCharsUTF8::char_t[newCount + 1]();
     }
 
     if (buf) {
@@ -52,17 +48,17 @@ NrChars NrString::toUTF8() const {
         NRSCRIPT_ASSERT(false);
     }
 
-    NrChars result = buf;
+    NrCharsUTF8 result = NrCharsUTF8::fromUTF8Bytes(buf);
     delete buf;
     return result;
 }
 
 NrString NrChars::toString() const {
-    wchar_t* buf = nullptr;
+    typename NrString::char_t* buf = nullptr;
 
     int newCount = ::MultiByteToWideChar(CP_ACP, 0, *this, static_cast<int>(this->length()), nullptr, 0);
     if (newCount) {
-        buf = new wchar_t[newCount + 1]();
+        buf = new typename NrString::char_t[newCount + 1]();
     }
 
     if (buf) {
@@ -70,6 +66,42 @@ NrString NrChars::toString() const {
             buf[newCount] = 0;
         }
     } else {
+        NRSCRIPT_ASSERT(false);
+    }
+
+    NrString result = buf;
+    delete buf;
+    return result;
+}
+
+
+
+
+
+
+
+
+
+
+
+NrCharsUTF8 NrCharsUTF8::fromUTF8Bytes(const typename NrCharsUTF8::char_t* source) {
+    return NrCharsUTF8(source);
+}
+
+NrString NrCharsUTF8::toString() const {
+    typename NrString::char_t* buf = nullptr;
+
+    int newCount = ::MultiByteToWideChar(CP_UTF8, 0, *this, static_cast<int>(this->length()), nullptr, 0);
+    if (newCount) {
+        buf = new typename NrString::char_t[newCount + 1]();
+    }
+
+    if (buf) {
+        if (::MultiByteToWideChar(CP_UTF8, 0, *this, static_cast<int>(this->length()), buf, newCount)) {
+            buf[newCount] = 0;
+        }
+    }
+    else {
         NRSCRIPT_ASSERT(false);
     }
 

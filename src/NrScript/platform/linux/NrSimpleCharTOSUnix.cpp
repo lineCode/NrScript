@@ -9,11 +9,11 @@
 #include <locale>
 
 NrChars NrString::toChars() const {
-    char* buf = nullptr;
+    typename NrChars::char_t* buf = nullptr;
 
     size_t newCount = ::wcstombs(nullptr, *this, 0);
     if (newCount != -1) {
-        buf = new char[newCount + 1]();
+        buf = new typename NrChars::char_t[newCount + 1]();
     }
 
     if (buf) {
@@ -29,25 +29,21 @@ NrChars NrString::toChars() const {
     return retval;
 }
 
-NrChars NrString::toUTF8() const {
-    using utf8Converter = std::wstring_convert<std::codecvt_utf8<wchar_t>>;
+NrCharsUTF8 NrString::toUTF8() const {
+    using utf8Converter = std::wstring_convert<std::codecvt_utf8<typename NrString::char_t>>;
 
     utf8Converter conv;
     utf8Converter::byte_string bytes = conv.to_bytes(*this);
 
-    NrChars retval {};
-    if (!bytes.empty()) {
-        retval = bytes.c_str();
-    }
-    return retval;
+    return NrCharsUTF8::fromUTF8Bytes(bytes.c_str());
 }
 
 NrString NrChars::toString() const {
-    wchar_t* buf = nullptr;
+    typename NrString::char_t* buf = nullptr;
 
     size_t newCount = ::mbstowcs(nullptr, *this, 0);
     if (newCount != -1) {
-        buf = new wchar_t[newCount + 1]();
+        buf = new typename NrString::char_t[newCount + 1]();
     }
 
     if (buf) {
@@ -61,5 +57,31 @@ NrString NrChars::toString() const {
 
     NrString retval = buf;
     delete buf;
+    return retval;
+}
+
+
+
+
+
+
+
+
+
+
+NrCharsUTF8 NrCharsUTF8::fromUTF8Bytes(const typename NrCharsUTF8::char_t* source) {
+    return NrCharsUTF8(source);
+}
+
+NrString NrCharsUTF8::toString() const {
+    using utf8Converter = std::wstring_convert<std::codecvt_utf8<typename NrString::char_t>>;
+
+    utf8Converter conv;
+    utf8Converter::wide_string bytes = conv.from_bytes(*this);
+
+    NrString retval{};
+    if (!bytes.empty()) {
+        retval = bytes.c_str();
+    }
     return retval;
 }

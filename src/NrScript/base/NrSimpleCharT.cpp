@@ -56,3 +56,35 @@ NrChars& NrChars::operator = (const typename NrChars::char_t* source) {
     NrSimpleCharT<typename NrChars::char_t>::operator = (source);
     return *this;
 }
+
+
+
+
+
+
+
+
+
+
+NrCharsUTF8::NrCharsUTF8() {
+}
+
+NrCharsUTF8::~NrCharsUTF8() {
+}
+
+NrCharsUTF8::NrCharsUTF8(const typename NrCharsUTF8::char_t* source):
+    NrSimpleCharT<typename NrCharsUTF8::char_t>(source){
+}
+
+NrCharsUTF8::NrCharsUTF8(const NrCharsUTF8& source):
+    NrSimpleCharT<typename NrCharsUTF8::char_t>(source) {
+}
+
+NrCharsUTF8& NrCharsUTF8::operator = (const NrCharsUTF8& source) {
+    NrSimpleCharT<typename NrCharsUTF8::char_t>::operator = (source);
+    return *this;
+}
+
+NrCharsUTF8::operator const typename NrCharsUTF8::char_t* () const {
+    return NrSimpleCharT<typename NrCharsUTF8::char_t>::operator const typename NrCharsUTF8::char_t*();
+}
