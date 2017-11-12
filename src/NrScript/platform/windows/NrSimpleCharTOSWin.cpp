@@ -11,6 +11,7 @@
 
 NrChars NrString::toChars() const {
     typename NrChars::char_t* buf = nullptr;
+    NrChars retval;
 
     /**
      * 如果这里第4个参数填写-1，则返回字符串长度+1(结尾'\0')，否则只返回字符串长度。
@@ -24,14 +25,16 @@ NrChars NrString::toChars() const {
     if (buf) {
         if (::WideCharToMultiByte(CP_ACP, NULL, *this, static_cast<int>(this->length()), buf, newCount, NULL, NULL)) {
             buf[newCount] = 0;
+            retval = buf;
         }
     } else {
         NRSCRIPT_ASSERT(false);
     }
 
-    NrChars result = buf;
-    delete buf;
-    return result;
+    if (buf != nullptr) {
+        delete buf;
+    }
+    return retval;
 }
 
 NrCharsUTF8 NrString::toUTF8() const {
@@ -46,6 +49,7 @@ NrCharsUTF8 NrString::toUTF8() const {
 //#endif
 
     typename NrCharsUTF8::char_t* buf = nullptr;
+    NrCharsUTF8 retval;
 
     int newCount = ::WideCharToMultiByte(CP_UTF8, 0, *this, static_cast<int>(this->length()), nullptr, 0, nullptr, nullptr);
     if (newCount) {
@@ -55,18 +59,21 @@ NrCharsUTF8 NrString::toUTF8() const {
     if (buf) {
         if (::WideCharToMultiByte(CP_UTF8, NULL, *this, static_cast<int>(this->length()), buf, newCount, NULL, NULL)) {
             buf[newCount] = 0;
+            retval = NrCharsUTF8::fromUTF8Bytes(buf);
         }
     } else {
         NRSCRIPT_ASSERT(false);
     }
 
-    NrCharsUTF8 result = NrCharsUTF8::fromUTF8Bytes(buf);
-    delete buf;
-    return result;
+    if (buf != nullptr) {
+        delete buf;
+    }
+    return retval;
 }
 
 NrString NrChars::toString() const {
     typename NrString::char_t* buf = nullptr;
+    NrString retval;
 
     int newCount = ::MultiByteToWideChar(CP_ACP, 0, *this, static_cast<int>(this->length()), nullptr, 0);
     if (newCount) {
@@ -76,14 +83,16 @@ NrString NrChars::toString() const {
     if (buf) {
         if (::MultiByteToWideChar(CP_ACP, 0, *this, static_cast<int>(this->length()), buf, newCount)) {
             buf[newCount] = 0;
+            retval = buf;
         }
     } else {
         NRSCRIPT_ASSERT(false);
     }
 
-    NrString result = buf;
-    delete buf;
-    return result;
+    if (buf != nullptr) {
+        delete buf;
+    }
+    return retval;
 }
 
 
@@ -116,6 +125,7 @@ NrString NrCharsUTF8::toString() const {
 //#endif
 
     typename NrString::char_t* buf = nullptr;
+    NrString retval;
 
     int newCount = ::MultiByteToWideChar(CP_UTF8, 0, *this, static_cast<int>(this->length()), nullptr, 0);
     if (newCount) {
@@ -125,13 +135,15 @@ NrString NrCharsUTF8::toString() const {
     if (buf) {
         if (::MultiByteToWideChar(CP_UTF8, 0, *this, static_cast<int>(this->length()), buf, newCount)) {
             buf[newCount] = 0;
+            retval = buf;
         }
     }
     else {
         NRSCRIPT_ASSERT(false);
     }
 
-    NrString result = buf;
-    delete buf;
-    return result;
+    if (buf != nullptr) {
+        delete buf;
+    }
+    return retval;
 }

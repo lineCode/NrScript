@@ -23,7 +23,7 @@ struct __gcc_utf8_wchar_convert : public std::wstring_convert<std::codecvt_utf8<
 };
 
 template<typename wchar_t_platform>
-struct __gcc_utf8_wchar_convert<wchar_t_platform, 2> : std::wstring_convert<std::codecvt_utf8_utf16<wchar_t_platform>> {
+struct __gcc_utf8_wchar_convert<wchar_t_platform, 2> : public std::wstring_convert<std::codecvt_utf8_utf16<wchar_t_platform>> {
 #ifdef NRSCRIPT_DEBUG
     __gcc_utf8_wchar_convert() {
         // set breakpoint
@@ -42,6 +42,7 @@ struct __gcc_utf8_wchar_convert<wchar_t_platform, 2> : std::wstring_convert<std:
 
 NrChars NrString::toChars() const {
     typename NrChars::char_t* buf = nullptr;
+    NrChars retval;
 
     size_t newCount = ::wcstombs(nullptr, *this, 0);
     if (newCount != -1) {
@@ -51,13 +52,15 @@ NrChars NrString::toChars() const {
     if (buf) {
         if (::wcstombs(buf, *this, this->length()) != -1) {
             buf[newCount] = 0;
+            retval = buf;
         }
     } else {
         NRSCRIPT_ASSERT(false);
     }
 
-    NrChars retval = buf;
-    delete buf;
+    if (buf != nullptr) {
+        delete buf;
+    }
     return retval;
 }
 
@@ -70,6 +73,7 @@ NrCharsUTF8 NrString::toUTF8() const {
 
 NrString NrChars::toString() const {
     typename NrString::char_t* buf = nullptr;
+    NrString retval;
 
     size_t newCount = ::mbstowcs(nullptr, *this, 0);
     if (newCount != -1) {
@@ -79,14 +83,16 @@ NrString NrChars::toString() const {
     if (buf) {
         if (::mbstowcs(buf, *this, this->length()) != -1) {
             buf[newCount] = 0;
+            retval = buf;
         }
     }
     else {
         NRSCRIPT_ASSERT(false);
     }
 
-    NrString retval = buf;
-    delete buf;
+    if (buf != nullptr) {
+        delete buf;
+    }
     return retval;
 }
 

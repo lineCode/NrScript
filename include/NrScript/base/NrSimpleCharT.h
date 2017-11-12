@@ -400,7 +400,7 @@ public:
     /**
      * 转为 char 字符串 : 新建NrChars对象并将当前字符串内容存入其中
      *
-     * @note linux使用前请确认当前程序已经使用 setlocale 设置区域信息
+     * @note linux使用本地编码字符串是否需要 setlocale 设置区域信息?
      *
      * TODO: 玄学
      * 
@@ -466,7 +466,7 @@ public:
     /**
      * 转为 wchar_t 字符串 : 新建NrString对象并将当前字符串内容存入其中
      *
-     * @note linux使用前请确认当前程序已经使用 setlocale 设置区域信息
+     * @note linux使用本地编码字符串是否需要 setlocale 设置区域信息?
      *
      * TODO: 如果libNrScript.dll是静态链接运行时库，客户在主程序中调用
      *       setlocale 是否会忽略NrScript的运行时，无法正确修改NrScript的locale环境?
