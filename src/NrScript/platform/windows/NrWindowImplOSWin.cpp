@@ -155,7 +155,7 @@ public:
         return m_isDialog;
     }
 
-    NrWindowBase* getNativeWindow() override {
+    NrWindowBase* getNativeWindow() const override {
         return m_pOwner;
     }
 
@@ -296,6 +296,41 @@ public:
         return retval;
     }
 
+    void centerScreen() override {
+        RECT workArea = {0};
+        RECT selfArea = {0};
+
+        ::GetWindowRect(m_Hwnd, &selfArea);
+        ::SystemParametersInfo(SPI_GETWORKAREA, NULL, &workArea, NULL);
+        int x = ((workArea.right - workArea.left) - (selfArea.right - selfArea.left)) / 2;
+        int y = ((workArea.bottom - workArea.top) - (selfArea.bottom - selfArea.top)) / 2;
+        
+        ::SetWindowPos(m_Hwnd, NULL, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+    }
+
+    void centerParent(const NrWindowBase* parent) {
+        if (parent == nullptr) {
+            NRSCRIPT_ASSERT(false);
+            return;
+        }
+
+        NrWindowImplOSWin* native = dynamic_cast<NrWindowImplOSWin*>(parent->getNativeWindow());
+        if (native == nullptr) {
+            NRSCRIPT_ASSERT(false);
+            return;
+        }
+
+        RECT workArea = { 0 };
+        RECT selfArea = { 0 };
+
+        ::GetWindowRect(m_Hwnd, &selfArea);
+        ::GetWindowRect(native->getHwnd(), &workArea);
+        int x = ((workArea.right - workArea.left) - (selfArea.right - selfArea.left)) / 2;
+        int y = ((workArea.bottom - workArea.top) - (selfArea.bottom - selfArea.top)) / 2;
+
+        ::SetWindowPos(m_Hwnd, NULL, x + workArea.left, y + workArea.top, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+    }
+
 public:
     /**
      * 获取渲染器
@@ -376,7 +411,7 @@ void NrWindowImplOSWin::close() {
     return impl->close();
 }
 
-NrWindowBase* NrWindowImplOSWin::getNativeWindow() {
+NrWindowBase* NrWindowImplOSWin::getNativeWindow() const {
     return impl->getNativeWindow();
 }
 
@@ -423,6 +458,15 @@ void NrWindowImplOSWin::setBounds(const NrRect& bounds) {
 NrRect NrWindowImplOSWin::getBounds() const {
     return impl->getBounds();
 }
+
+void NrWindowImplOSWin::centerScreen() {
+    return impl->centerScreen();
+}
+
+void NrWindowImplOSWin::centerParent(const NrWindowBase* parent) {
+    return impl->centerParent(parent);
+}
+
 
 /**
  * 私有函数，非桥接函数都在下面书写

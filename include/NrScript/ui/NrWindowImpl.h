@@ -37,7 +37,7 @@ public:
     /**
      * 获取与平台相关的系统本地窗口
      */
-    virtual NrWindowBase* getNativeWindow() override;
+    virtual NrWindowBase* getNativeWindow() const override;
 
     /**
      * 确认当前窗口状态是否ACTIVE
@@ -97,6 +97,16 @@ public:
      * 获取窗口位置、客户区大小
      */
     virtual NrRect getBounds() const override;
+
+    /**
+     * 屏幕居中
+     */
+    virtual void centerScreen() override;
+
+    /**
+     * 父窗口居中
+     */
+    virtual void centerParent(const NrWindowBase* parent) override;
 
 public:
     /**

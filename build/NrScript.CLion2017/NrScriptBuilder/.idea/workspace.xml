@@ -13,11 +13,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b5b5e8d-cc6a-4b78-8df7-880812372974" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../NrScriptBuilder/NrBuilderApp.cpp" afterPath="$PROJECT_DIR$/../../../NrScriptBuilder/NrBuilderApp.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../NrScriptBuilder/NrBuilderFrame.cpp" afterPath="$PROJECT_DIR$/../../../NrScriptBuilder/NrBuilderFrame.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NrScript/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../NrScript/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../include/NrScript/base/NrSimpleCharT.h" afterPath="$PROJECT_DIR$/../../../include/NrScript/base/NrSimpleCharT.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrSimpleCharTOSUnix.cpp" afterPath="$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrSimpleCharTOSUnix.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../src/NrScript/platform/windows/NrSimpleCharTOSWin.cpp" afterPath="$PROJECT_DIR$/../../../src/NrScript/platform/windows/NrSimpleCharTOSWin.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../include/NrScript/platform/linux/NrWindowImplOSUnix.h" afterPath="$PROJECT_DIR$/../../../include/NrScript/platform/linux/NrWindowImplOSUnix.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../include/NrScript/platform/windows/NrWindowImplOSWin.h" afterPath="$PROJECT_DIR$/../../../include/NrScript/platform/windows/NrWindowImplOSWin.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../include/NrScript/ui/NrWindowImpl.h" afterPath="$PROJECT_DIR$/../../../include/NrScript/ui/NrWindowImpl.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../include/NrScript/ui/internal/NrWindowBase.h" afterPath="$PROJECT_DIR$/../../../include/NrScript/ui/internal/NrWindowBase.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrWindowImplOSUnix.cpp" afterPath="$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrWindowImplOSUnix.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../src/NrScript/platform/windows/NrWindowImplOSWin.cpp" afterPath="$PROJECT_DIR$/../../../src/NrScript/platform/windows/NrWindowImplOSWin.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../src/NrScript/ui/NrWindowImpl.cpp" afterPath="$PROJECT_DIR$/../../../src/NrScript/ui/NrWindowImpl.cpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/../../../output/NrScript/x64/debug/" />
@@ -39,8 +45,8 @@
       <file leaf-file-name="NrBuilderApp.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../../../NrScriptBuilder/NrBuilderApp.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="86">
-              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+            <state relative-caret-position="120">
+              <caret line="8" column="1" lean-forward="false" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -201,11 +207,12 @@
       <workItem from="1510501902812" duration="33000" />
       <workItem from="1510502025052" duration="19000" />
       <workItem from="1510502788159" duration="667000" />
+      <workItem from="1510579956686" duration="3346000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43354000" />
+    <option name="totallyTimeSpent" value="46700000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="102" y="103" width="1785" height="789" extended-state="0" />
@@ -239,13 +246,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/../../../NrScriptBuilder/NrBuilderApp.cpp</url>
-          <line>21</line>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="34" />
     </breakpoint-manager>
     <watches-manager />
@@ -548,8 +548,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../NrScriptBuilder/NrBuilderApp.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        <state relative-caret-position="120">
+          <caret line="8" column="1" lean-forward="false" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
           <folding />
         </state>
       </provider>

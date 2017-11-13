@@ -81,7 +81,7 @@ public:
     /**
      * 获取与平台相关的系统本地窗口
      */
-    virtual NrWindowBase* getNativeWindow() = 0;
+    virtual NrWindowBase* getNativeWindow() const = 0;
 
     /**
      * 确认当前窗口状态是否ACTIVE
@@ -142,6 +142,16 @@ public:
      * 获取窗口位置、客户区大小
      */
     virtual NrRect getBounds() const = 0;
+    
+    /**
+     * 屏幕居中
+     */
+    virtual void centerScreen() = 0;
+
+    /**
+     * 父窗口居中
+     */
+    virtual void centerParent(const NrWindowBase* parent) = 0;
 
 //    /**
 //     * 确认当前窗口是否最大化
@@ -158,21 +168,11 @@ public:
 //     */
 //    virtual bool isFullscreen() const = 0;
 //
-//    /**
-//     * 获取当前窗口元句柄
-//     */
-//    virtual void* GetNativeWindow() const = 0;
 //
 //
 //
 //
 //
-
-//
-//    /**
-//     * 关闭窗口
-//     */
-//    virtual void close() = 0;
 //
 //    /**
 //     * 激活窗口并前置(若最小化则需要显示出来)

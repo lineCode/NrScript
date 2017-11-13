@@ -310,6 +310,9 @@ public:
         return (*m_value).equals(*source.m_value);
     }
 
+    /**
+     * 获取字符串长度
+     */
     typename NrSimpleCharT<T>::size_t length() const {
         return (*m_value).length();
     }

@@ -63,7 +63,7 @@ public:
         ::gtk_window_close(GTK_WINDOW(m_widget));
     }
 
-    NrWindowBase* getNativeWindow() override {
+    NrWindowBase* getNativeWindow() const override {
         return m_pOwner;
     }
 
@@ -72,7 +72,7 @@ public:
     }
 
     bool isVisible() const override {
-        return ::gtk_widget_is_visible(m_widget);
+        return static_cast<bool>(::gtk_widget_is_visible(m_widget));
     }
 
     bool isDialog() const override {
@@ -178,6 +178,18 @@ public:
         return retval;
     }
 
+    void centerScreen() override {
+        /**
+         * TODO:
+         */
+    }
+
+    void centerParent(const NrWindowBase* parent) {
+        /**
+         * TODO:
+         */
+    }
+
     void setContentView(NrControl* root) override {
         m_renderer->setRenderTarget(root);
     }
@@ -253,7 +265,7 @@ void NrWindowImplOSUnix::close() {
     return impl->close();
 }
 
-NrWindowBase* NrWindowImplOSUnix::getNativeWindow() {
+NrWindowBase* NrWindowImplOSUnix::getNativeWindow() const {
     return impl->getNativeWindow();
 }
 
@@ -303,6 +315,14 @@ NrRect NrWindowImplOSUnix::getBounds() const {
 
 void NrWindowImplOSUnix::setContentView(NrControl* root) {
     return impl->setContentView(root);
+}
+
+void NrWindowImplOSUnix::centerScreen() {
+    return impl->centerScreen();
+}
+
+void NrWindowImplOSUnix::centerParent(const NrWindowBase *parent) {
+    return impl->centerParent(parent);
 }
 
 /**

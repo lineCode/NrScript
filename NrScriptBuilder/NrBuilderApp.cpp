@@ -17,6 +17,8 @@ bool NrBuilderApp::initialize() {
     if (!m_builderFrame->create(parameter)) {
         return false;
     }
+
+    m_builderFrame->centerScreen();
     m_builderFrame->show();
     return true;
 }

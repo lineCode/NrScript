@@ -37,7 +37,7 @@ void NrWindowImpl::close() {
     return impl->close();
 }
 
-NrWindowBase* NrWindowImpl::getNativeWindow() {
+NrWindowBase* NrWindowImpl::getNativeWindow() const {
     return impl->getNativeWindow();
 }
 
@@ -85,6 +85,14 @@ NrRect NrWindowImpl::getBounds() const {
     return impl->getBounds();
 }
 
+void NrWindowImpl::centerScreen() {
+    return impl->centerScreen();
+}
+
+void NrWindowImpl::centerParent(const NrWindowBase* parent) {
+    return impl->centerParent(parent);
+}
+
 void NrWindowImpl::setContentView(NrControl* root) {
-    impl->setContentView(root);
+    return impl->setContentView(root);
 }
