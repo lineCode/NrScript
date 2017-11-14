@@ -7,7 +7,7 @@
 #include "NrScript/base.h"
 #include "NrScript/platform/linux/NrApplicationOSUnix.h"
 
-int NrApplicationOSUnix::exit(int exitCode) {
+int NrApplicationOSUnix::exit(const int exitCode) {
     ::gtk_main_quit();
     return exitCode;
 }

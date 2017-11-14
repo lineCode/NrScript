@@ -26,12 +26,12 @@ public:
     /**
      * 从字符串中加载
      */
-    virtual bool loadString(const char* xmlString);
+    virtual bool loadString(const NrString& xmlString);
 
     /**
      * 从文件中加载
      */
-    virtual bool loadFile(const char* filePath);
+    virtual bool loadFile(const NrString& filePath);
 
     /**
      * 从内存中读取

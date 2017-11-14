@@ -17,7 +17,7 @@ NrChars NrString::toChars() const {
      * 如果这里第4个参数填写-1，则返回字符串长度+1(结尾'\0')，否则只返回字符串长度。
      * 但我们不用-1，需要手动添加一个'\0'长度
      */
-    int newCount = ::WideCharToMultiByte(CP_ACP, 0, *this, static_cast<int>(this->length()), nullptr, 0, nullptr, nullptr);
+    const int newCount = ::WideCharToMultiByte(CP_ACP, 0, *this, static_cast<int>(this->length()), nullptr, 0, nullptr, nullptr);
     if (newCount) {
         buf = new typename NrChars::char_t[newCount + 1]();
     }
@@ -32,7 +32,7 @@ NrChars NrString::toChars() const {
     }
 
     if (buf != nullptr) {
-        delete buf;
+        delete[] buf;
     }
     return retval;
 }
@@ -51,7 +51,7 @@ NrCharsUTF8 NrString::toUTF8() const {
     typename NrCharsUTF8::char_t* buf = nullptr;
     NrCharsUTF8 retval;
 
-    int newCount = ::WideCharToMultiByte(CP_UTF8, 0, *this, static_cast<int>(this->length()), nullptr, 0, nullptr, nullptr);
+    const int newCount = ::WideCharToMultiByte(CP_UTF8, 0, *this, static_cast<int>(this->length()), nullptr, 0, nullptr, nullptr);
     if (newCount) {
         buf = new typename NrCharsUTF8::char_t[newCount + 1]();
     }
@@ -66,7 +66,7 @@ NrCharsUTF8 NrString::toUTF8() const {
     }
 
     if (buf != nullptr) {
-        delete buf;
+        delete[] buf;
     }
     return retval;
 }
@@ -75,7 +75,7 @@ NrString NrChars::toString() const {
     typename NrString::char_t* buf = nullptr;
     NrString retval;
 
-    int newCount = ::MultiByteToWideChar(CP_ACP, 0, *this, static_cast<int>(this->length()), nullptr, 0);
+    const int newCount = ::MultiByteToWideChar(CP_ACP, 0, *this, static_cast<int>(this->length()), nullptr, 0);
     if (newCount) {
         buf = new typename NrString::char_t[newCount + 1]();
     }
@@ -90,7 +90,7 @@ NrString NrChars::toString() const {
     }
 
     if (buf != nullptr) {
-        delete buf;
+        delete[] buf;
     }
     return retval;
 }
@@ -127,7 +127,7 @@ NrString NrCharsUTF8::toString() const {
     typename NrString::char_t* buf = nullptr;
     NrString retval;
 
-    int newCount = ::MultiByteToWideChar(CP_UTF8, 0, *this, static_cast<int>(this->length()), nullptr, 0);
+    const int newCount = ::MultiByteToWideChar(CP_UTF8, 0, *this, static_cast<int>(this->length()), nullptr, 0);
     if (newCount) {
         buf = new typename NrString::char_t[newCount + 1]();
     }
@@ -143,7 +143,7 @@ NrString NrCharsUTF8::toString() const {
     }
 
     if (buf != nullptr) {
-        delete buf;
+        delete[] buf;
     }
     return retval;
 }

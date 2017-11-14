@@ -100,7 +100,7 @@ private:
     template<typename T>
     class NrEventCallbackComplex : public NrEventCallback {
     public:
-        virtual retval_type run(sender_type sender, parameter_type parameter) {
+        retval_type run(sender_type sender, parameter_type parameter) override {
         #ifdef NRSCRIPT_DEBUG
             if (m_object == nullptr || m_callback == nullptr) {
                 NRSCRIPT_ASSERT(false);
@@ -109,7 +109,7 @@ private:
             return (m_object->*m_callback)(sender, parameter);
         }
 
-        virtual bool isEquals(const NrEventCallback* callback) {
+        bool isEquals(const NrEventCallback* callback) override {
             const NrEventCallbackComplex<T>* pComplex = dynamic_cast<const NrEventCallbackComplex<T>*>(callback);
             if (pComplex && pComplex->m_object == m_object && pComplex->m_callback == m_callback) {
                 return true;
@@ -117,7 +117,7 @@ private:
             return false;
         }
 
-        virtual NrEventCallback* newInstance() const {
+        NrEventCallback* newInstance() const override {
             NrEventCallbackComplex<T>* retval = new NrEventCallbackComplex<T>();
             retval->m_object = m_object;
             retval->m_callback = m_callback;
@@ -125,12 +125,12 @@ private:
             return retval;
         }
 
-        virtual void reset() {
+        void reset() override {
             m_object = nullptr;
             m_callback = nullptr;
         }
 
-        virtual bool isEnable() {
+        bool isEnable() override {
             return (m_object != nullptr && m_callback != nullptr);
         }
 
@@ -144,7 +144,7 @@ private:
      */
     class NrEventCallbackSimple : public NrEventCallback {
     public:
-        virtual retval_type run(sender_type sender, parameter_type parameter) {
+        retval_type run(sender_type sender, parameter_type parameter) override {
         #ifdef NRSCRIPT_DEBUG
             if (m_callback == nullptr) {
                 NRSCRIPT_ASSERT(false);
@@ -153,7 +153,7 @@ private:
             return m_callback(sender, parameter);
         }
 
-        virtual bool isEquals(const NrEventCallback* callback) {
+        bool isEquals(const NrEventCallback* callback) override {
             const NrEventCallbackSimple* pSimple = dynamic_cast<const NrEventCallbackSimple*>(callback);
             if (pSimple && pSimple->m_callback == m_callback) {
                 return true;
@@ -161,18 +161,18 @@ private:
             return false;
         }
 
-        virtual NrEventCallback* newInstance() const {
+        NrEventCallback* newInstance() const override {
             NrEventCallbackSimple* retval = new NrEventCallbackSimple();
             retval->m_callback = m_callback;
 
             return retval;
         }
 
-        virtual void reset() {
+        void reset() override {
             m_callback = nullptr;
         }
 
-        virtual bool isEnable() {
+        bool isEnable() override {
             return (m_callback != nullptr);
         }
 

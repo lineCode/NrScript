@@ -291,7 +291,7 @@ public:
     /**
      * 访问字符串内存
      */
-    operator const char_t*() const {
+    virtual operator const char_t*() const {
         return (*m_value);
     }
 
@@ -541,7 +541,7 @@ public:
     /**
      * 访问字符串内存
      */
-    operator const typename NrCharsUTF8::char_t* () const;
+    operator const typename NrCharsUTF8::char_t* () const override;
 
 public:
     /**

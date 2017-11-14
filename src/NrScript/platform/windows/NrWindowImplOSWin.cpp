@@ -48,7 +48,7 @@ private:
     /**
      * 窗口回调过程
      */
-    static LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+    static LRESULT CALLBACK WndProc(const HWND hWnd, const UINT uMsg, const WPARAM wParam, const LPARAM lParam) {
         Impl* self = nullptr;
 
         if (uMsg == WM_NCCREATE) {
@@ -74,7 +74,7 @@ public:
     /**
      * 窗口过程
      */
-    LRESULT handleMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+    LRESULT handleMessage(const HWND hWnd, const UINT uMsg, const WPARAM wParam, const LPARAM lParam) const {
         /**
          * 此处不要添加任何代码
          */
@@ -91,7 +91,7 @@ public:
      */
     bool create(const NrWindowBase::CreateParameter& parameter) override {
         static bool kNrScriptWindowClassRegistered = false;
-        const auto hInstance = ::GetModuleHandle(0);
+        const auto hInstance = ::GetModuleHandle(nullptr);
 
         if (!kNrScriptWindowClassRegistered) {
             WNDCLASSEX wndClassEx = {0};
@@ -114,8 +114,8 @@ public:
             }
         }
 
-        DWORD styleEx = WS_EX_WINDOWEDGE | WS_EX_ACCEPTFILES;
-        DWORD style = WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN;
+        const DWORD styleEx = WS_EX_WINDOWEDGE | WS_EX_ACCEPTFILES;
+        const DWORD style = WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN;
 
         if (kNrScriptWindowClassRegistered) {
             RECT rSrc {};
@@ -193,7 +193,7 @@ public:
             return NrDialogResult::Exception;
         }
 
-        HWND hCaptured = ::GetCapture();
+        const HWND hCaptured = ::GetCapture();
         if (hCaptured) {
             ::SendMessage(hCaptured, WM_CANCELMODE, 0, 0);
             ::ReleaseCapture();
@@ -207,7 +207,7 @@ public:
             reinterpret_cast<LONG_PTR>(parentHwnd->getHwnd()))
             );
 
-        bool bPreEnabled = !::EnableWindow(parentHwnd->getHwnd(), false);
+        const bool bPreEnabled = !::EnableWindow(parentHwnd->getHwnd(), false);
         this->show();
         m_isDialog = true;
         m_dialogResult = NrDialogResult::None;
@@ -256,7 +256,7 @@ public:
         return m_dialogResult;
     }
 
-    void setDialogResult(NrDialogResult result) override {
+    void setDialogResult(const NrDialogResult result) override {
         m_dialogResult = result;
     }
 
@@ -305,10 +305,10 @@ public:
         int x = ((workArea.right - workArea.left) - (selfArea.right - selfArea.left)) / 2;
         int y = ((workArea.bottom - workArea.top) - (selfArea.bottom - selfArea.top)) / 2;
         
-        ::SetWindowPos(m_Hwnd, NULL, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+        ::SetWindowPos(m_Hwnd, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
     }
 
-    void centerParent(const NrWindowBase* parent) {
+    void centerParent(const NrWindowBase* parent) override {
         if (parent == nullptr) {
             NRSCRIPT_ASSERT(false);
             return;
@@ -335,7 +335,7 @@ public:
     /**
      * 获取渲染器
      */
-    NrWidgetsTreeRenderer* getRenderer() {
+    NrWidgetsTreeRenderer* getRenderer() const {
         return m_renderer;
     }
 
@@ -343,7 +343,7 @@ private:
     /**
      * 检查对话框返回值
      */
-    bool isEndDialog() {
+    bool isEndDialog() const {
         if (m_dialogResult == NrDialogResult::None && isVisible()) {
             return false;
         } else {
@@ -439,7 +439,7 @@ NrDialogResult NrWindowImplOSWin::showDialog(NrWindowBase* parent) {
     return impl->showDialog(parent);
 }
 
-void NrWindowImplOSWin::setDialogResult(NrDialogResult result) {
+void NrWindowImplOSWin::setDialogResult(const NrDialogResult result) {
     return impl->setDialogResult(result);
 }
 
@@ -482,7 +482,7 @@ void NrWindowImplOSWin::finalizeEvents() {
     delete eOnMessagePtr;
 }
 
-LRESULT NrWindowImplOSWin::handleMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+LRESULT NrWindowImplOSWin::handleMessage(const HWND hWnd, const UINT uMsg, const WPARAM wParam, const LPARAM lParam) {
     MESSAGE msg {hWnd, uMsg, wParam, lParam, false};
     
     /**
@@ -491,6 +491,10 @@ LRESULT NrWindowImplOSWin::handleMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LP
     NrWidgetsTreeRenderer* renderer =
         dynamic_cast<NrWindowImplOSWin::Impl*>(impl)->getRenderer();
     
+    if (renderer) {
+        
+    }
+
     switch (uMsg) {
     case WM_PAINT:
         {
@@ -511,7 +515,7 @@ LRESULT NrWindowImplOSWin::handleMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LP
      * 消息分发
      */
     if (!eOnMessagePtr->isEmpty()) {
-        LRESULT retval = (*eOnMessagePtr)(this, msg);
+        const LRESULT retval = (*eOnMessagePtr)(this, msg);
 
         if (msg.handled) {
             return retval;
@@ -581,12 +585,6 @@ LRESULT NrWindowImplOSWin::OnMessage(NrWindowImplOSWin* sender, MESSAGE& msg) {
         break;
     case WM_KEYDOWN:
         {
-            if (msg.wParam == VK_ESCAPE) {
-                int i = 0;
-            }
-            else if (msg.wParam == VK_RETURN) {
-                int i = 0;
-            }
         }
         break;
     }

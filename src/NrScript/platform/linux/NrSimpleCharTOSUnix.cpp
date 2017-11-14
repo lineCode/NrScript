@@ -44,13 +44,13 @@ NrChars NrString::toChars() const {
     typename NrChars::char_t* buf = nullptr;
     NrChars retval;
 
-    size_t newCount = ::wcstombs(nullptr, *this, 0);
-    if (newCount != -1) {
+    NrChars::size_t newCount = ::wcstombs(nullptr, *this, 0);
+    if (newCount != NrChars::npos) {
         buf = new typename NrChars::char_t[newCount + 1]();
     }
 
     if (buf) {
-        if (::wcstombs(buf, *this, this->length()) != -1) {
+        if (::wcstombs(buf, *this, this->length()) != NrChars::npos) {
             buf[newCount] = 0;
             retval = buf;
         }
@@ -59,7 +59,7 @@ NrChars NrString::toChars() const {
     }
 
     if (buf != nullptr) {
-        delete buf;
+        delete[] buf;
     }
     return retval;
 }
@@ -75,13 +75,13 @@ NrString NrChars::toString() const {
     typename NrString::char_t* buf = nullptr;
     NrString retval;
 
-    size_t newCount = ::mbstowcs(nullptr, *this, 0);
-    if (newCount != -1) {
+    NrString::size_t newCount = ::mbstowcs(nullptr, *this, 0);
+    if (newCount != NrString::npos) {
         buf = new typename NrString::char_t[newCount + 1]();
     }
 
     if (buf) {
-        if (::mbstowcs(buf, *this, this->length()) != -1) {
+        if (::mbstowcs(buf, *this, this->length()) != NrString::npos) {
             buf[newCount] = 0;
             retval = buf;
         }
@@ -91,7 +91,7 @@ NrString NrChars::toString() const {
     }
 
     if (buf != nullptr) {
-        delete buf;
+        delete[] buf;
     }
     return retval;
 }
@@ -130,7 +130,7 @@ NrString NrCharsUTF8::toString() const {
     __gcc_utf8_wchar_convert<typename NrString::char_t> conv;
     __gcc_utf8_wchar_convert<typename NrString::char_t>::wide_string bytes = conv.from_bytes(*this);
 
-    NrString retval{};
+    NrString retval {};
     if (!bytes.empty()) {
         retval = bytes.c_str();
     }

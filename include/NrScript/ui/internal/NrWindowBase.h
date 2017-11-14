@@ -121,7 +121,7 @@ public:
      * 设置对话框返回值
      * @remarks 此函数将终止模态对话框显示
      */
-    virtual void setDialogResult(NrDialogResult result) = 0;
+    virtual void setDialogResult(const NrDialogResult result) = 0;
 
     /**
      * 显示窗口、但不激活

@@ -17,7 +17,7 @@ public:
     /**
      * 退出程序
      */
-    static int exit(int exitCode);
+    static int exit(const int exitCode);
 };
 
 #endif

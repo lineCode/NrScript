@@ -13,18 +13,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ea09ad3-e366-4cce-bafa-f4b3c9f27365" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../NrScriptBuilder/NrBuilderApp.cpp" afterPath="$PROJECT_DIR$/../../../NrScriptBuilder/NrBuilderApp.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../NrScriptBuilder/NrBuilderFrame.cpp" afterPath="$PROJECT_DIR$/../../../NrScriptBuilder/NrBuilderFrame.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NrScriptBuilder/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../NrScriptBuilder/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../include/NrScript/base/NrEvent.h" afterPath="$PROJECT_DIR$/../../../include/NrScript/base/NrEvent.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../include/NrScript/base/NrSimpleCharT.h" afterPath="$PROJECT_DIR$/../../../include/NrScript/base/NrSimpleCharT.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../include/NrScript/defs.h" afterPath="$PROJECT_DIR$/../../../include/NrScript/defs.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../include/NrScript/platform/linux/NrApplicationOSUnix.h" afterPath="$PROJECT_DIR$/../../../include/NrScript/platform/linux/NrApplicationOSUnix.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../include/NrScript/platform/linux/NrWindowImplOSUnix.h" afterPath="$PROJECT_DIR$/../../../include/NrScript/platform/linux/NrWindowImplOSUnix.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../include/NrScript/platform/windows/NrApplicationOSWin.h" afterPath="$PROJECT_DIR$/../../../include/NrScript/platform/windows/NrApplicationOSWin.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../include/NrScript/platform/windows/NrWindowImplOSWin.h" afterPath="$PROJECT_DIR$/../../../include/NrScript/platform/windows/NrWindowImplOSWin.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../include/NrScript/ui/NrWindowImpl.h" afterPath="$PROJECT_DIR$/../../../include/NrScript/ui/NrWindowImpl.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../include/NrScript/ui/internal/NrWindowBase.h" afterPath="$PROJECT_DIR$/../../../include/NrScript/ui/internal/NrWindowBase.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../include/NrScript/xml/NrXmlDocument.h" afterPath="$PROJECT_DIR$/../../../include/NrScript/xml/NrXmlDocument.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrApplicationOSUnix.cpp" afterPath="$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrApplicationOSUnix.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrSimpleCharTOSUnix.cpp" afterPath="$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrSimpleCharTOSUnix.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrWindowImplOSUnix.cpp" afterPath="$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrWindowImplOSUnix.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../src/NrScript/platform/windows/NrApplicationOSWin.cpp" afterPath="$PROJECT_DIR$/../../../src/NrScript/platform/windows/NrApplicationOSWin.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../src/NrScript/platform/windows/NrSimpleCharTOSWin.cpp" afterPath="$PROJECT_DIR$/../../../src/NrScript/platform/windows/NrSimpleCharTOSWin.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../src/NrScript/platform/windows/NrWindowImplOSWin.cpp" afterPath="$PROJECT_DIR$/../../../src/NrScript/platform/windows/NrWindowImplOSWin.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../src/NrScript/ui/NrWindowImpl.cpp" afterPath="$PROJECT_DIR$/../../../src/NrScript/ui/NrWindowImpl.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../src/NrScript/xml/NrXmlDocument.cpp" afterPath="$PROJECT_DIR$/../../../src/NrScript/xml/NrXmlDocument.cpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/cmake-build-release/" />
@@ -44,38 +53,88 @@
       <file leaf-file-name="NrSimpleCharT.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../../include/NrScript/base/NrSimpleCharT.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="409" column="22" lean-forward="false" selection-start-line="409" selection-start-column="22" selection-end-line="409" selection-end-column="22" />
+            <state relative-caret-position="174">
+              <caret line="238" column="51" lean-forward="false" selection-start-line="238" selection-start-column="51" selection-end-line="238" selection-end-column="51" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NrWindowImplOSUnix.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="NrWindowImplOSUnix.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrWindowImplOSUnix.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="182" column="16" lean-forward="true" selection-start-line="182" selection-start-column="16" selection-end-line="182" selection-end-column="16" />
+            <state relative-caret-position="164">
+              <caret line="134" column="16" lean-forward="false" selection-start-line="134" selection-start-column="16" selection-end-line="134" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gtkwindow.h" pinned="false" current-in-tab="false">
-        <entry file="file://C:/msys64/mingw64/include/gtk-3.0/gtk/gtkwindow.h">
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="37" lean-forward="false" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NrWindowBase.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../src/NrScript/ui/internal/NrWindowBase.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NrSimpleCharTOSUnix.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrSimpleCharTOSUnix.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="358">
+              <caret line="132" column="20" lean-forward="false" selection-start-line="132" selection-start-column="20" selection-end-line="132" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="stdlib.h" pinned="false" current-in-tab="false">
+        <entry file="file://C:/msys64/mingw64/x86_64-w64-mingw32/include/stdlib.h">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="174">
-              <caret line="285" column="11" lean-forward="false" selection-start-line="285" selection-start-column="11" selection-end-line="285" selection-end-column="11" />
+              <caret line="385" column="17" lean-forward="false" selection-start-line="385" selection-start-column="17" selection-end-line="385" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gdkwindow.h" pinned="false" current-in-tab="false">
-        <entry file="file://C:/msys64/mingw64/include/gtk-3.0/gdk/gdkwindow.h">
+      <file leaf-file-name="NrWidgetCommonProperties.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../include/NrScript/ui/internal/NrWidgetCommonProperties.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="219" column="15" lean-forward="true" selection-start-line="219" selection-start-column="4" selection-end-line="219" selection-end-column="22" />
+            <state relative-caret-position="174">
+              <caret line="12" column="35" lean-forward="false" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NrApplicationOSUnix.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../include/NrScript/platform/linux/NrApplicationOSUnix.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="17" lean-forward="false" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NrApplicationOSUnix.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrApplicationOSUnix.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="36" lean-forward="false" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -84,8 +143,8 @@
       <file leaf-file-name="NrWindowImplOSUnix.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../../include/NrScript/platform/linux/NrWindowImplOSUnix.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="49" column="21" lean-forward="false" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+            <state relative-caret-position="329">
+              <caret line="90" column="25" lean-forward="false" selection-start-line="90" selection-start-column="25" selection-end-line="90" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -116,13 +175,15 @@
         <option value="$PROJECT_DIR$/../../../src/NrScript/ui/platform/NrWindowImplOSUnix.cpp" />
         <option value="$PROJECT_DIR$/../../../src/NrScript/ui/NrWindowImpl.cpp" />
         <option value="$PROJECT_DIR$/../../../include/NrScript/defs.h" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/../../../src/NrScript/base/NrSimpleCharT.cpp" />
         <option value="$PROJECT_DIR$/../../../src/NrScript/platform/windows/NrSimpleCharTOSWin.cpp" />
-        <option value="$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrSimpleCharTOSUnix.cpp" />
         <option value="$PROJECT_DIR$/../../../include/NrScript/base/NrSimpleCharT.h" />
         <option value="$PROJECT_DIR$/../../../include/NrScript/platform/linux/NrWindowImplOSUnix.h" />
+        <option value="$PROJECT_DIR$/../../../include/NrScript/platform/linux/NrApplicationOSUnix.h" />
+        <option value="$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrApplicationOSUnix.cpp" />
         <option value="$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrWindowImplOSUnix.cpp" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrSimpleCharTOSUnix.cpp" />
       </list>
     </option>
   </component>
@@ -384,27 +445,28 @@
       <workItem from="1510503399517" duration="15000" />
       <workItem from="1510531781975" duration="1014000" />
       <workItem from="1510579691686" duration="3943000" />
+      <workItem from="1510673340065" duration="1000" />
+      <workItem from="1510673362310" duration="377000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106326000" />
+    <option name="totallyTimeSpent" value="106704000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="354" y="109" width="1475" height="842" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24468814" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23281908" sideWeight="0.4976011" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23281908" sideWeight="0.4976011" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31893265" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4388587" sideWeight="0.5023989" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47124824" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -428,8 +490,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../../../src/NrScript/base/NrString.cpp" />
-    <entry file="file://$PROJECT_DIR$/../../../include/NrScript/base/NrString.h" />
     <entry file="file://$PROJECT_DIR$/../../../include/NrScript/base/NrEvent.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5486">
@@ -495,27 +555,6 @@
     <entry file="file:///usr/include/gtk-3.0/gtk/gtkwindow.h" />
     <entry file="file:///usr/include/gtk-3.0/gtk/gtkdialog.h" />
     <entry file="file://C:/msys64/mingw64/include/glib-2.0/glib/gtypes.h" />
-    <entry file="file://$PROJECT_DIR$/../../../include/NrScript/platform/linux/NrApplicationOSUnix.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="864">
-          <caret line="54" column="51" lean-forward="false" selection-start-line="54" selection-start-column="51" selection-end-line="54" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrApplicationOSUnix.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/include/c++/7/bits/basic_string.h" />
     <entry file="file://$PROJECT_DIR$/../../../NrScriptBuilder/NrBuilderFrame.cpp">
       <provider selected="true" editor-type-id="text-editor">
@@ -533,13 +572,6 @@
     </entry>
     <entry file="file:///usr/include/stdlib.h" />
     <entry file="file://C:/msys64/mingw64/include/c++/7.2.0/bits/basic_string.h" />
-    <entry file="file://$PROJECT_DIR$/../../../src/NrScript/ui/internal/NrWindowBase.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/include/c++/7/bits/locale_conv.h" />
     <entry file="file://C:/msys64/mingw64/include/c++/7.2.0/codecvt">
       <provider selected="true" editor-type-id="text-editor">
@@ -552,13 +584,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-506">
           <caret line="165" column="44" lean-forward="false" selection-start-line="165" selection-start-column="39" selection-end-line="165" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrSimpleCharTOSUnix.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="25" column="98" lean-forward="false" selection-start-line="25" selection-start-column="98" selection-end-line="25" selection-end-column="98" />
         </state>
       </provider>
     </entry>
@@ -591,19 +616,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../include/NrScript/base/NrSimpleCharT.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="409" column="22" lean-forward="false" selection-start-line="409" selection-start-column="22" selection-end-line="409" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/msys64/mingw64/include/gtk-3.0/gdk/gdkversionmacros.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="117">
           <caret line="47" column="8" lean-forward="false" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -611,7 +627,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="126" column="13" lean-forward="false" selection-start-line="126" selection-start-column="13" selection-end-line="126" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -619,7 +634,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4136">
           <caret line="141" column="38" lean-forward="false" selection-start-line="141" selection-start-column="38" selection-end-line="141" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -627,38 +641,101 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="57" column="13" lean-forward="false" selection-start-line="57" selection-start-column="13" selection-end-line="57" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://C:/msys64/mingw64/include/gtk-3.0/gdk/gdkwindow.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="219" column="15" lean-forward="true" selection-start-line="219" selection-start-column="4" selection-end-line="219" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../include/NrScript/platform/linux/NrWindowImplOSUnix.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="49" column="21" lean-forward="false" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+        <state relative-caret-position="3285">
+          <caret line="219" column="15" lean-forward="false" selection-start-line="219" selection-start-column="4" selection-end-line="219" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://C:/msys64/mingw64/include/gtk-3.0/gtk/gtkwindow.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
+        <state relative-caret-position="4275">
           <caret line="285" column="11" lean-forward="false" selection-start-line="285" selection-start-column="11" selection-end-line="285" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../include/NrScript/platform/linux/NrWindowImplOSUnix.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="90" column="25" lean-forward="false" selection-start-line="90" selection-start-column="25" selection-end-line="90" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../include/NrScript/platform/linux/NrApplicationOSUnix.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="17" lean-forward="false" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrApplicationOSUnix.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="36" lean-forward="false" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrWindowImplOSUnix.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="182" column="16" lean-forward="true" selection-start-line="182" selection-start-column="16" selection-end-line="182" selection-end-column="16" />
+        <state relative-caret-position="164">
+          <caret line="134" column="16" lean-forward="false" selection-start-line="134" selection-start-column="16" selection-end-line="134" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="37" lean-forward="false" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../include/NrScript/ui/internal/NrWidgetCommonProperties.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="12" column="35" lean-forward="false" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../src/NrScript/ui/internal/NrWindowBase.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/msys64/mingw64/x86_64-w64-mingw32/include/stdlib.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="385" column="17" lean-forward="false" selection-start-line="385" selection-start-column="17" selection-end-line="385" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../include/NrScript/base/NrSimpleCharT.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="238" column="51" lean-forward="false" selection-start-line="238" selection-start-column="51" selection-end-line="238" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrSimpleCharTOSUnix.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="132" column="20" lean-forward="false" selection-start-line="132" selection-start-column="20" selection-end-line="132" selection-end-column="20" />
           <folding />
         </state>
       </provider>

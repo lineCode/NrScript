@@ -17,8 +17,6 @@
 
 using NrReserved = int;
 
-#define NRSCRIPT_UNREFERENCED_PARAMETER(x) (x)
-
 #ifdef NRSCRIPT_BUILD_PLATFORM_LINUX
     #ifdef NRSCRIPT_EXPORTS
         #define NRSCRIPT_API_VISUAL         __attribute__((visibility("default")))

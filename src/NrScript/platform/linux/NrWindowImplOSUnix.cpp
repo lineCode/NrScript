@@ -144,7 +144,7 @@ public:
         return m_dialogResult;
     }
 
-    void setDialogResult(NrDialogResult result) override {
+    void setDialogResult(const NrDialogResult result) override {
         if (!isDialog()) {
             NRSCRIPT_ASSERT(false);
         }
@@ -301,7 +301,7 @@ NrDialogResult NrWindowImplOSUnix::showDialog(NrWindowBase *parent) {
     return impl->showDialog(parent);
 }
 
-void NrWindowImplOSUnix::setDialogResult(NrDialogResult result) {
+void NrWindowImplOSUnix::setDialogResult(const NrDialogResult result) {
     return impl->setDialogResult(result);
 }
 

@@ -65,7 +65,7 @@ NrDialogResult NrWindowImpl::showDialog(NrWindowBase* parent) {
     return impl->showDialog(parent);
 }
 
-void NrWindowImpl::setDialogResult(NrDialogResult result) {
+void NrWindowImpl::setDialogResult(const NrDialogResult result) {
     return impl->setDialogResult(result);
 }
 

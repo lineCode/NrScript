@@ -35,14 +35,23 @@ NrXmlDocument::~NrXmlDocument() {
     delete impl;
 }
 
-bool NrXmlDocument::loadString(const char* xmlString) {
-    return false;
+bool NrXmlDocument::loadString(const NrString& xmlString) {
+    if (xmlString.isEmpty()) {
+        return false;
+    }
+    return true;
 }
 
-bool NrXmlDocument::loadFile(const char* filePath) {
-    return false;
+bool NrXmlDocument::loadFile(const NrString& filePath) {
+    if (filePath.isEmpty()) {
+        return false;
+    }
+    return true;
 }
 
 bool NrXmlDocument::loadBuffer(const char* buffer) {
-    return false;
+    if (buffer == nullptr) {
+        return false;
+    }
+    return true;
 }
