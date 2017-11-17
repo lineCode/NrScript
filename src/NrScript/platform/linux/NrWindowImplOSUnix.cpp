@@ -183,6 +183,10 @@ public:
         return retval;
     }
 
+    /**
+     * 11/08/2017 在Ubuntu17.10下无法gtk_window_move
+     * TODO:不知道什么问题
+     */
     void centerScreen() override {
         GdkRectangle area {};
         NrRect selfBounds {};
