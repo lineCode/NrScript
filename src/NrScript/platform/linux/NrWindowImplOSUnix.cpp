@@ -52,6 +52,11 @@ public:
             return false;
         }
 
+        /**
+         * 这里需要显式地创建gdk资源. T.T
+         * 不然在窗口没有显示之前，gdk资源没有与当前gtk资源绑定，一些操作无法生效！
+         */
+        ::gtk_widget_realize(m_widget);
         ::gtk_window_set_title(GTK_WINDOW(m_widget), parameter.caption.toUTF8());
         ::gtk_window_resize(GTK_WINDOW(m_widget), parameter.bounds.width, parameter.bounds.height);
         ::gtk_window_move(GTK_WINDOW(m_widget), parameter.bounds.x, parameter.bounds.y);
@@ -180,25 +185,46 @@ public:
 
     void centerScreen() override {
         GdkRectangle area {};
+        NrRect selfBounds {};
+        gint tbWidth = 0;
+        gint tbHeight = 0;
 
-        GdkWindow*  pWindow  = ::gtk_widget_get_parent_window(m_widget);
+        GdkWindow*  pWindow  = ::gtk_widget_get_window(m_widget);
         GdkDisplay* pDisplay = ::gtk_widget_get_display(m_widget);
         GdkMonitor* pMonitor = ::gdk_display_get_monitor_at_window(pDisplay, pWindow);
 
         ::gdk_monitor_get_workarea(pMonitor, &area);
+        selfBounds = getBounds();
+        ::gdk_window_get_geometry(pWindow, &tbWidth, &tbHeight, nullptr, nullptr);
 
-        NrRect selfBounds = getBounds();
-        int x = (area.width - selfBounds.width) / 2;
-        int y = (area.height - selfBounds.height) / 2;
+        int x = (area.width - selfBounds.width) / 2 - tbWidth;
+        int y = (area.height - selfBounds.height) / 2 - tbHeight;
 
         ::gtk_window_resize(GTK_WINDOW(m_widget), selfBounds.width, selfBounds.height);
         ::gtk_window_move(GTK_WINDOW(m_widget), x, y);
     }
 
     void centerParent(const NrWindowBase* parent) {
-        /**
-         * TODO:
-         */
+        if (parent == nullptr) {
+            NRSCRIPT_ASSERT(false);
+            return;
+        }
+
+        NrWindowImplOSUnix* native = dynamic_cast<NrWindowImplOSUnix*>(parent->getNativeWindow());
+        if (native == nullptr) {
+            NRSCRIPT_ASSERT(false);
+            return;
+        }
+
+        GdkWindow* pGdkWindow = ::gtk_widget_get_window(m_widget);
+        NrRect selfBounds  = this->getBounds();
+        NrRect ownerBounds = native->getBounds();
+
+        int x = (ownerBounds.width - selfBounds.width) / 2;
+        int y = (ownerBounds.height - selfBounds.height) / 2;
+
+        ::gtk_window_resize(GTK_WINDOW(m_widget), selfBounds.width, selfBounds.height);
+        ::gtk_window_move(GTK_WINDOW(m_widget), x + ownerBounds.x, y + ownerBounds.y);
     }
 
     void setContentView(NrControl* root) override {
