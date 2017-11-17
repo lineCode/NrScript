@@ -179,9 +179,20 @@ public:
     }
 
     void centerScreen() override {
-        /**
-         * TODO:
-         */
+        GdkRectangle area {};
+
+        GdkWindow*  pWindow  = ::gtk_widget_get_parent_window(m_widget);
+        GdkDisplay* pDisplay = ::gtk_widget_get_display(m_widget);
+        GdkMonitor* pMonitor = ::gdk_display_get_monitor_at_window(pDisplay, pWindow);
+
+        ::gdk_monitor_get_workarea(pMonitor, &area);
+
+        NrRect selfBounds = getBounds();
+        int x = (area.width - selfBounds.width) / 2;
+        int y = (area.height - selfBounds.height) / 2;
+
+        ::gtk_window_resize(GTK_WINDOW(m_widget), selfBounds.width, selfBounds.height);
+        ::gtk_window_move(GTK_WINDOW(m_widget), x, y);
     }
 
     void centerParent(const NrWindowBase* parent) {

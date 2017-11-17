@@ -13,21 +13,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b5b5e8d-cc6a-4b78-8df7-880812372974" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../NrScriptBuilder/NrBuilderApp.cpp" afterPath="$PROJECT_DIR$/../../../NrScriptBuilder/NrBuilderApp.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NrScript/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../NrScript/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../include/NrScript/base/NrEvent.h" afterPath="$PROJECT_DIR$/../../../include/NrScript/base/NrEvent.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../include/NrScript/base/NrSimpleCharT.h" afterPath="$PROJECT_DIR$/../../../include/NrScript/base/NrSimpleCharT.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../include/NrScript/defs.h" afterPath="$PROJECT_DIR$/../../../include/NrScript/defs.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../include/NrScript/platform/windows/NrApplicationOSWin.h" afterPath="$PROJECT_DIR$/../../../include/NrScript/platform/windows/NrApplicationOSWin.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../include/NrScript/platform/windows/NrWindowImplOSWin.h" afterPath="$PROJECT_DIR$/../../../include/NrScript/platform/windows/NrWindowImplOSWin.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../include/NrScript/ui/NrWindowImpl.h" afterPath="$PROJECT_DIR$/../../../include/NrScript/ui/NrWindowImpl.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../include/NrScript/ui/internal/NrWindowBase.h" afterPath="$PROJECT_DIR$/../../../include/NrScript/ui/internal/NrWindowBase.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../include/NrScript/xml/NrXmlDocument.h" afterPath="$PROJECT_DIR$/../../../include/NrScript/xml/NrXmlDocument.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrSimpleCharTOSUnix.cpp" afterPath="$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrSimpleCharTOSUnix.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../src/NrScript/platform/windows/NrApplicationOSWin.cpp" afterPath="$PROJECT_DIR$/../../../src/NrScript/platform/windows/NrApplicationOSWin.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../src/NrScript/platform/windows/NrSimpleCharTOSWin.cpp" afterPath="$PROJECT_DIR$/../../../src/NrScript/platform/windows/NrSimpleCharTOSWin.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../src/NrScript/platform/windows/NrWindowImplOSWin.cpp" afterPath="$PROJECT_DIR$/../../../src/NrScript/platform/windows/NrWindowImplOSWin.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../src/NrScript/ui/NrWindowImpl.cpp" afterPath="$PROJECT_DIR$/../../../src/NrScript/ui/NrWindowImpl.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../src/NrScript/xml/NrXmlDocument.cpp" afterPath="$PROJECT_DIR$/../../../src/NrScript/xml/NrXmlDocument.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrWindowImplOSUnix.cpp" afterPath="$PROJECT_DIR$/../../../src/NrScript/platform/linux/NrWindowImplOSUnix.cpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/../../../output/NrScript/x64/debug/" />
@@ -49,8 +38,8 @@
       <file leaf-file-name="NrBuilderApp.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../../../NrScriptBuilder/NrBuilderApp.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="1" lean-forward="false" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+            <state relative-caret-position="0">
+              <caret line="0" column="27" lean-forward="true" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -82,9 +71,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
-    <option name="y" value="159" />
-    <option name="width" value="1785" />
+    <option name="x" value="327" />
+    <option name="y" value="107" />
+    <option name="width" value="1775" />
     <option name="height" value="789" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -234,28 +223,31 @@
       <workItem from="1510502788159" duration="667000" />
       <workItem from="1510579956686" duration="3346000" />
       <workItem from="1510673324829" duration="39000" />
+      <workItem from="1510704350110" duration="2308000" />
+      <workItem from="1510928668098" duration="2077000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46739000" />
+    <option name="totallyTimeSpent" value="51124000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="159" width="1785" height="789" extended-state="0" />
+    <frame x="327" y="107" width="1775" height="789" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14810628" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14816901" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26876876" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32660782" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32880434" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32880434" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28316328" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32880434" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32880434" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46846846" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.57272726" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3121212" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -272,7 +264,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="34" />
+      <option name="time" value="35" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -560,7 +552,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
           <caret line="519" column="6" lean-forward="true" selection-start-line="519" selection-start-column="6" selection-end-line="519" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -574,8 +565,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../NrScriptBuilder/NrBuilderApp.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="1" lean-forward="false" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+        <state relative-caret-position="0">
+          <caret line="0" column="27" lean-forward="true" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="27" />
           <folding />
         </state>
       </provider>
