@@ -1,7 +1,17 @@
 ﻿/**
  * NrScript Source Code File saved as UTF-8.bom format 
  * 
- * note : NrScript库中所有常量字符串(文字、符号)必须限定为英文 
+ * note : 1. NrScript库中所有char常量字符串(文字、符号)必须限定为英文 
+ *        2. 与特定系统平台相关的代码，请放入platform目录中
+ *        
+ *        
+ *        
+ *        
+ *        
+ *        
+ *        
+ *        
+ * !不要在此引入平台相关的头文件，
  */
 
 /** 字符串基本类型->确定只用char、wchar_t。char16_t、char32_t编码不在这里关心。
@@ -42,7 +52,7 @@
  * 字符串容器
  */
 template<typename T>
-class NrSimpleCharTraitsBuf {
+class NRSCRIPT_API_HIDDEN NrSimpleCharTraitsBuf {
 private:
     /**
      * template<typename char_t> class CharacterStorer {
@@ -221,7 +231,7 @@ private:
  * 字符串 mutable
  */
 template<typename T>
-class NrSimpleCharT {
+class NRSCRIPT_API_HIDDEN NrSimpleCharT {
 public:
     /**
      * 字符串类型

@@ -33,7 +33,7 @@ void NrBuilderFrame::OnFrameClose(NrWindowBase* sender, bool& closeable) {
         closeable = true;
     }
 
-    if (sender == this && closeable) {
+    if (closeable) {
         NrApplication::exit(0);
     }
 }

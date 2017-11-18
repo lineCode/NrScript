@@ -3,7 +3,6 @@
 
 #include <NrScript.h>
 #include "NrAboutDialog.h"
-#include <memory>
 
 /**
  * NrScript.Builder 主窗口
