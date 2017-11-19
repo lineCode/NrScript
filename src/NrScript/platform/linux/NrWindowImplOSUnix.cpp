@@ -218,7 +218,7 @@ public:
         ::gtk_window_move(GTK_WINDOW(m_widget), x, y);
     }
 
-    void centerParent(const NrWindowBase* parent) {
+    void centerWindow(const NrWindowBase* parent) {
         if (parent == nullptr) {
             NRSCRIPT_ASSERT(false);
             return;
@@ -372,8 +372,8 @@ void NrWindowImplOSUnix::centerScreen() {
     return impl->centerScreen();
 }
 
-void NrWindowImplOSUnix::centerParent(const NrWindowBase *parent) {
-    return impl->centerParent(parent);
+void NrWindowImplOSUnix::centerWindow(const NrWindowBase *parent) {
+    return impl->centerWindow(parent);
 }
 
 /**

@@ -161,7 +161,7 @@ public:
     /**
      * 父窗口居中
      */
-    virtual void centerParent(const NrWindowBase* parent) = 0;
+    virtual void centerWindow(const NrWindowBase* parent) = 0;
 
 //    /**
 //     * 确认当前窗口是否最大化

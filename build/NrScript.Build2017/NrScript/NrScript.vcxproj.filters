@@ -159,6 +159,9 @@
     <ClInclude Include="..\..\..\include\NrScript\base\NrSimpleCharT.h">
       <Filter>include\base</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\NrScript\xml\NrXmlAttribute.h">
+      <Filter>include\xml</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\NrScript\ui\NrWindowImpl.cpp">
@@ -196,6 +199,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src\NrScript\platform\windows\NrSimpleCharTOSWin.cpp">
       <Filter>src\platform\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\NrScript\xml\NrXmlAttribute.cpp">
+      <Filter>src\xml</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

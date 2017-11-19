@@ -99,8 +99,8 @@ void NrWindowImpl::centerScreen() {
     return impl->centerScreen();
 }
 
-void NrWindowImpl::centerParent(const NrWindowBase* parent) {
-    return impl->centerParent(parent);
+void NrWindowImpl::centerWindow(const NrWindowBase* parent) {
+    return impl->centerWindow(parent);
 }
 
 void NrWindowImpl::setContentView(NrControl* root) {

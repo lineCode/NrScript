@@ -14,15 +14,27 @@
  * !不要在此引入平台相关的头文件，
  */
 
-#ifndef _NRSCRIPT_XML_H_
-#define _NRSCRIPT_XML_H_ 1
+#ifndef _NRSCRIPT_NRXMLATTRIBUTE_H_
+#define _NRSCRIPT_NRXMLATTRIBUTE_H_ 1
 
-/**
- * 不要在此引入平台相关的头文件
- */
+class NRSCRIPT_API_VISUAL NrXmlAttribute {
+public:
+    /**
+     * 默认构造函数
+     */
+    NrXmlAttribute();
 
-#include "NrScript/xml/NrXmlNode.h"
-#include "NrScript/xml/NrXmlDocument.h"
-#include "NrScript/xml/NrXmlAttribute.h"
+    /**
+     * 默认析构函数
+     */
+    virtual ~NrXmlAttribute();
+
+private:
+    /**
+     * 桥接
+     */
+    class Impl;
+    Impl* impl {nullptr};
+};
 
 #endif

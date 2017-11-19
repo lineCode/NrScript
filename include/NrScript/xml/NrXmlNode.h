@@ -18,6 +18,56 @@
 #define _NRSCRIPT_NRXMLNODE_H_ 1
 
 /**
+ * xml节点类型
+ */
+enum class NrXmlNodeType {
+    /**
+     * 空节点句柄
+     */
+    Null,
+
+    /**
+     * 一个文档树的绝对根
+     */
+    Document,
+
+    /**
+     * 元素标记,例如'<node />'
+     */
+    Element,
+
+    /**
+     * 普通字符数据,例如 '文本'
+     */
+    PCDATA,
+
+    /**
+     * 字符数据,例如'<![CDATA [text]]>'
+     */
+    CDATA,
+
+    /**
+     * 注释,例如<!-- comment -->
+     */
+    Comment,
+
+    /**
+     * 处理指令,例如'<?name?>'
+     */
+    PI,
+
+    /**
+     * 文档声明,例如'<?xml version ="1.0"?>'
+     */
+    Declaration,
+
+    /**
+     * 文档类型声明,例如'<!DOCTYPE doc>'
+     */
+    DOCTYPE,
+};
+
+/**
  * xml节点
  */
 class NRSCRIPT_API_VISUAL NrXmlNode {
@@ -31,6 +81,9 @@ public:
      * 虚拟析构函数
      */
     virtual ~NrXmlNode();
+
+public:
+
 
 private:
     /**

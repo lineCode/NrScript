@@ -201,6 +201,7 @@
     <ClInclude Include="..\..\..\include\NrScript\ui\utils\NrRect.h" />
     <ClInclude Include="..\..\..\include\NrScript\ui\widgets\NrControl.h" />
     <ClInclude Include="..\..\..\include\NrScript\xml.h" />
+    <ClInclude Include="..\..\..\include\NrScript\xml\NrXmlAttribute.h" />
     <ClInclude Include="..\..\..\include\NrScript\xml\NrXmlDocument.h" />
     <ClInclude Include="..\..\..\include\NrScript\xml\NrXmlNode.h" />
     <ClInclude Include="..\..\..\vendor\pugixml\pugiconfig.hpp" />
@@ -216,6 +217,7 @@
     <ClCompile Include="..\..\..\src\NrScript\ui\NrApplication.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\ui\NrWindowImpl.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\ui\widgets\NrControl.cpp" />
+    <ClCompile Include="..\..\..\src\NrScript\xml\NrXmlAttribute.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\xml\NrXmlDocument.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\xml\NrXmlNode.cpp" />
     <ClCompile Include="..\..\..\vendor\pugixml\pugixml.cpp" />

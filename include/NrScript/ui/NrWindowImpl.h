@@ -116,7 +116,7 @@ public:
     /**
      * 父窗口居中
      */
-    virtual void centerParent(const NrWindowBase* parent) override;
+    virtual void centerWindow(const NrWindowBase* parent) override;
 
 public:
     /**

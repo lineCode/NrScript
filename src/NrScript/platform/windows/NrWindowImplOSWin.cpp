@@ -318,7 +318,7 @@ public:
         ::SetWindowPos(m_Hwnd, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
     }
 
-    void centerParent(const NrWindowBase* parent) override {
+    void centerWindow(const NrWindowBase* parent) override {
         if (parent == nullptr) {
             NRSCRIPT_ASSERT(false);
             return;
@@ -473,8 +473,8 @@ void NrWindowImplOSWin::centerScreen() {
     return impl->centerScreen();
 }
 
-void NrWindowImplOSWin::centerParent(const NrWindowBase* parent) {
-    return impl->centerParent(parent);
+void NrWindowImplOSWin::centerWindow(const NrWindowBase* parent) {
+    return impl->centerWindow(parent);
 }
 
 

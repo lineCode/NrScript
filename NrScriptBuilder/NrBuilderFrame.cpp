@@ -26,7 +26,7 @@ void NrBuilderFrame::OnFrameCreate(NrWindowBase* sender, NrReserved reserved) {
 
 void NrBuilderFrame::OnFrameClose(NrWindowBase* sender, bool& closeable) {
     if (sender == this) {
-        m_dlgAbout->centerParent(this);
+        m_dlgAbout->centerWindow(this);
         m_dlgAbout->showDialog(this);
     }
     else if (sender == m_dlgAbout.get()) {
