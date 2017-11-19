@@ -25,6 +25,7 @@
 #include <vector>
 #include <cassert>
 #include <memory>
+#include <map>
 
 using NrReserved = int;
 

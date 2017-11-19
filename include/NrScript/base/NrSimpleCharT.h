@@ -180,6 +180,10 @@ public:
         return (*m_value).c_str();
     }
 
+    bool operator < (const NrSimpleCharTraitsBuf<T>& right) const {
+        return (*m_value) < (*right.m_value);
+    }
+
 public:
 
     bool isEmpty() const {
@@ -194,6 +198,10 @@ public:
         return (*m_value).length();
     }
 
+    int compare(const NrSimpleCharTraitsBuf<T>& right) const {
+        return (*m_value).compare(*(right.m_value));
+    }
+
 private:
     /**
      * 初始化
@@ -205,7 +213,7 @@ private:
     /**
      * 释放资源
      */
-    void finalize() {
+    void finalize() const {
         delete m_value;
     }
 
@@ -305,6 +313,13 @@ public:
         return (*m_value);
     }
 
+    /**
+     * 字符串比较
+     */
+    bool operator<(const NrSimpleCharT<T>& right) const {
+        return (*m_value) < (*right.m_value);
+    }
+
 public:
     /**
      * 确认字符串内容是否为空
@@ -327,8 +342,12 @@ public:
         return (*m_value).length();
     }
 
-public:
-
+    /**
+     * 字符串比较
+     */
+    int compare(const NrSimpleCharT<T>& right) const {
+        return (*m_value).compare(*right.m_value);
+    }
 
 private:
     /**
@@ -559,4 +578,12 @@ public:
      */
     NrString toString() const;
 };
+
+/**
+ * 运算符重载
+ */
+template<typename char_t> inline bool operator<(const NrSimpleCharT<char_t>& strLeft, const char_t* const strRight) {
+    return (strLeft.compare(strRight) < 0);
+}
+
 #endif

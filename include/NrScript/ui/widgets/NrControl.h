@@ -16,6 +16,7 @@
 
 #ifndef _NRSCRIPT_CONTROL_H_
 #define _NRSCRIPT_CONTROL_H_ 1
+#include "NrScript/ui/NrWidgetsXmlBuilder.h"
 
 /**
  * 默认控件基类

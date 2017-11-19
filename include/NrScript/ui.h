@@ -31,5 +31,6 @@
 #include "NrScript/ui/internal/NrWindowBase.h"
 #include "NrScript/ui/NrWindowImpl.h"
 #include "NrScript/ui/NrApplication.h"
+#include "NrScript/ui/NrWidgetsXmlBuilder.h"
 
 #endif

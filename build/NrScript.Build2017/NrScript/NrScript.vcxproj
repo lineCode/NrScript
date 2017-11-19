@@ -198,6 +198,7 @@
     <ClInclude Include="..\..\..\include\NrScript\ui\internal\NrWindowBase.h" />
     <ClInclude Include="..\..\..\include\NrScript\ui\NrApplication.h" />
     <ClInclude Include="..\..\..\include\NrScript\ui\NrWindowImpl.h" />
+    <ClInclude Include="..\..\..\include\NrScript\ui\NrWidgetsXmlBuilder.h" />
     <ClInclude Include="..\..\..\include\NrScript\ui\utils\NrRect.h" />
     <ClInclude Include="..\..\..\include\NrScript\ui\widgets\NrControl.h" />
     <ClInclude Include="..\..\..\include\NrScript\xml.h" />
@@ -215,8 +216,10 @@
     <ClCompile Include="..\..\..\src\NrScript\ui\internal\NrWidgetsTreeRenderer.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\ui\internal\NrWindowBase.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\ui\NrApplication.cpp" />
+    <ClCompile Include="..\..\..\src\NrScript\ui\NrWidgetsXmlBuilder.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\ui\NrWindowImpl.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\ui\widgets\NrControl.cpp" />
+    <ClCompile Include="..\..\..\src\NrScript\ui\widgets\NrWidgets.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\xml\NrXmlAttribute.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\xml\NrXmlDocument.cpp" />
     <ClCompile Include="..\..\..\src\NrScript\xml\NrXmlNode.cpp" />
