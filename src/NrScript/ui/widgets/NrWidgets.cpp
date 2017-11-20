@@ -26,7 +26,7 @@ public:
      * 默认构造函数
      */
     NrWidgets() {
-        NrWidgetStringCreator<NrControl>(L"Control");
+        //NrWidgetStringCreator<NrControl>(L"Control");
     }
 };
 static NrWidgets kCommonWidgetsRegister;

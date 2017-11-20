@@ -254,7 +254,7 @@ public:
     /** 
      * 用于标记查找目标字符串失败
      */
-    static const typename NrSimpleCharT<T>::size_t npos = (NrSimpleCharT<T>::size_t) - 1;
+    static const typename NrSimpleCharT<T>::size_t npos = static_cast<typename NrSimpleCharT<T>::size_t>(-1);
 
 public:
     /**

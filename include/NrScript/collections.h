@@ -14,24 +14,14 @@
  * !不要在此引入平台相关的头文件，
  */
 
-#ifndef _NRSCRIPT_IMPORT_H_
-#define _NRSCRIPT_IMPORT_H_ 1
+#ifndef _NRSCRIPT_COLLECTIONS_H_
+#define _NRSCRIPT_COLLECTIONS_H_ 1
 
 /**
- * 这份头文件是给用户使用的，NrScript工程不能使用该头文件
- *
- * 不要在此引入平台相关的头文件
+ * 因为stl模版库容器导出dll接口不方便(dllexport)，所以这里造个轮子
+ * @note 集合类只在NrScript内部使用，不会污染导出接口。
  */
 
-
-#ifndef NRSCRIPT_EXPORTS
-#include <NrScript/base.h>
-#include <NrScript/ui.h>
-#include <NrScript/xml.h>
-#include <NrScript/collections.h>
-
-//#include <NrScript/skia.h>
-#endif
 
 
 #endif

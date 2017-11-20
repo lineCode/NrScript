@@ -182,10 +182,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\include\NrScript.h" />
     <ClInclude Include="..\..\..\include\NrScript\base.h" />
-    <ClInclude Include="..\..\..\include\NrScript\base\NrSimpleCharT.h" />
     <ClInclude Include="..\..\..\include\NrScript\base\NrEvent.h" />
+    <ClInclude Include="..\..\..\include\NrScript\base\NrSimpleCharT.h" />
+    <ClInclude Include="..\..\..\include\NrScript\collections.h" />
     <ClInclude Include="..\..\..\include\NrScript\defs.h" />
     <ClInclude Include="..\..\..\include\NrScript\platform\windows\NrApplicationOSWin.h" />
     <ClInclude Include="..\..\..\include\NrScript\platform\windows\NrWindowImplOSWin.h" />

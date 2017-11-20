@@ -67,19 +67,7 @@ private:
     abc _abc;
 };
 
-#ifdef _DEBUG  
-#define new new(_NORMAL_BLOCK, __FILE__, __LINE__)  
-#endif  
-
-void EnableMemLeakCheck() {
-    int tmpFlag = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
-    tmpFlag |= _CRTDBG_LEAK_CHECK_DF;
-    _CrtSetDbgFlag(tmpFlag);
-}
-
 int main(int argc, char** argv) {
-
-    EnableMemLeakCheck();
 
     NrTEst t {};
     int c = t.doTEST();
