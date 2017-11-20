@@ -181,7 +181,7 @@ public:
     }
 
     bool operator < (const NrSimpleCharTraitsBuf<T>& right) const {
-        return (*m_value) < (*right.m_value);
+        return (*m_value) < (*(right.m_value));
     }
 
 public:
@@ -316,8 +316,8 @@ public:
     /**
      * 字符串比较
      */
-    bool operator<(const NrSimpleCharT<T>& right) const {
-        return (*m_value) < (*right.m_value);
+    bool operator < (const NrSimpleCharT<T>& right) const {
+        return (*m_value) < (*(right.m_value));
     }
 
 public:
@@ -346,7 +346,7 @@ public:
      * 字符串比较
      */
     int compare(const NrSimpleCharT<T>& right) const {
-        return (*m_value).compare(*right.m_value);
+        return (*m_value).compare(*(right.m_value));
     }
 
 private:
@@ -578,12 +578,5 @@ public:
      */
     NrString toString() const;
 };
-
-/**
- * 运算符重载
- */
-template<typename char_t> inline bool operator<(const NrSimpleCharT<char_t>& strLeft, const char_t* const strRight) {
-    return (strLeft.compare(strRight) < 0);
-}
 
 #endif
