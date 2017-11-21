@@ -14,14 +14,17 @@
  * !不要在此引入平台相关的头文件，
  */
 
-#ifndef _NRSCRIPT_COLLECTIONS_H_
-#define _NRSCRIPT_COLLECTIONS_H_ 1
+#ifndef _NRSCRIPT_NRVECTOR_H_
+#define _NRSCRIPT_NRVECTOR_H_
 
 /**
- * 因为stl模版库容器导出dll接口不方便(dllexport)，所以这里造个轮子
- * @note 集合类只在NrScript内部使用，不会污染导出接口。
+ * Vector实现
+ * 
+ * stl库中Vector无法导出(dllexport)，所以这里重新写个.
+ * @note NrVector仅限NrScript库内部使用，不会污染导出接口
  */
-
-
+template<typename T> class NrVector {
+    
+};
 
 #endif

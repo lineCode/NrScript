@@ -75,24 +75,32 @@
     <OutDir>..\..\..\output\$(ProjectName)\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>..\..\..\build_tmp\$(ProjectName)\$(PlatformName)\$(Configuration)\</IntDir>
     <TargetName>lib$(ProjectName)</TargetName>
+    <EnableCppCoreCheck>true</EnableCppCoreCheck>
+    <EnableExperimentalCppCoreCheck>true</EnableExperimentalCppCoreCheck>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>..\..\..\output\$(ProjectName)\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>..\..\..\build_tmp\$(ProjectName)\$(PlatformName)\$(Configuration)\</IntDir>
     <TargetName>lib$(ProjectName)</TargetName>
+    <EnableCppCoreCheck>true</EnableCppCoreCheck>
+    <EnableExperimentalCppCoreCheck>true</EnableExperimentalCppCoreCheck>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>..\..\..\output\$(ProjectName)\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>..\..\..\build_tmp\$(ProjectName)\$(PlatformName)\$(Configuration)\</IntDir>
     <TargetName>lib$(ProjectName)</TargetName>
+    <EnableCppCoreCheck>true</EnableCppCoreCheck>
+    <EnableExperimentalCppCoreCheck>true</EnableExperimentalCppCoreCheck>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>..\..\..\output\$(ProjectName)\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>..\..\..\build_tmp\$(ProjectName)\$(PlatformName)\$(Configuration)\</IntDir>
     <TargetName>lib$(ProjectName)</TargetName>
+    <EnableCppCoreCheck>true</EnableCppCoreCheck>
+    <EnableExperimentalCppCoreCheck>true</EnableExperimentalCppCoreCheck>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
     <ClCompile>
@@ -183,9 +191,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\NrScript\base.h" />
+    <ClInclude Include="..\..\..\include\NrScript\base\NrArray.h" />
     <ClInclude Include="..\..\..\include\NrScript\base\NrEvent.h" />
     <ClInclude Include="..\..\..\include\NrScript\base\NrSimpleCharT.h" />
-    <ClInclude Include="..\..\..\include\NrScript\collections.h" />
     <ClInclude Include="..\..\..\include\NrScript\defs.h" />
     <ClInclude Include="..\..\..\include\NrScript\platform\windows\NrApplicationOSWin.h" />
     <ClInclude Include="..\..\..\include\NrScript\platform\windows\NrWindowImplOSWin.h" />

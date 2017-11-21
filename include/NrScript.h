@@ -28,7 +28,6 @@
 #include <NrScript/base.h>
 #include <NrScript/ui.h>
 #include <NrScript/xml.h>
-#include <NrScript/collections.h>
 
 //#include <NrScript/skia.h>
 #endif
